@@ -1,0 +1,2813 @@
+{
+	"info": {
+		"_postman_id": "0efd4f4e-4d55-114b-b3ee-43ffb89686bc",
+		"name": "Fodamy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0 - Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "salih",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend register-code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "tuncerr1724",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tuncerb17+5@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/resend",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Google",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "ya29.GlvsBKXlq22n0r5uGLtC6Hz32I4aB9DWBI5lS0FqzVGssok8qYTRUirvqM3_MWyc7gvXvKJqKjMemIaDIkhvv0RWKHk_ruDAIBdNBbw8Ocveo11003oQYzv0y8ke",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/google",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"google"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "aslanmsalih+22@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "fodamy48+",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "salihaga",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Fodamy",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Şipşak",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "birthday",
+									"value": "1992-01-01",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Facebook",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "EAANpXOQNCPoBACmlZBMqY2FTCgl0DyvjPnEcQJSLtkzbM1ZC4D5lsnFGVZCQUJcXzQdVYWSnKAVlgrM6HZAmnLsU9VKzVm87MXDaFaqkPoZAbUsz44ztj5rgm1HhxNQRn128TRZA4gO4GsKwuCV0JMvnD5ZBuRywrlOmp9EIwG1RwZDZD",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/facebook",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"facebook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Push register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "type",
+									"value": "android",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "cbOe1nJhn_4:APA91bG8X7D2S_GPyRuKicAUXySEq3lmygphBp6Nf04BdVnasKooaFxKQuTVsaE23eOZ-KqeTLQoWLZTXBF75yR2mynGrUGEPhtAiWYZRib_ikEYlOVD2KNDp0TYtyVqu23XnJge5g2p",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register-push",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-push"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "aslanmsalih@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/forgot",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"forgot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "0 - Other",
+			"item": [
+				{
+					"name": "Contact ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tuncer",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tuncerb17@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "text",
+									"value": "deneme contact",
+									"type": "text"
+								},
+								{
+									"key": "reason_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/contact",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"contact"
+							]
+						},
+						"description": "Auth varsa onun emailne atar."
+					},
+					"response": []
+				},
+				{
+					"name": "Version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/version?version=1.6.22&platform=android",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"version"
+							],
+							"query": [
+								{
+									"key": "version",
+									"value": "1.6.22"
+								},
+								{
+									"key": "platform",
+									"value": "android"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "1 - User",
+			"item": [
+				{
+					"name": "User update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "f0f5dde4-184d-48aa-8b3b-847d139138eb"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "tuncerb17+10@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "tuncerr",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "admin",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "asd2",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1992-02-21",
+									"type": "text"
+								},
+								{
+									"key": "facebook_url",
+									"value": "url",
+									"type": "text"
+								},
+								{
+									"key": "twitter_url",
+									"value": "url",
+									"type": "text"
+								},
+								{
+									"key": "instagram_url",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "youtube_url",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "tckn",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "file:image",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/:user_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":user_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "top users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/top-users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"top-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Password Change",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "moaz"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "new_password",
+									"value": "passwordd",
+									"type": "text"
+								},
+								{
+									"key": "old_password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/me/password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"me",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user likes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/2/like",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/2/favorite",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2",
+								"favorite"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user Recipes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/2/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"2",
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Top users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/top-users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"top-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Books",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/:user_id/book",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":user_id",
+								"book"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "0 - Agreement",
+			"item": [
+				{
+					"name": "term-of-services",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/agreement/term-of-services",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"agreement",
+								"term-of-services"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "1 - User Notification",
+			"item": [
+				{
+					"name": "User get notification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/:user_id/notification",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":user_id",
+								"notification"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User cant get notification",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "recipe.like.created",
+									"value": "0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user/:user_id/notification",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":user_id",
+								"notification"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "1 - User follow ",
+			"item": [
+				{
+					"name": "User follow kullanıcının takip ettikleri",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/:userId/following",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":userId",
+								"following"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User follow",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/:followedId/following",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":followedId",
+								"following"
+							],
+							"variable": [
+								{
+									"key": "followedId",
+									"value": "11",
+									"description": "takip edilecek kullanıcı",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User unfollow",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/user/:followedId/following",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":followedId",
+								"following"
+							],
+							"variable": [
+								{
+									"key": "followedId",
+									"value": "2",
+									"description": "talipten çıkarılacak kullanıcı",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User followeds kullanıcıyı takip edenler",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user/:userID/followers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								":userID",
+								"followers"
+							],
+							"variable": [
+								{
+									"key": "userID",
+									"value": "2",
+									"description": "kullnıcı id",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3 - Category",
+			"item": [
+				{
+					"name": "Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "eng"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Time",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "ar"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/time",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"time"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Serving",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/serving",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"serving"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3 - Category - Subcategories",
+			"item": [
+				{
+					"name": "Category - Subcategory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/category/:category_id/subcategory",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category",
+								":category_id",
+								"subcategory"
+							],
+							"variable": [
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3 - Category Recipes",
+			"item": [
+				{
+					"name": "Receipe categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/category-recipes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category-recipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Category Recipes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/category/:category_id/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category",
+								":category_id",
+								"recipe"
+							],
+							"variable": [
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe",
+			"item": [
+				{
+					"name": "Receipe get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "16",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Last Added",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "eng",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Following user Recipes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "eng",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipes/following",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"following"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "recipe title 1",
+									"type": "text"
+								},
+								{
+									"key": "ingredients",
+									"value": "malzemeler",
+									"type": "text"
+								},
+								{
+									"key": "directions",
+									"value": "yapılışı",
+									"type": "text"
+								},
+								{
+									"key": "youtube_url",
+									"value": "tuncerr17sdsdsd",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "number_of_peoples_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "time_of_recipe_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "images[0]",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "images[1]",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								},
+								{
+									"key": "images[2]",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "recipe title2",
+									"type": "text"
+								},
+								{
+									"key": "definition",
+									"value": "definitionn",
+									"type": "text"
+								},
+								{
+									"key": "youtube_url",
+									"value": "tuncerr17",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "material[0]",
+									"value": "1. malzeme",
+									"type": "text"
+								},
+								{
+									"key": "material[1]",
+									"value": "2. malzeme",
+									"type": "text"
+								},
+								{
+									"key": "material[2]",
+									"value": "3. malzeme",
+									"type": "text"
+								},
+								{
+									"key": "step[1]",
+									"value": "1. adım 1. adım",
+									"type": "text"
+								},
+								{
+									"key": "step[0]",
+									"value": "2. adım 2. adım",
+									"type": "text"
+								},
+								{
+									"key": "step[2]",
+									"value": "3. adım 3. adım",
+									"type": "text"
+								},
+								{
+									"key": "number_of_peoples_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "time_of_recipe_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "17",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "33",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Suggest",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/suggest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"suggest"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe Comment",
+			"item": [
+				{
+					"name": "Recipe Comments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/comment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"comment"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReceipeComment Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "text",
+									"value": "text text text",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/comment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"comment"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "16",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe commnet update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "text",
+									"value": "text2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/comment/:comment_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"comment",
+								":comment_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"key": "comment_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Comment Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/comment/:comment_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"comment",
+								":comment_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"key": "comment_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe Comment Report",
+			"item": [
+				{
+					"name": "ReceipeComment report Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/comment/:comment_id/report",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"comment",
+								":comment_id",
+								"report"
+							],
+							"variable": [
+								{
+									"key": "comment_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe Editor Choices",
+			"item": [
+				{
+					"name": "Recipe Editor",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/editor-choices",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"editor-choices"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe Like",
+			"item": [
+				{
+					"name": "Recipe Likes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/like",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Like Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/like",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "16",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Like Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/like",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"like"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe favorite",
+			"item": [
+				{
+					"name": "Recipe favorites",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/favorite",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe favorite Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/favorite",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipefavorite Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe/:recipe_id/favorite",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe",
+								":recipe_id",
+								"favorite"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 - Recipe Photos",
+			"item": [
+				{
+					"name": "Receipe Photos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "eng"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/recipe-photos/:recipe_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe-photos",
+								":recipe_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Photos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "eng"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "images[0]",
+									"value": "",
+									"type": "file"
+								},
+								{
+									"key": "images[1]",
+									"value": "",
+									"type": "file"
+								},
+								{
+									"key": "images[2]",
+									"value": "",
+									"type": "file",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe-photos",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe-photos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Receipe Photos delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/recipe-photos/:recipe_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"recipe-photos",
+								":recipe_id"
+							],
+							"variable": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "5 - Collection",
+			"item": [
+				{
+					"name": "Collection",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/collection",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collection"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Collection show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/collection/:collectionId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collection",
+								":collectionId"
+							],
+							"variable": [
+								{
+									"key": "collectionId",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "6 - Featured",
+			"item": [
+				{
+					"name": "Featureds",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer",
+								"disabled": true
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "tr"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/featured",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"featured"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "7 - Search",
+			"item": [
+				{
+					"name": "Recipe search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "en",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/search-recipe?filter[1]=editor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"search-recipe"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "aut",
+									"description": "title a bakıyor.",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": null,
+									"description": "oldest_first,newest_first,a_to_z,z_to_a,favorite_count,comment_count,like_count",
+									"disabled": true
+								},
+								{
+									"key": "filter[0]",
+									"value": "has_video",
+									"description": "videosu olan",
+									"disabled": true
+								},
+								{
+									"key": "filter[1]",
+									"value": "editor"
+								},
+								{
+									"key": "category[0]",
+									"value": null,
+									"description": "category gelmez ise hepsi",
+									"disabled": true
+								},
+								{
+									"key": "time[0]",
+									"value": "1",
+									"description": "time gelmez ise hepsi",
+									"disabled": true
+								},
+								{
+									"key": "serve[0]",
+									"value": "1",
+									"description": "serve gelmez ise hepsi",
+									"disabled": true
+								}
+							]
+						},
+						"description": "order için **\noldest_first\nnewest_first\na_to_z\nz_to_a\nfavorite_count\nlike_count **"
+					},
+					"response": []
+				},
+				{
+					"name": "Populer search keywords",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/keyword-popular?type=recipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"keyword-popular"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "recipe"
+								}
+							]
+						},
+						"description": "order için **\noldest_first\nnewest_first\na_to_z\nz_to_a\nfavorite_count\nlike_count **"
+					},
+					"response": []
+				},
+				{
+					"name": "user search",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/search-user/?order=follower_count",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"search-user",
+								""
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "order",
+									"value": "follower_count"
+								}
+							]
+						},
+						"description": "order için **\na_to_z\nz_to_a\nfollower_count\nlike_count **\nrecipe_count"
+					},
+					"response": []
+				},
+				{
+					"name": "Popular User search keywords",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/keyword-popular?type=user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"keyword-popular"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "user"
+								}
+							]
+						},
+						"description": "order için **\noldest_first\nnewest_first\na_to_z\nz_to_a\nfavorite_count\nlike_count **"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "8 - Books",
+			"item": [
+				{
+					"name": "book store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tatlılarım",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "en",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/book",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/book/:book_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								":book_id"
+							],
+							"variable": [
+								{
+									"key": "book_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "book update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Tatlım",
+									"type": "text"
+								},
+								{
+									"key": "language",
+									"value": "en",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/book/:book_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								":book_id"
+							],
+							"variable": [
+								{
+									"key": "book_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "8 - Book Recipes",
+			"item": [
+				{
+					"name": "book recipes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "en"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/book/:book_id/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								":book_id",
+								"recipe"
+							],
+							"variable": [
+								{
+									"key": "book_id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book recipes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							},
+							{
+								"key": "X-Fodamy-Language",
+								"value": "en"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/book/:book_id/recipe",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								":book_id",
+								"recipe"
+							],
+							"variable": [
+								{
+									"key": "book_id",
+									"value": "2",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Book recipes delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "tuncer"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/book/:book_id/recipe/:recipe_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"book",
+								":book_id",
+								"recipe",
+								":recipe_id"
+							],
+							"variable": [
+								{
+									"key": "book_id",
+									"value": "1",
+									"type": "string"
+								},
+								{
+									"key": "recipe_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "9 - Notification",
+			"item": [
+				{
+					"name": "Notificaitons",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/notification",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificaiton read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "tuncerb17+10@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "tuncerr",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "sada",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "asd",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1992-02-21",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/notification/:notification_id/read",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								":notification_id",
+								"read"
+							],
+							"variable": [
+								{
+									"key": "notification_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notificaiton delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Fodamy-Token",
+								"value": "web-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/notification/:notification_id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"notification",
+								":notification_id"
+							],
+							"variable": [
+								{
+									"key": "notification_id",
+									"value": "1",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "20180f13-1278-458d-895a-95c8dd417b02",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "da23b9d9-99ed-41ac-9be4-242c2f41613a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

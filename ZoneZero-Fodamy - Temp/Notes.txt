@@ -1,0 +1,38 @@
+
+Intro
+- Intro ekranın uygulama ilk açıldığı zaman 1 kere gösterilir.
+- Bitince kullanıcı ana sayfaya yönlendirilir.
+
+Auth
+- Facebook ve Google Login olmayacak.
+- Fieldlarda anlık validate olmayacak. Butonlara basında validate durumlarına göre tepeden Taost gösterilecek.
+- Fieldlara tıklayınca placeholder title olarak yukarı kayacak ve editing devam ettiği sürece renkli olacak.
+
+Home
+- Search ve Tarif ekleme butonları olmayacak.
+- Editör seçimi tabındaki tariflerin resminde bunu belirten bir tane badge olacak.
+- Search iconu yerine logout iconu olacak.
+- Paging var
+
+Liked
+- Search ve Tarif ekleme butonları olmayacak.
+- Editör seçimi olan tariflerin resminde bunu belirten bir tane badge olacak.
+- Search iconu yerine logout iconu olacak.
+- Paging var
+
+Recipes List
+- Ana sayfadaki listelenin aynısı.
+- Paging var
+
+Detail
+- Bu ekranda resme tıklayınca bir tane preview ekranı açılacak. Preview ekranın resimler arasında gezinip zoom yapabilecek.
+- Comment ve Like butonları olacak ortadaki + butonu olmayacak.
+- Like ve Takip et butonlarına tıklayınca kullanıcı login değilse login olması için info diyalog gösterilecek.
+- Tepede sadece share butonu olacak. Edit butonu olmayacak.
+- Benzer Tarifler olmayacak.
+- Yorumlar en fazla 3 tane gösterilecek.
+
+Comments
+- Ekranın en alt tarafında sadece text girebileceği bir field olacak. Whatsapptaki gibi olabilir.
+- Gönder butonuna tıklayınca kullanıcı login değilse login olması için info diyalog gösterilecek. 
+- Yorum silme ve düzenleme olacak.
