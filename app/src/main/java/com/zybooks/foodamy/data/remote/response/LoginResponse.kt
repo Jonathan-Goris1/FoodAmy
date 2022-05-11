@@ -1,5 +1,5 @@
 package com.zybooks.foodamy.data.remote.response
 
 data class LoginResponse(
-    val code: String,
+    val data: String,
     val message: String)
