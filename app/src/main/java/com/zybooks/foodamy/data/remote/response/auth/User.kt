@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.data.remote.response
+package com.zybooks.foodamy.data.remote.response.auth
 
 data class User(
     val birthday: Any,
