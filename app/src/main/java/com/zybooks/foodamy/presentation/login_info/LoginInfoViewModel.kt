@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.zybooks.foodamy.domain.repository.LoginRepository
+import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginInfoViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val repository: LoginRepository
+    private val repository: AuthRepository
 ) : ViewModel() {
 
     var state by mutableStateOf(LoginInfoState())
