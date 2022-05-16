@@ -26,7 +26,7 @@ fun LoginInfoScreen() {
 
     ) {
 
-        dividerText()
+        DividerText()
 
         Button(
 
@@ -61,7 +61,7 @@ fun LoginInfoScreen() {
             Text(text = "Login with Google", color = androidx.compose.ui.graphics.Color.White)
         }
 
-        dividerText()
+        DividerText()
 
 
 
@@ -72,7 +72,7 @@ fun LoginInfoScreen() {
 }
 
 @Composable
-fun dividerText(){
+fun DividerText(){
     Row (
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
