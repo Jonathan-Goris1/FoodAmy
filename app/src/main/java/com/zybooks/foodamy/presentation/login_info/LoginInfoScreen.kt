@@ -39,9 +39,9 @@ fun LoginInfoScreen() {
 
             shape = MaterialTheme.shapes.medium,
 
-            colors = ButtonDefaults.buttonColors(backgroundColor = androidx.compose.ui.graphics.Color.Blue)
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
         ) {
-            Text(text = "Login with Facebook", color = androidx.compose.ui.graphics.Color.White)
+            Text(text = "Login with Facebook", color = Color.White)
         }
 
         Button(
@@ -56,9 +56,9 @@ fun LoginInfoScreen() {
 
             shape = MaterialTheme.shapes.medium,
 
-            colors = ButtonDefaults.buttonColors(backgroundColor = androidx.compose.ui.graphics.Color.Red)
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            Text(text = "Login with Google", color = androidx.compose.ui.graphics.Color.White)
+            Text(text = "Login with Google", color = Color.White)
         }
 
         DividerText()
