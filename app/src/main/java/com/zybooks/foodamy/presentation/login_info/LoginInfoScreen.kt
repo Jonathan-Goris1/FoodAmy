@@ -1,24 +1,30 @@
 package com.zybooks.foodamy.presentation.login_info
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.BasicText
-import androidx.compose.foundation.text.InlineTextContent
-import androidx.compose.foundation.text.appendInlineContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.*
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.em
-import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
-fun LoginInfoScreen() {
+fun LoginInfoScreen(
+
+) {
     Column(
         modifier = Modifier
             .padding(8.dp),
@@ -32,7 +38,7 @@ fun LoginInfoScreen() {
 
             modifier = Modifier
                 .fillMaxWidth(),
-            
+
             onClick = {},
 
             enabled = true,
@@ -62,8 +68,10 @@ fun LoginInfoScreen() {
         }
 
         DividerText()
+        EmailTextField()
+        PasswordTextField()
 
-
+        
 
 
     }
@@ -72,19 +80,20 @@ fun LoginInfoScreen() {
 }
 
 @Composable
-fun DividerText(){
-    Row (
-        modifier = Modifier.fillMaxWidth(),
+fun DividerText() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Divider(
             modifier = Modifier
                 .fillMaxWidth(.4f)
-                .padding(0.dp, 0.dp, 16.dp, 0.dp)
-            ,
+                .padding(0.dp, 0.dp, 16.dp, 0.dp),
 
             color = Color.White,
-            thickness = 1.dp)
+            thickness = 1.dp
+        )
 
         Text(
             modifier = Modifier.padding(0.dp, 0.dp, 16.dp, 0.dp),
@@ -94,53 +103,65 @@ fun DividerText(){
 
         Divider(
             modifier = Modifier
-                .fillMaxWidth()
-            ,
+                .fillMaxWidth(),
 
             color = Color.White,
-            thickness = 1.dp)
-
-    }
-}
-
-@Preview
-@Composable
-fun Social() {
-    val dividerId = "inlineDividerId"
-    val text = buildAnnotatedString {
-
-        appendInlineContent(dividerId, "[divider]")
-
-        append(AnnotatedString(" Twitter ", spanStyle = SpanStyle(Color.White)))
-
-        appendInlineContent(dividerId, "[divider]")
-
-    }
-
-    val inlineDividerContent = mapOf(
-        Pair(
-            // This tells the [CoreText] to replace the placeholder string "[divider]" by
-            // the composable given in the [InlineTextContent] object.
-            dividerId,
-            InlineTextContent(
-                // Placeholder tells text layout the expected size and vertical alignment of
-                // children composable.
-                Placeholder(
-                    width = 0.15.em,
-                    height = 0.90.em,
-                    placeholderVerticalAlign = PlaceholderVerticalAlign.TextCenter
-                )
-            ) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color.DarkGray)
-                )
-            }
+            thickness = 1.dp
         )
-    )
-
-    BasicText(text = text, inlineContent = inlineDividerContent, style = TextStyle(fontSize = 17.sp))
+    }
 }
+
+@Composable
+fun EmailTextField(){
+    var value by remember { mutableStateOf("") }
+
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = value,
+        onValueChange = {value = it },
+        label = { Text(text = "Email or Username")},
+        singleLine = true,
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color.Transparent,
+
+    ),
+    )
+}
+
+@Composable
+fun PasswordTextField(){
+
+    var password by rememberSaveable { mutableStateOf("") }
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
+
+    TextField(
+        modifier = Modifier.fillMaxWidth(),
+        value = password,
+        onValueChange = { password = it },
+        label = { Text("Password") },
+        singleLine = true,
+        placeholder = { Text("Password") },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = Color.Transparent,
+
+            ),
+        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        trailingIcon = {
+            val image = if (passwordVisible)
+                Icons.Filled.Visibility
+            else Icons.Filled.VisibilityOff
+
+            // Please provide localized description for accessibility services
+            val description = if (passwordVisible) "Hide password" else "Show password"
+
+            IconButton(onClick = {passwordVisible = !passwordVisible}){
+                Icon(imageVector  = image, description)
+            }
+        }
+    )
+}
+
+
 
 
