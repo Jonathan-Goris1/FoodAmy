@@ -8,15 +8,16 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -24,108 +25,119 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun LoginInfoScreen(
-
+    viewModel: LoginInfoViewModel = hiltViewModel()
 ) {
+
+    var email by rememberSaveable { mutableStateOf("")}
+    var password by rememberSaveable { mutableStateOf("") }
+    var passwordVisible by rememberSaveable { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-
         DividerText()
 
         Button(
-
             modifier = Modifier
                 .fillMaxWidth(),
-
             onClick = {},
-
             enabled = true,
-
             shape = MaterialTheme.shapes.medium,
-
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
         ) {
-            Text(text = "Login with Facebook", color = Color.White)
-        }
+            Text(text = "Login with Facebook", color = Color.White) }
 
         Button(
-
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 0.dp, vertical = 16.dp),
-
             onClick = {},
-
             enabled = true,
-
             shape = MaterialTheme.shapes.medium,
-
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            Text(text = "Login with Google", color = Color.White)
-        }
+            Text(text = "Login with Google", color = Color.White)}
 
         DividerText()
-        EmailTextField()
-        PasswordTextField()
+
+        TextField(
+            textStyle = TextStyle(textAlign = TextAlign.Left),
+            modifier = Modifier.fillMaxWidth(),
+            value = email,
+            onValueChange = { email = it },
+            label = { Text(text = "Email or Username") },
+            singleLine = true,
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
+                ),
+        )
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            singleLine = true,
+            placeholder = { Text("Password") },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
+
+                ),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
+
+                // Please provide localized description for accessibility services
+                val description = if (passwordVisible) "Hide password" else "Show password"
+
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(imageVector = image, description)
+                }
+            }
+        )
 
         Row(
             modifier = Modifier.fillMaxWidth()
 
         ) {
             ClickableText(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp ),
+                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
                 text = AnnotatedString("Sign Up"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
                 onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
+                    Log.d("ClickableText", "$offset -th character is clicked.") }
             )
 
             Spacer(Modifier.weight(1f))
 
             ClickableText(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp ),
+                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
                 text = AnnotatedString("Forgot Password"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
                 onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
-            )
-
-        }
+                    Log.d("ClickableText", "$offset -th character is clicked.") }
+            )}
 
         Button(
-
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 0.dp, vertical = 16.dp),
-
-            onClick = {},
-
+            onClick = { viewModel.state.login},
             enabled = true,
-
             shape = MaterialTheme.shapes.medium,
-
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
         ) {
-            Text(text = "Login", color = Color.White)
-        }
-
-        
-
-
+            Text(text = "Login", color = Color.White)}
     }
-
-
 }
 
 @Composable
@@ -133,85 +145,143 @@ fun DividerText() {
     Row(
         modifier = Modifier
             .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.Center
     ) {
         Divider(
             modifier = Modifier
-                .fillMaxWidth(.4f)
+                .weight(1.0f)
                 .padding(0.dp, 0.dp, 16.dp, 0.dp),
 
-            color = Color.White,
+            color = Color.Gray,
             thickness = 1.dp
         )
 
         Text(
 
             maxLines = 1,
-            text = "This is a testtttttttttttttt",
-            color = Color.White
+            text = "This is a test",
+            color = Color.Gray
         )
 
         Divider(
             modifier = Modifier
-                .fillMaxWidth()
+                .weight(1.0f)
                 .padding(16.dp, 0.dp, 0.dp, 0.dp),
 
-            color = Color.White,
+            color = Color.Gray,
             thickness = 1.dp
         )
     }
 }
 
+@Preview
 @Composable
-fun EmailTextField(){
-    var value by remember { mutableStateOf("") }
-
-    TextField(
-        textStyle = TextStyle(textAlign = TextAlign.Left),
-        modifier = Modifier.fillMaxWidth(),
-        value = value,
-        onValueChange = {value = it },
-        label = { Text( text = "Email or Username")},
-        singleLine = true,
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
-
-    ),
-    )
-}
-
-@Composable
-fun PasswordTextField(){
-
+fun loginInfoScreenPreview(){
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
-    TextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = password,
-        onValueChange = { password = it },
-        label = { Text("Password") },
-        singleLine = true,
-        placeholder = { Text("Password") },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
+    Column(
+        modifier = Modifier
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
 
+    ) {
+        DividerText()
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth(),
+            onClick = {},
+            enabled = true,
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+        ) {
+            Text(text = "Login with Facebook", color = Color.White) }
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 0.dp, vertical = 16.dp),
+            onClick = {},
+            enabled = true,
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+        ) {
+            Text(text = "Login with Google", color = Color.White)}
+
+        DividerText()
+        TextField(
+            textStyle = TextStyle(textAlign = TextAlign.Left),
+            modifier = Modifier.fillMaxWidth(),
+            value =  " ",
+            onValueChange = { it },
+            label = { Text(text = "Email or Username") },
+            singleLine = true,
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
             ),
-        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        trailingIcon = {
-            val image = if (passwordVisible)
-                Icons.Filled.Visibility
-            else Icons.Filled.VisibilityOff
+        )
+        TextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            singleLine = true,
+            placeholder = { Text("Password") },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
 
-            // Please provide localized description for accessibility services
-            val description = if (passwordVisible) "Hide password" else "Show password"
+                ),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+            trailingIcon = {
+                val image = if (passwordVisible)
+                    Icons.Filled.Visibility
+                else Icons.Filled.VisibilityOff
 
-            IconButton(onClick = {passwordVisible = !passwordVisible}){
-                Icon(imageVector  = image, description)
+                // Please provide localized description for accessibility services
+                val description = if (passwordVisible) "Hide password" else "Show password"
+
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(imageVector = image, description)
+                }
             }
-        }
-    )
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth()
+
+        ) {
+            ClickableText(
+                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                text = AnnotatedString("Sign Up"),
+                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
+                onClick = { offset ->
+                    Log.d("ClickableText", "$offset -th character is clicked.") }
+            )
+
+            Spacer(Modifier.weight(1f))
+
+            ClickableText(
+                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                text = AnnotatedString("Forgot Password"),
+                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
+                onClick = { offset ->
+                    Log.d("ClickableText", "$offset -th character is clicked.") }
+            )}
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 0.dp, vertical = 16.dp),
+            onClick = {},
+            enabled = true,
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
+        ) {
+            Text(text = "Login", color = Color.White)}
+    }
 }
 
 
