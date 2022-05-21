@@ -21,6 +21,15 @@ class LoginInfoViewModel @Inject constructor(
 
     var state by mutableStateOf(LoginInfoState())
 
+    fun updateEmail(email: String){
+        state.login?.user?.copy(email = email)
+    }
+
+    fun updatePassword(password: String){
+
+    }
+
+
     init {
         viewModelScope.launch {
             val email = savedStateHandle.get<String>("email") ?: return@launch
