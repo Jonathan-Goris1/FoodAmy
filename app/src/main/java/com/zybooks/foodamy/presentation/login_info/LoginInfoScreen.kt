@@ -32,8 +32,7 @@ fun LoginInfoScreen(
     viewModel: LoginInfoViewModel = hiltViewModel()
 ) {
 
-    var email by rememberSaveable { mutableStateOf("")}
-    var password by rememberSaveable { mutableStateOf("") }
+
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     Column(
@@ -80,8 +79,8 @@ fun LoginInfoScreen(
         )
         TextField(
             modifier = Modifier.fillMaxWidth(),
-            value = password,
-            onValueChange = { password = it },
+            value = viewModel.state.password,
+            onValueChange = { viewModel.updatePassword(it) },
             label = { Text("Password") },
             singleLine = true,
             placeholder = { Text("Password") },
@@ -131,7 +130,7 @@ fun LoginInfoScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 0.dp, vertical = 16.dp),
-            onClick = { viewModel.state.login},
+            onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
