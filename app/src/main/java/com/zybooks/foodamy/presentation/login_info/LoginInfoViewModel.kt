@@ -22,12 +22,11 @@ class LoginInfoViewModel @Inject constructor(
     var state by mutableStateOf(LoginInfoState())
 
     fun updateEmail(email: String){
-        state.login?.user?.copy(email = email)
-        //state = state.login?.user?.copy(email = email)
+        state = state.copy(email = email)
     }
 
     fun updatePassword(password: String){
-
+        state = state.copy(password = password)
     }
 
 
