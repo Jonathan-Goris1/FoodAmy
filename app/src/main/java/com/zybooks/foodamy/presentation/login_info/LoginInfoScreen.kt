@@ -70,8 +70,8 @@ fun LoginInfoScreen(
         TextField(
             textStyle = TextStyle(textAlign = TextAlign.Left),
             modifier = Modifier.fillMaxWidth(),
-            value = email,
-            onValueChange = { email = it },
+            value = viewModel.state.email,
+            onValueChange = { viewModel.updateEmail(it) },
             label = { Text(text = "Email or Username") },
             singleLine = true,
             colors = TextFieldDefaults.textFieldColors(

@@ -23,6 +23,7 @@ class LoginInfoViewModel @Inject constructor(
 
     fun updateEmail(email: String){
         state.login?.user?.copy(email = email)
+        //state = state.login?.user?.copy(email = email)
     }
 
     fun updatePassword(password: String){
