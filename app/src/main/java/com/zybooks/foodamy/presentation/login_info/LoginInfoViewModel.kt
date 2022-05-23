@@ -39,7 +39,7 @@ class LoginInfoViewModel @Inject constructor(
             when(val result = loginInfoResult.await()){
                 is Resource.Success -> {
                     state = state.copy(
-                        login = result.data,
+
                         isLoading = false,
                         error = null
                     )
@@ -49,7 +49,7 @@ class LoginInfoViewModel @Inject constructor(
                     state = state.copy(
                         isLoading = false,
                         error = result.message,
-                        login = null
+
                     )
 
                 }

@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
@@ -26,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.zybooks.foodamy.util.TestTags
 
 @Composable
 fun LoginInfoScreen(
@@ -45,7 +47,8 @@ fun LoginInfoScreen(
 
         Button(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .testTag(TestTags.Login_Facebook_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
@@ -56,7 +59,8 @@ fun LoginInfoScreen(
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 16.dp),
+                .padding(horizontal = 0.dp, vertical = 16.dp)
+                .testTag(TestTags.Login_Google_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
@@ -68,7 +72,9 @@ fun LoginInfoScreen(
 
         TextField(
             textStyle = TextStyle(textAlign = TextAlign.Left),
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(TestTags.Login_Email_Textfield),
             value = viewModel.state.email,
             onValueChange = { viewModel.updateEmail(it) },
             label = { Text(text = "Email or Username") },
@@ -78,7 +84,9 @@ fun LoginInfoScreen(
                 ),
         )
         TextField(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(TestTags.Login_Password_Textfield),
             value = viewModel.state.password,
             onValueChange = { viewModel.updatePassword(it) },
             label = { Text("Password") },
@@ -109,7 +117,9 @@ fun LoginInfoScreen(
 
         ) {
             ClickableText(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                modifier = Modifier
+                    .padding(8.dp, 0.dp, 0.dp, 0.dp)
+                    .testTag(TestTags.Sign_Up_Text_Click),
                 text = AnnotatedString("Sign Up"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
                 onClick = { offset ->
@@ -119,7 +129,9 @@ fun LoginInfoScreen(
             Spacer(Modifier.weight(1f))
 
             ClickableText(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                modifier = Modifier
+                    .padding(8.dp, 0.dp, 0.dp, 0.dp)
+                    .testTag(TestTags.Forgot_Password_Text_Click),
                 text = AnnotatedString("Forgot Password"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
                 onClick = { offset ->
@@ -129,7 +141,8 @@ fun LoginInfoScreen(
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 16.dp),
+                .padding(horizontal = 0.dp, vertical = 16.dp)
+                .testTag(TestTags.Login_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
@@ -176,7 +189,7 @@ fun DividerText() {
 
 @Preview
 @Composable
-fun loginInfoScreenPreview(){
+fun LoginInfoScreenPreview(){
     var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
