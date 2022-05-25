@@ -87,6 +87,7 @@ fun LoginInfoScreen(
             label = { Text(text = "Email or Username") },
             singleLine = true,
             placeholder = { Text("Email or Username") },
+            isError = viewModel.validateEmail(),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
             ),

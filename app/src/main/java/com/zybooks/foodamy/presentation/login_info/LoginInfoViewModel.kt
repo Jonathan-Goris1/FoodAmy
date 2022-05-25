@@ -1,5 +1,7 @@
 package com.zybooks.foodamy.presentation.login_info
 
+import android.util.Log
+import android.util.Patterns
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -19,10 +21,22 @@ class LoginInfoViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
+    private val tag = "LoginViewModel"
     var state by mutableStateOf(LoginInfoState())
 
     fun updateEmail(email: String){
         state = state.copy(email = email)
+    }
+
+    fun validateEmail(): Boolean{
+        val email = state.email
+        return if(email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Log.d(tag, "Email Validated Successfully")
+            false
+        }else{
+            Log.d(tag, "Invalid Email Address")
+            true
+        }
     }
 
     fun updatePassword(password: String){
