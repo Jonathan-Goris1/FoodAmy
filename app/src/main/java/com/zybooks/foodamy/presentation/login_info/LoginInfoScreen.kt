@@ -27,6 +27,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.zybooks.foodamy.presentation.register_info.RegisterInfoScreen
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkGreen
 import com.zybooks.foodamy.ui.theme.DarkRed
@@ -34,9 +38,17 @@ import com.zybooks.foodamy.util.TestTags
 
 @Composable
 fun LoginInfoScreen(
-    viewModel: LoginInfoViewModel = hiltViewModel()
+    viewModel: LoginInfoViewModel = hiltViewModel(),
+
 ) {
+    val navController = rememberNavController()
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
+
+    NavHost(navController = navController, startDestination = "Login") {
+        composable("Login") { LoginInfoScreen() }
+        composable("Register") { RegisterInfoScreen() }
+
+    }
 
     Column(
         modifier = Modifier
@@ -49,7 +61,7 @@ fun LoginInfoScreen(
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .height(45.dp)
                 .testTag(TestTags.Login_Facebook_Button),
             onClick = {},
@@ -63,7 +75,7 @@ fun LoginInfoScreen(
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .height(45.dp)
                 .testTag(TestTags.Login_Google_Button),
             onClick = {},
@@ -80,7 +92,7 @@ fun LoginInfoScreen(
             textStyle = TextStyle(textAlign = TextAlign.Left),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Email_Textfield),
             value = viewModel.state.email,
             onValueChange = { viewModel.updateEmail(it) },
@@ -96,7 +108,7 @@ fun LoginInfoScreen(
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Password_Textfield),
             value = viewModel.state.password,
             onValueChange = { viewModel.updatePassword(it) },
@@ -124,7 +136,9 @@ fun LoginInfoScreen(
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth().padding(0.dp,0.dp,0.dp,16.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
 
         ) {
             ClickableText(
@@ -132,8 +146,9 @@ fun LoginInfoScreen(
                     .testTag(TestTags.Sign_Up_Text_Click),
                 text = AnnotatedString("Sign Up"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
-                onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
+                onClick = { onClick ->
+                    navController.navigate("Register")
+                    Log.d("ClickableText", "$onClick -th character is clicked.")
                 }
             )
 
@@ -201,57 +216,70 @@ fun DividerText(prompt: String = "This is a Test") {
 @Preview
 @Composable
 fun LoginInfoScreenPreview() {
-    var password by rememberSaveable { mutableStateOf("") }
+
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
-            .padding(8.dp),
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        DividerText()
+        DividerText("Connect With Your Social Media Account")
 
         Button(
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                .height(45.dp)
+                .testTag(TestTags.Login_Facebook_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
+            colors = ButtonDefaults.buttonColors(backgroundColor = DarkBlue)
         ) {
-            Text(text = "Login with Facebook", color = Color.White)
+            Text(text = "Login with Facebook", color = Color.White, textAlign = TextAlign.Center)
         }
 
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 16.dp),
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                .height(45.dp)
+                .testTag(TestTags.Login_Google_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+            colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
         ) {
-            Text(text = "Login with Google", color = Color.White)
+            Text(text = "Login with Google", color = Color.White, textAlign = TextAlign.Center)
         }
 
-        DividerText()
+        DividerText("Or")
+
         TextField(
             textStyle = TextStyle(textAlign = TextAlign.Left),
-            modifier = Modifier.fillMaxWidth(),
-            value = " ",
-            onValueChange = {  },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                .testTag(TestTags.Login_Email_Textfield),
+            value = "viewModel.state.email",
+            onValueChange = {it },
             label = { Text(text = "Email or Username") },
-            placeholder = { Text("Email or Username") },
             singleLine = true,
+            placeholder = { Text("Email or Username") },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
             ),
         )
+
         TextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = password,
-            onValueChange = { password = it },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                .testTag(TestTags.Login_Password_Textfield),
+            value = "",
+            onValueChange = { it },
             label = { Text("Password") },
             singleLine = true,
             placeholder = { Text("Password") },
@@ -276,11 +304,14 @@ fun LoginInfoScreenPreview() {
         )
 
         Row(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
 
         ) {
             ClickableText(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                modifier = Modifier
+                    .testTag(TestTags.Sign_Up_Text_Click),
                 text = AnnotatedString("Sign Up"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
                 onClick = { offset ->
@@ -291,7 +322,8 @@ fun LoginInfoScreenPreview() {
             Spacer(Modifier.weight(1f))
 
             ClickableText(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                modifier = Modifier
+                    .testTag(TestTags.Forgot_Password_Text_Click),
                 text = AnnotatedString("Forgot Password"),
                 style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
                 onClick = { offset ->
@@ -303,13 +335,14 @@ fun LoginInfoScreenPreview() {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 0.dp, vertical = 16.dp),
+                .height(45.dp)
+                .testTag(TestTags.Login_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
+            colors = ButtonDefaults.buttonColors(backgroundColor = DarkGreen)
         ) {
-            Text(text = "Login", color = Color.White)
+            Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
         }
     }
 }
