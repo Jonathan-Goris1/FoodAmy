@@ -23,12 +23,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
 
 @Composable
 fun RegisterInfoScreen(
+    navController: NavController,
     viewModel: RegisterInfoViewModel = hiltViewModel()
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
