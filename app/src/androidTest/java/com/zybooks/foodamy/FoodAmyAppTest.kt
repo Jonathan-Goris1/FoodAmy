@@ -32,7 +32,7 @@ class FoodAmyAppTest {
     fun setup() {
         hiltRule.inject()
         composeRule.setContent {
-            FoodAmyTheme { LoginInfoScreen() }
+            FoodAmyTheme { LoginInfoScreen(null) }
         }
     }
 
@@ -44,12 +44,12 @@ class FoodAmyAppTest {
         composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
 
         // Perform text inputs
-        composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathan")
+        composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathangoris123@gmail.com")
         composeRule.onNodeWithTag(TestTags.Login_Password_Textfield).performTextInput("ksdjfghsk")
 
         //Perform Text Clicks
-        composeRule.onNodeWithTag(TestTags.Sign_Up_Text_Click).performClick()
-        composeRule.onNodeWithTag(TestTags.Forgot_Password_Text_Click).performClick()
+        composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
+
 
 
     }
