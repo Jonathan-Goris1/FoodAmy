@@ -13,6 +13,7 @@ import com.zybooks.foodamy.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +28,10 @@ class LoginInfoViewModel @Inject constructor(
     fun updateEmail(email: String){
         state = state.copy(email = email)
     }
+    fun updatePassword(password: String){
+        state = state.copy(password = password)
+    }
+
 
     fun validateEmail(): Boolean{
         val email = state.email
@@ -39,9 +44,19 @@ class LoginInfoViewModel @Inject constructor(
         }
     }
 
-    fun updatePassword(password: String){
-        state = state.copy(password = password)
+    fun validatePassword(): Boolean{
+        val password = state.password
+        val textPattern: Pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[(\"[!@#\$%&*()_+=|<>?{}\\\\[\\\\]]]).+$")
+        return if(password.isNotEmpty() && password.length >= 8 && textPattern.matcher(password).matches()) {
+            Log.d(tag, "Password Validated Successfully")
+            false
+        }else{
+            Log.d(tag, "Invalid Password")
+            true
+        }
     }
+
+
 
 
     init {
