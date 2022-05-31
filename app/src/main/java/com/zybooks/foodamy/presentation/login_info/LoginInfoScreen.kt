@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -38,18 +39,11 @@ import com.zybooks.foodamy.util.TestTags
 
 @Composable
 fun LoginInfoScreen(
+    navController: NavController,
     viewModel: LoginInfoViewModel = hiltViewModel(),
 
-) {
-    val navController = rememberNavController()
+    ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-
-    NavHost(navController = navController, startDestination = "Login") {
-        composable("Login") { LoginInfoScreen() }
-        composable("Register") { RegisterInfoScreen() }
-
-    }
-
     Column(
         modifier = Modifier
             .padding(16.dp),
@@ -263,8 +257,8 @@ fun LoginInfoScreenPreview() {
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Email_Textfield),
-            value = "viewModel.state.email",
-            onValueChange = {it },
+            value = " ",
+            onValueChange = {it},
             label = { Text(text = "Email or Username") },
             singleLine = true,
             placeholder = { Text("Email or Username") },
