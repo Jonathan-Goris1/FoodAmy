@@ -28,10 +28,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.zybooks.foodamy.presentation.register_info.RegisterInfoScreen
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkGreen
 import com.zybooks.foodamy.ui.theme.DarkRed
@@ -258,7 +254,7 @@ fun LoginInfoScreenPreview() {
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Email_Textfield),
             value = " ",
-            onValueChange = {it},
+            onValueChange = {},
             label = { Text(text = "Email or Username") },
             singleLine = true,
             placeholder = { Text("Email or Username") },
@@ -273,7 +269,7 @@ fun LoginInfoScreenPreview() {
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Password_Textfield),
             value = "",
-            onValueChange = { it },
+            onValueChange = {},
             label = { Text("Password") },
             singleLine = true,
             placeholder = { Text("Password") },

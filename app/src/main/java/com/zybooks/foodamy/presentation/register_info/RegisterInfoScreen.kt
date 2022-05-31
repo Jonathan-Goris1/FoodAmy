@@ -30,7 +30,7 @@ import com.zybooks.foodamy.util.TestTags
 
 @Composable
 fun RegisterInfoScreen(
-    navController: NavController,
+    //navController: NavController,
     viewModel: RegisterInfoViewModel = hiltViewModel()
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
@@ -190,7 +190,6 @@ fun DividerText(prompt: String = "This is a Test") {
 @Preview
 @Composable
 fun LoginInfoScreenPreview() {
-    var password by rememberSaveable { mutableStateOf("") }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     Column(
@@ -237,7 +236,7 @@ fun LoginInfoScreenPreview() {
                 .padding(0.dp,0.dp,0.dp,16.dp)
                 .testTag(TestTags.Register_Username_Textfield),
             value = "",
-            onValueChange = { it },
+            onValueChange = {},
             label = { Text(text = "User name") },
             singleLine = true,
             placeholder = { Text("User name") },
@@ -254,7 +253,7 @@ fun LoginInfoScreenPreview() {
                 .padding(0.dp,0.dp,0.dp,16.dp)
                 .testTag(TestTags.Login_Email_Textfield),
             value = "",
-            onValueChange = { it },
+            onValueChange = {},
             label = { Text(text = "Email or Username") },
             singleLine = true,
             placeholder = { Text("Email or Username") },
@@ -269,7 +268,7 @@ fun LoginInfoScreenPreview() {
                 .padding(0.dp,0.dp,0.dp,16.dp)
                 .testTag(TestTags.Login_Password_Textfield),
             value = "",
-            onValueChange = { it },
+            onValueChange = {},
             label = { Text("Password") },
             singleLine = true,
             placeholder = { Text("Password") },
