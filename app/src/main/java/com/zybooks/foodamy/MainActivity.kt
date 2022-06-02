@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.zybooks.foodamy.presentation.forgot_password_info.ForgotPasswordScreen
 import com.zybooks.foodamy.presentation.login_info.LoginInfoScreen
 import com.zybooks.foodamy.presentation.register_info.RegisterInfoScreen
 import com.zybooks.foodamy.ui.theme.FoodAmyTheme
@@ -37,6 +38,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("register") {
                             RegisterInfoScreen()
+                        }
+                        composable("forgot password"){
+                            ForgotPasswordScreen()
                         }
                     }
                 }
