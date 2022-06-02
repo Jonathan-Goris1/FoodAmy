@@ -40,145 +40,169 @@ fun LoginInfoScreen(
 
     ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
-    Column(
-        modifier = Modifier
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
 
-    ) {
-        DividerText("Connect With Your Social Media Account")
+    Scaffold(modifier = Modifier
+        .padding(0.dp, 0.dp, 0.dp, 16.dp),
 
-        Button(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ){
+                    Text("Login", textAlign = TextAlign.Center, color = Color.White) }},
+                backgroundColor = DarkRed
+            )
+        },
+        content = {
+
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-                .height(45.dp)
-                .testTag(TestTags.Login_Facebook_Button),
-            onClick = {},
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkBlue)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+
         ) {
-            Text(text = "Login with Facebook", color = Color.White, textAlign = TextAlign.Center)
-        }
+            DividerText("Connect With Your Social Media Account")
 
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-                .height(45.dp)
-                .testTag(TestTags.Login_Google_Button),
-            onClick = {},
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
-        ) {
-            Text(text = "Login with Google", color = Color.White, textAlign = TextAlign.Center)
-        }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .height(45.dp)
+                    .testTag(TestTags.Login_Facebook_Button),
+                onClick = {},
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = DarkBlue)
+            ) {
+                Text(
+                    text = "Login with Facebook",
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
 
-        DividerText("Or")
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .height(45.dp)
+                    .testTag(TestTags.Login_Google_Button),
+                onClick = {},
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
+            ) {
+                Text(text = "Login with Google", color = Color.White, textAlign = TextAlign.Center)
+            }
 
-
-        OutlineTextFieldWithErrorView(
-            textStyle = TextStyle(textAlign = TextAlign.Left),
-            modifier = Modifier
-                .fillMaxWidth()
-                .testTag(TestTags.Login_Email_Textfield),
-            value = viewModel.state.email,
-            onValueChange = { viewModel.updateEmail(it) },
-            label = { Text(text = "Email or Username") },
-            singleLine = true,
-            placeholder = { Text("Email or Username") },
-            isError = viewModel.validateEmail(),
-
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-            ),
-            errorMsg = "Incorrect Email"
-        )
+            DividerText("Or")
 
 
+            OutlineTextFieldWithErrorView(
+                textStyle = TextStyle(textAlign = TextAlign.Left),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag(TestTags.Login_Email_Textfield),
+                value = viewModel.state.email,
+                onValueChange = { viewModel.updateEmail(it) },
+                label = { Text(text = "Email or Username") },
+                singleLine = true,
+                placeholder = { Text("Email or Username") },
+                isError = viewModel.validateEmail(),
 
-        OutlineTextFieldWithErrorView(
-            modifier = Modifier
-                .fillMaxWidth()
-                .testTag(TestTags.Login_Password_Textfield),
-            value = viewModel.state.password,
-            onValueChange = { viewModel.updatePassword(it) },
-            label = { Text("Password") },
-            singleLine = true,
-            placeholder = { Text("Password") },
-            isError = viewModel.validatePassword(),
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
                 ),
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            trailingIcon = {
-                val image = if (passwordVisible)
-                    Icons.Filled.Visibility
-                else Icons.Filled.VisibilityOff
-
-                // Please provide localized description for accessibility services
-                val description = if (passwordVisible) "Hide password" else "Show password"
-
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(imageVector = image, description)
-                }
-            },
-            errorMsg = "Incorrect Password"
-        )
-
-
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-
-        ) {
-            ClickableText(
-                modifier = Modifier
-                    .testTag(TestTags.Sign_Up_Text_Click),
-                text = AnnotatedString("Sign Up"),
-                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
-                onClick = { onClick ->
-                    navController?.navigate("Register")
-                    Log.d("ClickableText", "$onClick -th character is clicked.")
-                }
+                errorMsg = "Incorrect Email"
             )
 
-            Spacer(Modifier.weight(1f))
 
-            ClickableText(
+
+            OutlineTextFieldWithErrorView(
                 modifier = Modifier
-                    .testTag(TestTags.Forgot_Password_Text_Click),
-                text = AnnotatedString("Forgot Password"),
-                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
-                onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
-            )
-        }
+                    .fillMaxWidth()
+                    .testTag(TestTags.Login_Password_Textfield),
+                value = viewModel.state.password,
+                onValueChange = { viewModel.updatePassword(it) },
+                label = { Text("Password") },
+                singleLine = true,
+                placeholder = { Text("Password") },
+                isError = viewModel.validatePassword(),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
 
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(45.dp)
-                .testTag(TestTags.Login_Button),
-            onClick = {
-                viewModel.validateEmail()
-                viewModel.validatePassword()
-            },
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkGreen)
-        ) {
-            Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
+                    ),
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                trailingIcon = {
+                    val image = if (passwordVisible)
+                        Icons.Filled.Visibility
+                    else Icons.Filled.VisibilityOff
+
+                    // Please provide localized description for accessibility services
+                    val description = if (passwordVisible) "Hide password" else "Show password"
+
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(imageVector = image, description)
+                    }
+                },
+                errorMsg = "Incorrect Password"
+            )
+
+
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+
+            ) {
+                ClickableText(
+                    modifier = Modifier
+                        .testTag(TestTags.Sign_Up_Text_Click),
+                    text = AnnotatedString("Sign Up"),
+                    style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
+                    onClick = { onClick ->
+                        navController?.navigate("Register")
+                        Log.d("ClickableText", "$onClick -th character is clicked.")
+                    }
+                )
+
+                Spacer(Modifier.weight(1f))
+
+                ClickableText(
+                    modifier = Modifier
+                        .testTag(TestTags.Forgot_Password_Text_Click),
+                    text = AnnotatedString("Forgot Password"),
+                    style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
+                    onClick = { offset ->
+                        navController?.navigate("forgot password")
+                        Log.d("ClickableText", "$offset -th character is clicked.")
+                    }
+                )
+            }
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(45.dp)
+                    .testTag(TestTags.Login_Button),
+                onClick = {
+                    viewModel.validateEmail()
+                    viewModel.validatePassword()
+                },
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = DarkGreen)
+            ) {
+                Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
+            }
         }
-    }
+    })
 }
+
 
 @Composable
 fun DividerText(prompt: String = "This is a Test") {

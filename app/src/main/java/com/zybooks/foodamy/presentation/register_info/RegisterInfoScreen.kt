@@ -35,6 +35,22 @@ fun RegisterInfoScreen(
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
+    Scaffold(modifier = Modifier
+        .padding(0.dp, 0.dp, 0.dp, 16.dp),
+
+        topBar = {
+            TopAppBar(
+                title = {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ){
+                        Text("Sign Up", textAlign = TextAlign.Center, color = Color.White) }},
+                backgroundColor = DarkRed
+            )
+        },
+        content = {
+
 Column(
 modifier = Modifier
 .padding(16.dp),
@@ -152,6 +168,7 @@ horizontalAlignment = Alignment.CenterHorizontally
         Text(text = "Sign Up", color = Color.White, textAlign = TextAlign.Center)
     }
 }
+})
 }
 
 @Composable
