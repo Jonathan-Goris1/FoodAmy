@@ -41,7 +41,7 @@ class FoodAmyAppTest {
         // Perform Click Buttons
         composeRule.onNodeWithTag(TestTags.Login_Facebook_Button).performClick()
         composeRule.onNodeWithTag(TestTags.Login_Google_Button).performClick()
-        composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
+
 
         // Perform text inputs
         composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathangoris123@gmail.com")

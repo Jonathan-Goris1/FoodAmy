@@ -114,7 +114,7 @@ fun LoginInfoScreen(
                 label = { Text(text = "Email or Username") },
                 singleLine = true,
                 placeholder = { Text("Email or Username") },
-//                isError = emailValidation(),
+                isError = viewModel.validateEmail(),
 
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
@@ -134,7 +134,7 @@ fun LoginInfoScreen(
                 label = { Text("Password") },
                 singleLine = true,
                 placeholder = { Text("Password") },
-//                isError = viewModel.validatePassword(),
+                isError = viewModel.validatePassword(),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
 
@@ -195,6 +195,7 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
+                    viewModel.validateEmail()
 
                 },
                 enabled = true,
@@ -291,7 +292,7 @@ fun OutlineTextFieldWithErrorView(
             colors = colors
         )
 
-        if (isError){
+        if (isError && value.isNotEmpty()){
             Text(
                 text = errorMsg,
                 color = MaterialTheme.colors.error,
