@@ -26,6 +26,7 @@ fun ForgotPasswordScreen(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
 
     ) {
+    val scaffoldState = rememberScaffoldState()
 
     Scaffold(modifier = Modifier
         .padding(0.dp, 0.dp, 0.dp, 16.dp),
@@ -42,52 +43,53 @@ fun ForgotPasswordScreen(
                 backgroundColor = DarkRed
             )
         },
-        content = {
-
-    Column(
-        modifier = Modifier
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-
+        scaffoldState = scaffoldState
     ) {
 
-        OutlineTextFieldWithErrorView(
-            textStyle = TextStyle(textAlign = TextAlign.Left),
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .testTag(TestTags.Login_Email_Textfield),
-            value = viewModel.state.email,
-            onValueChange = { viewModel.updateEmail(it) },
-            label = { Text(text = "Email or Username") },
-            singleLine = true,
-            placeholder = { Text("Email or Username") },
-            isError = viewModel.validateEmail(),
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
 
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-            ),
-            errorMsg = "Incorrect Email"
-        )
-
-
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(45.dp)
-                .testTag(TestTags.Login_Button),
-            onClick = {
-                viewModel.validateEmail()
-
-            },
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
         ) {
-            Text(text = "Send", color = Color.White, textAlign = TextAlign.Center)
+
+            OutlineTextFieldWithErrorView(
+                textStyle = TextStyle(textAlign = TextAlign.Left),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag(TestTags.Login_Email_Textfield),
+                value = viewModel.state.email,
+                onValueChange = { viewModel.updateEmail(it) },
+                label = { Text(text = "Email or Username") },
+                singleLine = true,
+                placeholder = { Text("Email or Username") },
+                isError = viewModel.validateEmail(),
+
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                ),
+                errorMsg = "Incorrect Email"
+            )
+
+
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(45.dp)
+                    .testTag(TestTags.Login_Button),
+                onClick = {
+                    viewModel.validateEmail()
+
+                },
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
+            ) {
+                Text(text = "Send", color = Color.White, textAlign = TextAlign.Center)
+            }
         }
     }
-})
 }
 
 

@@ -40,6 +40,7 @@ fun LoginInfoScreen(
 
     ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
+    val scaffoldState = rememberScaffoldState()
 
     Scaffold(modifier = Modifier
         .padding(0.dp, 0.dp, 0.dp, 16.dp),
@@ -51,11 +52,13 @@ fun LoginInfoScreen(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ){
-                    Text("Login", textAlign = TextAlign.Center, color = Color.White) }},
+                    Text("Login", textAlign = TextAlign.Center, color = Color.White) }
+                        },
                 backgroundColor = DarkRed
             )
         },
-        content = {
+        scaffoldState = scaffoldState
+    ){
 
         Column(
             modifier = Modifier
@@ -104,13 +107,14 @@ fun LoginInfoScreen(
                 textStyle = TextStyle(textAlign = TextAlign.Left),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
                     .testTag(TestTags.Login_Email_Textfield),
                 value = viewModel.state.email,
                 onValueChange = { viewModel.updateEmail(it) },
                 label = { Text(text = "Email or Username") },
                 singleLine = true,
                 placeholder = { Text("Email or Username") },
-                isError = viewModel.validateEmail(),
+//                isError = emailValidation(),
 
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
@@ -123,13 +127,14 @@ fun LoginInfoScreen(
             OutlineTextFieldWithErrorView(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
                     .testTag(TestTags.Login_Password_Textfield),
                 value = viewModel.state.password,
                 onValueChange = { viewModel.updatePassword(it) },
                 label = { Text("Password") },
                 singleLine = true,
                 placeholder = { Text("Password") },
-                isError = viewModel.validatePassword(),
+//                isError = viewModel.validatePassword(),
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
 
@@ -190,8 +195,7 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-                    viewModel.validateEmail()
-                    viewModel.validatePassword()
+
                 },
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
@@ -200,8 +204,11 @@ fun LoginInfoScreen(
                 Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
             }
         }
-    })
+    }
+
 }
+
+
 
 
 @Composable

@@ -34,9 +34,11 @@ fun RegisterInfoScreen(
     viewModel: RegisterInfoViewModel = hiltViewModel()
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
+    val scaffoldState = rememberScaffoldState()
 
-    Scaffold(modifier = Modifier
-        .padding(0.dp, 0.dp, 0.dp, 16.dp),
+    Scaffold(
+        modifier = Modifier
+            .padding(0.dp, 0.dp, 0.dp, 16.dp),
 
         topBar = {
             TopAppBar(
@@ -44,131 +46,139 @@ fun RegisterInfoScreen(
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
-                    ){
-                        Text("Sign Up", textAlign = TextAlign.Center, color = Color.White) }},
+                    ) {
+                        Text("Sign Up", textAlign = TextAlign.Center, color = Color.White)
+                    }
+                },
                 backgroundColor = DarkRed
             )
         },
-        content = {
-
-Column(
-modifier = Modifier
-.padding(16.dp),
-horizontalAlignment = Alignment.CenterHorizontally
-
-) {
-    DividerText("Connect With Your Social Media Account")
-
-    Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp,0.dp,0.dp,16.dp)
-            .height(45.dp)
-            .testTag(TestTags.Register_Facebook_Button),
-        onClick = {},
-        enabled = true,
-        shape = MaterialTheme.shapes.medium,
-        colors = ButtonDefaults.buttonColors(backgroundColor = DarkBlue)
+        scaffoldState = scaffoldState
     ) {
-        Text(text = "Login with Facebook", color = Color.White, textAlign = TextAlign.Center)
-    }
 
-    Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp,0.dp,0.dp,16.dp)
-            .height(45.dp)
-            .testTag(TestTags.Register_Google_Button),
-        onClick = {},
-        enabled = true,
-        shape = MaterialTheme.shapes.medium,
-        colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
-    ) {
-        Text(text = "Login with Google", color = Color.White, textAlign = TextAlign.Center)
-    }
+        Column(
+            modifier = Modifier
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
 
-    DividerText("Or")
-    TextField(
-        textStyle = TextStyle(textAlign = TextAlign.Left),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp,0.dp,0.dp,16.dp)
-            .testTag(TestTags.Register_Username_Textfield),
-        value = viewModel.state.username,
-        onValueChange = { viewModel.updateUsername(it) },
-        label = { Text(text = "User name") },
-        singleLine = true,
-        placeholder = { Text("User name") },
-        isError = viewModel.validateEmail(),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
-        ),
-    )
+        ) {
+            DividerText("Connect With Your Social Media Account")
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .height(45.dp)
+                    .testTag(TestTags.Register_Facebook_Button),
+                onClick = {},
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = DarkBlue)
+            ) {
+                Text(
+                    text = "Login with Facebook",
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .height(45.dp)
+                    .testTag(TestTags.Register_Google_Button),
+                onClick = {},
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
+            ) {
+                Text(text = "Login with Google", color = Color.White, textAlign = TextAlign.Center)
+            }
+
+            DividerText("Or")
+            TextField(
+                textStyle = TextStyle(textAlign = TextAlign.Left),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .testTag(TestTags.Register_Username_Textfield),
+                value = viewModel.state.username,
+                onValueChange = { viewModel.updateUsername(it) },
+                label = { Text(text = "User name") },
+                singleLine = true,
+                placeholder = { Text("User name") },
+                isError = viewModel.validateEmail(),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                ),
+            )
 
 
-    TextField(
-        textStyle = TextStyle(textAlign = TextAlign.Left),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp,0.dp,0.dp,16.dp)
-            .testTag(TestTags.Login_Email_Textfield),
-        value = viewModel.state.email,
-        onValueChange = { viewModel.updateEmail(it) },
-        label = { Text(text = "Email or Username") },
-        singleLine = true,
-        placeholder = { Text("Email or Username") },
-        isError = viewModel.validateEmail(),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
-        ),
-    )
+            TextField(
+                textStyle = TextStyle(textAlign = TextAlign.Left),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .testTag(TestTags.Login_Email_Textfield),
+                value = viewModel.state.email,
+                onValueChange = { viewModel.updateEmail(it) },
+                label = { Text(text = "Email or Username") },
+                singleLine = true,
+                placeholder = { Text("Email or Username") },
+                isError = viewModel.validateEmail(),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                ),
+            )
 
-    TextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp,0.dp,0.dp,16.dp)
-            .testTag(TestTags.Login_Password_Textfield),
-        value = viewModel.state.password,
-        onValueChange = { viewModel.updatePassword(it) },
-        label = { Text("Password") },
-        singleLine = true,
-        placeholder = { Text("Password") },
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color.Transparent,
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .testTag(TestTags.Login_Password_Textfield),
+                value = viewModel.state.password,
+                onValueChange = { viewModel.updatePassword(it) },
+                label = { Text("Password") },
+                singleLine = true,
+                placeholder = { Text("Password") },
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
 
-            ),
-        visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        trailingIcon = {
-            val image = if (passwordVisible)
-                Icons.Filled.Visibility
-            else Icons.Filled.VisibilityOff
+                    ),
+                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                trailingIcon = {
+                    val image = if (passwordVisible)
+                        Icons.Filled.Visibility
+                    else Icons.Filled.VisibilityOff
 
-            // Please provide localized description for accessibility services
-            val description = if (passwordVisible) "Hide password" else "Show password"
+                    // Please provide localized description for accessibility services
+                    val description = if (passwordVisible) "Hide password" else "Show password"
 
-            IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                Icon(imageVector = image, description)
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Icon(imageVector = image, description)
+                    }
+                }
+            )
+
+
+
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(45.dp)
+                    .testTag(TestTags.Login_Button),
+                onClick = {},
+                enabled = true,
+                shape = MaterialTheme.shapes.medium,
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
+            ) {
+                Text(text = "Sign Up", color = Color.White, textAlign = TextAlign.Center)
             }
         }
-    )
-
-
-
-    Button(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(45.dp)
-            .testTag(TestTags.Login_Button),
-        onClick = {},
-        enabled = true,
-        shape = MaterialTheme.shapes.medium,
-        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
-    ) {
-        Text(text = "Sign Up", color = Color.White, textAlign = TextAlign.Center)
     }
-}
-})
+
 }
 
 @Composable
@@ -202,6 +212,7 @@ fun DividerText(prompt: String = "This is a Test") {
             thickness = 1.dp
         )
     }
+
 }
 
 @Preview
@@ -220,7 +231,7 @@ fun LoginInfoScreenPreview() {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .height(45.dp)
                 .testTag(TestTags.Register_Facebook_Button),
             onClick = {},
@@ -234,7 +245,7 @@ fun LoginInfoScreenPreview() {
         Button(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .height(45.dp)
                 .testTag(TestTags.Register_Google_Button),
             onClick = {},
@@ -250,7 +261,7 @@ fun LoginInfoScreenPreview() {
             textStyle = TextStyle(textAlign = TextAlign.Left),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Register_Username_Textfield),
             value = "",
             onValueChange = {},
@@ -267,7 +278,7 @@ fun LoginInfoScreenPreview() {
             textStyle = TextStyle(textAlign = TextAlign.Left),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Email_Textfield),
             value = "",
             onValueChange = {},
@@ -282,7 +293,7 @@ fun LoginInfoScreenPreview() {
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp,0.dp,0.dp,16.dp)
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Password_Textfield),
             value = "",
             onValueChange = {},
