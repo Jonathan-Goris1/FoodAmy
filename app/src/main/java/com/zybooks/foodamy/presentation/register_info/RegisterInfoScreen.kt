@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.zybooks.foodamy.ui.components.OutlineTextFieldWithError
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkRed
@@ -175,7 +174,10 @@ fun RegisterInfoScreen(
                     .fillMaxWidth()
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
-                onClick = {},
+                onClick = {
+                    viewModel.validateEmail()
+                    viewModel.validatePassword()
+                },
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
