@@ -47,8 +47,8 @@ class RegisterInfoViewModel@Inject constructor(
 
     fun validatePassword(): Boolean{
         val password = state.password
-        val textPattern: Pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[(\"[!@#\$%&*()_+=|<>?{}\\\\[\\\\]]]).+$")
-        if(password.isNotEmpty() && password.length >= 8 && textPattern.matcher(password).matches()) {
+        val textPattern: Pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[(\"!@#\$%&*_+=|<>?{}\\\\]).+$")
+       state =  if(password.isNotEmpty() && password.length >= 8 && textPattern.matcher(password).matches()) {
             Log.d(tag, "Password Validated Successfully")
             state.copy(isPasswordError = false)
         }else{
