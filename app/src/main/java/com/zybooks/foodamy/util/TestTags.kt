@@ -9,6 +9,7 @@ object TestTags {
     const val Sign_Up_Text_Click = "sign_up_text_click"
     const val Forgot_Password_Text_Click = "forgot_password_text_click"
     const val Login_Button = "login_button"
+    const val Error_Message = "error_message"
 
     //Register Screen
     const val Register_Facebook_Button = "register_facebook_button"
