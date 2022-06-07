@@ -35,25 +35,27 @@ class LoginInfoViewModel @Inject constructor(
 
     fun validateEmail(): Boolean{
         val email = state.email
-        return if(email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        state = if(email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Log.d(tag, "Email Validated Successfully")
-            false
+            state.copy(isEmailError = false)
         }else{
             Log.d(tag, "Invalid Email Address")
-            true
+            state.copy(isEmailError = true)
         }
+        return state.isEmailError
     }
 
     fun validatePassword(): Boolean{
         val password = state.password
         val textPattern: Pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[(\"[!@#\$%&*()_+=|<>?{}\\\\[\\\\]]]).+$")
-        return if(password.isNotEmpty() && password.length >= 8 && textPattern.matcher(password).matches()) {
+         if(password.isNotEmpty() && password.length >= 8 && textPattern.matcher(password).matches()) {
             Log.d(tag, "Password Validated Successfully")
-            false
+            state.copy(isPasswordError = false)
         }else{
             Log.d(tag, "Invalid Password")
-            true
+            state.copy(isPasswordError = true)
         }
+        return state.isPasswordError
     }
 
 
