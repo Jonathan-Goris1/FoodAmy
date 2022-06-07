@@ -35,17 +35,13 @@ class FoodAmyAppTest {
             FoodAmyTheme { LoginInfoScreen(null) }
         }
     }
-
+//TODO create test for individual composable views
     @Test
-    fun enterInfo_CheckLoginStatus() {
-        // Perform Click Buttons
-        composeRule.onNodeWithTag(TestTags.Login_Facebook_Button).performClick()
-        composeRule.onNodeWithTag(TestTags.Login_Google_Button).performClick()
-
-
+    fun enterEmail_CheckErrorStatus() {
         // Perform text inputs
-        composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathangoris123@gmail.com")
-        composeRule.onNodeWithTag(TestTags.Login_Password_Textfield).performTextInput("ksdjfghsk")
+        composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathangoris")
+
+
 
         //Perform Text Clicks
         composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
