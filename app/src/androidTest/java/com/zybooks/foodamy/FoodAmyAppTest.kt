@@ -40,13 +40,30 @@ class FoodAmyAppTest {
     fun enterEmail_CheckErrorStatus() {
         // Perform text inputs
         composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathangoris")
-
-
-
         //Perform Text Clicks
         composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
+        composeRule.onNodeWithTag(TestTags.Error_Message).assertIsDisplayed()
 
+    }
 
+    @Test
+    fun enterPassword_CheckErrorStatus() {
+        // Perform text inputs
+        composeRule.onNodeWithTag(TestTags.Login_Password_Textfield).performTextInput("sl'dkgh")
+        //Perform Text Clicks
+        composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
+        composeRule.onNodeWithTag(TestTags.Error_Message).assertIsDisplayed()
+
+    }
+
+    @Test
+    fun enterPasswordAndEmail_CheckErrorStatus() {
+        // Perform text inputs
+        composeRule.onNodeWithTag(TestTags.Login_Email_Textfield).performTextInput("jonathangoris")
+        composeRule.onNodeWithTag(TestTags.Login_Password_Textfield).performTextInput("sl'dkgh")
+        //Perform Text Clicks
+        composeRule.onNodeWithTag(TestTags.Login_Button).performClick()
+        composeRule.onNodeWithTag(TestTags.Error_Message).assertIsDisplayed()
 
     }
 
