@@ -27,9 +27,11 @@ class LoginInfoViewModel @Inject constructor(
 
     fun updateEmail(email: String){
         state = state.copy(email = email)
+
     }
     fun updatePassword(password: String){
         state = state.copy(password = password)
+
     }
 
 
@@ -58,8 +60,14 @@ class LoginInfoViewModel @Inject constructor(
         return state.isPasswordError
     }
 
-
-
+//    suspend fun PostLoginInfo(email:String, password:String){
+//    val email = state.email
+//    val password = state.password
+//    if(!validateEmail() && !validatePassword()) {
+//        Log.d(tag, "Inside PostLogin Info")
+//        repository.postLoginInfo(email, password)
+//    }
+//}
 
     init {
         viewModelScope.launch {

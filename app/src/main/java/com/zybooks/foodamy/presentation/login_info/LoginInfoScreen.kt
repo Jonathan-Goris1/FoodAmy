@@ -199,6 +199,7 @@ fun LoginInfoScreen(
                 onClick = {
                     viewModel.validateEmail()
                     viewModel.validatePassword()
+
                 },
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
