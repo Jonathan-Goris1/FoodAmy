@@ -1,28 +1,22 @@
 package com.zybooks.foodamy.presentation.login_info
 
-import android.util.Log
-import android.util.Patterns
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.util.Resource
+import com.zybooks.foodamy.util.Validations
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginInfoViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    private val tag = "LoginViewModel"
     var state by mutableStateOf(LoginInfoState())
 
     fun updateEmail(email: String){
@@ -35,65 +29,34 @@ class LoginInfoViewModel @Inject constructor(
     }
 
 
-    fun validateEmail(): Boolean{
-        val email = state.email
-        state = if(email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Log.d(tag, "Email Validated Successfully")
-            state.copy(isEmailError = false)
-        }else{
-            Log.d(tag, "Invalid Email Address")
-            state.copy(isEmailError = true)
-        }
-        return state.isEmailError
-    }
+    private fun validateEmail(): Boolean = Validations.validateEmail(state.email)
 
-    fun validatePassword(): Boolean{
-        val password = state.password
-        val textPattern: Pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[(\"!@#\$%&*_+=|<>?{}\\\\]).+$")
-         state = if(password.isNotEmpty() && password.length >= 8 && textPattern.matcher(password).matches()) {
-            Log.d(tag, "Password Validated Successfully")
-            state.copy(isPasswordError = false)
-        }else{
-            Log.d(tag, "Invalid Password")
-            state.copy(isPasswordError = true)
-        }
-        return state.isPasswordError
-    }
 
-//    suspend fun PostLoginInfo(email:String, password:String){
-//    val email = state.email
-//    val password = state.password
-//    if(!validateEmail() && !validatePassword()) {
-//        Log.d(tag, "Inside PostLogin Info")
-//        repository.postLoginInfo(email, password)
-//    }
-//}
+    private fun validatePassword(): Boolean = Validations.validatePassword(state.password)
 
-    init {
-        viewModelScope.launch {
-            val email = savedStateHandle.get<String>("email") ?: return@launch
-            val password = savedStateHandle.get<String>("password") ?: return@launch
-            state = state.copy(isLoading = true)
-            val loginInfoResult = async { repository.postLoginInfo(email, password)}
-            when(val result = loginInfoResult.await()){
-                is Resource.Success -> {
-                    state = state.copy(
-                        isLoading = false,
-                        error = null
-                    )
 
+    fun login() {
+        if(!validateEmail() && !validatePassword()){
+            viewModelScope.launch {
+                state = state.copy(isLoading = true)
+                when(val loginInfoResult =  repository.postLoginInfo(state.email, state.password)){
+                    is Resource.Success -> {
+                        state = state.copy(
+                            isLoading = false,
+                            error = null
+                        )
+                    }
+                    is Resource.Error -> {
+                        state = state.copy(
+                            isLoading = false,
+                            error = loginInfoResult.message,
+                        )
+
+                    }
+                    else -> {}
                 }
-                is Resource.Error -> {
-                    state = state.copy(
-                        isLoading = false,
-                        error = result.message,
-                    )
-
-                }
-                else -> Unit
+                state = state.copy(isLoading = false)
             }
-
-
         }
     }
 }
