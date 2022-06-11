@@ -175,8 +175,7 @@ fun RegisterInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-                    viewModel.validateEmail()
-                    viewModel.validatePassword()
+                 viewModel.register()
                 },
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
