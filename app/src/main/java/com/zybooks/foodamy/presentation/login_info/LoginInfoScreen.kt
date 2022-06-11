@@ -197,8 +197,8 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-                    viewModel.validateEmail()
-                    viewModel.validatePassword()
+
+                    viewModel.login()
 
                 },
                 enabled = true,
