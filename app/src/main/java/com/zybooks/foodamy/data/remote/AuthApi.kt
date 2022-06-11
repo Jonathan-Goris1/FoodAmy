@@ -20,8 +20,8 @@ interface AuthApi {
         @Field("email") email: String,
         @Field("password") password: String,
         @Field("username") username: String,
-        @Field("name") name: String,
-        @Field("surname") surname: String,
+        @Field("name") name: String?,
+        @Field("surname") surname: String?,
         @Field("gender") gender: String?,
         @Field("birthday") birthday: String?
     ): AuthResponse

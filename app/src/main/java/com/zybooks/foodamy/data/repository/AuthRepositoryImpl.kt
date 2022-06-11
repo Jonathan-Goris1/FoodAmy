@@ -38,8 +38,8 @@ class AuthRepositoryImpl @Inject constructor(
         email: String,
         password: String,
         username: String,
-        name: String,
-        surname: String,
+        name: String?,
+        surname: String?,
         gender: String?,
         birthday: String?
     ): Resource<AuthResponse> {

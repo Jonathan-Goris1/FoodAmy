@@ -1,7 +1,7 @@
 package com.zybooks.foodamy.data.remote.response.auth
 
 data class User(
-    val birthday: Any,
+    val birthday: Any?,
     val cover: Any,
     val cover_image: Any,
     val definition: Any,
@@ -20,10 +20,10 @@ data class User(
     val is_trusted: Int,
     val language: String,
     val likes_count: Int,
-    val name: Any,
+    val name: Any?,
     val phone: Any,
     val recipe_count: Int,
-    val surname: Any,
+    val surname: Any?,
     val tckn: Any,
     val top_user: Any,
     val twitter_url: Any,
