@@ -55,7 +55,7 @@ fun OutlineTextFieldWithError(
             text = errorMessage,
             color = MaterialTheme.colors.error,
             style = MaterialTheme.typography.caption,
-            modifier = Modifier.padding(start = 16.dp).testTag(TestTags.Error_Message)
+            modifier = Modifier.padding(start = 16.dp)
         )
     }
 
