@@ -3,14 +3,12 @@ package com.zybooks.foodamy
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.navigation.Navigator
 import com.zybooks.foodamy.di.AppModule
-import com.zybooks.foodamy.presentation.login_info.LoginInfoScreen
+import com.zybooks.foodamy.presentation.auth_screens.login_info.LoginInfoScreen
 import com.zybooks.foodamy.ui.theme.FoodAmyTheme
 import com.zybooks.foodamy.util.TestTags
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.HiltTestApplication
 import dagger.hilt.android.testing.UninstallModules
 import org.junit.Before
 import org.junit.Rule
