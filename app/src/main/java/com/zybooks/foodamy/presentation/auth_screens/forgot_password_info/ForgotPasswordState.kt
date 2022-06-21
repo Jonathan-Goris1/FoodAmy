@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.forgot_password_info
+package com.zybooks.foodamy.presentation.auth_screens.forgot_password_info
 
 data class ForgotPasswordState (
     val email: String = "",

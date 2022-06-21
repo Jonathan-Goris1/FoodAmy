@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.forgot_password_info
+package com.zybooks.foodamy.presentation.auth_screens.forgot_password_info
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*

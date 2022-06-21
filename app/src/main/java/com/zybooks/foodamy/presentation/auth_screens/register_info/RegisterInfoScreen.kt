@@ -1,8 +1,6 @@
-package com.zybooks.foodamy.presentation.login_info
+package com.zybooks.foodamy.presentation.auth_screens.register_info
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,9 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -27,26 +23,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.zybooks.foodamy.ui.components.OutlineTextFieldWithError
 import com.zybooks.foodamy.ui.theme.DarkBlue
-import com.zybooks.foodamy.ui.theme.DarkGreen
 import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
 
 @Composable
-fun LoginInfoScreen(
-    navController: NavController?,
-    viewModel: LoginInfoViewModel = hiltViewModel(),
-
-    ) {
+fun RegisterInfoScreen(
+    //navController: NavController,
+    viewModel: RegisterInfoViewModel = hiltViewModel()
+) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
     val scaffoldState = rememberScaffoldState()
-//TODO Change scaffold composable function to a lamda composable for better code reading
-//TODO also implement this function in a separate package called components
+
     Scaffold(
         modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 16.dp),
+
         topBar = {
             TopAppBar(
                 title = {
@@ -54,7 +47,7 @@ fun LoginInfoScreen(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text("Login", textAlign = TextAlign.Center, color = Color.White)
+                        Text("Sign Up", textAlign = TextAlign.Center, color = Color.White)
                     }
                 },
                 backgroundColor = DarkRed
@@ -76,7 +69,7 @@ fun LoginInfoScreen(
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 16.dp)
                     .height(45.dp)
-                    .testTag(TestTags.Login_Facebook_Button),
+                    .testTag(TestTags.Register_Facebook_Button),
                 onClick = {},
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
@@ -94,7 +87,7 @@ fun LoginInfoScreen(
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 16.dp)
                     .height(45.dp)
-                    .testTag(TestTags.Login_Google_Button),
+                    .testTag(TestTags.Register_Google_Button),
                 onClick = {},
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
@@ -104,6 +97,23 @@ fun LoginInfoScreen(
             }
 
             DividerText("Or")
+            OutlineTextFieldWithError(
+                textStyle = TextStyle(textAlign = TextAlign.Left),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                    .testTag(TestTags.Register_Username_Textfield),
+                value = viewModel.state.username,
+                onValueChange = { viewModel.updateUsername(it) },
+                label = { Text(text = "User name") },
+                singleLine = true,
+                placeholder = { Text("User name") },
+                isError = false,
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Transparent,
+                ),
+                errorMessage = "Invalid UserName"
+            )
 
 
             OutlineTextFieldWithError(
@@ -121,10 +131,8 @@ fun LoginInfoScreen(
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                 ),
-                errorMessage = "Incorrect Email"
+                errorMessage = "Invalid Email"
             )
-
-
 
             OutlineTextFieldWithError(
                 modifier = Modifier
@@ -135,8 +143,8 @@ fun LoginInfoScreen(
                 onValueChange = { viewModel.updatePassword(it) },
                 label = { Text("Password") },
                 singleLine = true,
-                placeholder = { Text("Password") },
                 isError = viewModel.state.isPasswordError,
+                placeholder = { Text("Password") },
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
 
@@ -155,41 +163,11 @@ fun LoginInfoScreen(
                         Icon(imageVector = image, description)
                     }
                 },
-                errorMessage = "Incorrect Password"
+                errorMessage = "Invalid Password"
+
             )
 
 
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
-
-            ) {
-                ClickableText(
-                    modifier = Modifier
-                        .testTag(TestTags.Sign_Up_Text_Click),
-                    text = AnnotatedString("Sign Up"),
-                    style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
-                    onClick = { onClick ->
-                        navController?.navigate("Register")
-                        Log.d("ClickableText", "$onClick -th character is clicked.")
-                    }
-                )
-
-                Spacer(Modifier.weight(1f))
-
-                ClickableText(
-                    modifier = Modifier
-                        .testTag(TestTags.Forgot_Password_Text_Click),
-                    text = AnnotatedString("Forgot Password"),
-                    style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
-                    onClick = { offset ->
-                        navController?.navigate("forgot password")
-                        Log.d("ClickableText", "$offset -th character is clicked.")
-                    }
-                )
-            }
 
             Button(
                 modifier = Modifier
@@ -197,21 +175,18 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-
-                    viewModel.login()
-
+                 viewModel.register()
                 },
                 enabled = true,
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(backgroundColor = DarkGreen)
+                colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
             ) {
-                Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
+                Text(text = "Sign Up", color = Color.White, textAlign = TextAlign.Center)
             }
         }
     }
 
 }
-
 
 @Composable
 fun DividerText(prompt: String = "This is a Test") {
@@ -244,12 +219,12 @@ fun DividerText(prompt: String = "This is a Test") {
             thickness = 1.dp
         )
     }
+
 }
 
 @Preview
 @Composable
 fun LoginInfoScreenPreview() {
-
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     Column(
@@ -265,7 +240,7 @@ fun LoginInfoScreenPreview() {
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .height(45.dp)
-                .testTag(TestTags.Login_Facebook_Button),
+                .testTag(TestTags.Register_Facebook_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
@@ -279,7 +254,7 @@ fun LoginInfoScreenPreview() {
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .height(45.dp)
-                .testTag(TestTags.Login_Google_Button),
+                .testTag(TestTags.Register_Google_Button),
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
@@ -289,27 +264,40 @@ fun LoginInfoScreenPreview() {
         }
 
         DividerText("Or")
+        TextField(
+            textStyle = TextStyle(textAlign = TextAlign.Left),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp, 0.dp, 0.dp, 16.dp)
+                .testTag(TestTags.Register_Username_Textfield),
+            value = "",
+            onValueChange = {},
+            label = { Text(text = "User name") },
+            singleLine = true,
+            placeholder = { Text("User name") },
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = Color.Transparent,
+            ),
+        )
 
-        OutlineTextFieldWithError(
+
+        TextField(
             textStyle = TextStyle(textAlign = TextAlign.Left),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
                 .testTag(TestTags.Login_Email_Textfield),
-            value = " ",
+            value = "",
             onValueChange = {},
             label = { Text(text = "Email or Username") },
             singleLine = true,
             placeholder = { Text("Email or Username") },
-            isError = false,
-            errorMessage = "",
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
-
-                ),
+            ),
         )
 
-        OutlineTextFieldWithError(
+        TextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 16.dp)
@@ -325,8 +313,6 @@ fun LoginInfoScreenPreview() {
                 ),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            isError = false,
-            errorMessage = "",
             trailingIcon = {
                 val image = if (passwordVisible)
                     Icons.Filled.Visibility
@@ -341,34 +327,7 @@ fun LoginInfoScreenPreview() {
             }
         )
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
 
-        ) {
-            ClickableText(
-                modifier = Modifier
-                    .testTag(TestTags.Sign_Up_Text_Click),
-                text = AnnotatedString("Sign Up"),
-                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
-                onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
-            )
-
-            Spacer(Modifier.weight(1f))
-
-            ClickableText(
-                modifier = Modifier
-                    .testTag(TestTags.Forgot_Password_Text_Click),
-                text = AnnotatedString("Forgot Password"),
-                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
-                onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
-            )
-        }
 
         Button(
             modifier = Modifier
@@ -378,13 +337,9 @@ fun LoginInfoScreenPreview() {
             onClick = {},
             enabled = true,
             shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkGreen)
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Red)
         ) {
-            Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
+            Text(text = "Sign Up", color = Color.White, textAlign = TextAlign.Center)
         }
     }
 }
-
-
-
-

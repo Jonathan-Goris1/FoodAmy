@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.register_info
+package com.zybooks.foodamy.presentation.auth_screens.register_info
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

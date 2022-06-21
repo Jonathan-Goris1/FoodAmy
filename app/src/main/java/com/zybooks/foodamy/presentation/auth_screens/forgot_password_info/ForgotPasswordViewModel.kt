@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.forgot_password_info
+package com.zybooks.foodamy.presentation.auth_screens.forgot_password_info
 
 import android.util.Log
 import android.util.Patterns
@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.zybooks.foodamy.domain.repository.AuthRepository
-import com.zybooks.foodamy.presentation.login_info.LoginInfoState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
