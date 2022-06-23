@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.zybooks.foodamy.ui.components.OutlineTextFieldWithError
+import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
@@ -97,7 +97,7 @@ fun RegisterInfoScreen(
             }
 
             DividerText("Or")
-            OutlineTextFieldWithError(
+            OutlineTextFieldUserInput(
                 textStyle = TextStyle(textAlign = TextAlign.Left),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -108,15 +108,14 @@ fun RegisterInfoScreen(
                 label = { Text(text = "User name") },
                 singleLine = true,
                 placeholder = { Text("User name") },
-                isError = false,
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                 ),
-                errorMessage = "Invalid UserName"
+
             )
 
 
-            OutlineTextFieldWithError(
+            OutlineTextFieldUserInput(
                 textStyle = TextStyle(textAlign = TextAlign.Left),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -127,14 +126,13 @@ fun RegisterInfoScreen(
                 label = { Text(text = "Email or Username") },
                 singleLine = true,
                 placeholder = { Text("Email or Username") },
-                isError = viewModel.state.isEmailError,
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                 ),
-                errorMessage = "Invalid Email"
+
             )
 
-            OutlineTextFieldWithError(
+            OutlineTextFieldUserInput(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 16.dp)
@@ -143,7 +141,7 @@ fun RegisterInfoScreen(
                 onValueChange = { viewModel.updatePassword(it) },
                 label = { Text("Password") },
                 singleLine = true,
-                isError = viewModel.state.isPasswordError,
+
                 placeholder = { Text("Password") },
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
@@ -163,7 +161,7 @@ fun RegisterInfoScreen(
                         Icon(imageVector = image, description)
                     }
                 },
-                errorMessage = "Invalid Password"
+
 
             )
 

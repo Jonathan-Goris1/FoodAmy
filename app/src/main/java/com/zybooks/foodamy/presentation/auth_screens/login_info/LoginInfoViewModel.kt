@@ -57,6 +57,8 @@ class LoginInfoViewModel @Inject constructor(
                 }
                 state = state.copy(isLoading = false)
             }
+        } else{
+
         }
     }
 }

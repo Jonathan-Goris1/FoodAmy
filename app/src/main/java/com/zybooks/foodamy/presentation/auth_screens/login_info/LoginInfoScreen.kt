@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.zybooks.foodamy.ui.components.OutlineTextFieldWithError
+import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkGreen
 import com.zybooks.foodamy.ui.theme.DarkRed
@@ -42,7 +42,7 @@ fun LoginInfoScreen(
     ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
     val scaffoldState = rememberScaffoldState()
-//TODO Change scaffold composable function to a lamda composable for better code reading
+//TODO Change scaffold composable function to a lambda composable for better code reading
 //TODO also implement this function in a separate package called components
     Scaffold(
         modifier = Modifier
@@ -106,7 +106,7 @@ fun LoginInfoScreen(
             DividerText("Or")
 
 
-            OutlineTextFieldWithError(
+            OutlineTextFieldUserInput(
                 textStyle = TextStyle(textAlign = TextAlign.Left),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -117,16 +117,15 @@ fun LoginInfoScreen(
                 label = { Text(text = "Email or Username") },
                 singleLine = true,
                 placeholder = { Text("Email or Username") },
-                isError = viewModel.state.isEmailError,
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
-                ),
-                errorMessage = "Incorrect Email"
+                )
+
             )
 
 
 
-            OutlineTextFieldWithError(
+            OutlineTextFieldUserInput(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 16.dp)
@@ -136,7 +135,6 @@ fun LoginInfoScreen(
                 label = { Text("Password") },
                 singleLine = true,
                 placeholder = { Text("Password") },
-                isError = viewModel.state.isPasswordError,
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
 
@@ -154,8 +152,7 @@ fun LoginInfoScreen(
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Icon(imageVector = image, description)
                     }
-                },
-                errorMessage = "Incorrect Password"
+                }
             )
 
 
@@ -197,7 +194,6 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-
                     viewModel.login()
 
                 },
@@ -249,140 +245,9 @@ fun DividerText(prompt: String = "This is a Test") {
 @Preview
 @Composable
 fun LoginInfoScreenPreview() {
+    LoginInfoScreen(null)
 
-    var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-
-    ) {
-        DividerText("Connect With Your Social Media Account")
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-                .height(45.dp)
-                .testTag(TestTags.Login_Facebook_Button),
-            onClick = {},
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkBlue)
-        ) {
-            Text(text = "Login with Facebook", color = Color.White, textAlign = TextAlign.Center)
-        }
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-                .height(45.dp)
-                .testTag(TestTags.Login_Google_Button),
-            onClick = {},
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
-        ) {
-            Text(text = "Login with Google", color = Color.White, textAlign = TextAlign.Center)
-        }
-
-        DividerText("Or")
-
-        OutlineTextFieldWithError(
-            textStyle = TextStyle(textAlign = TextAlign.Left),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-                .testTag(TestTags.Login_Email_Textfield),
-            value = " ",
-            onValueChange = {},
-            label = { Text(text = "Email or Username") },
-            singleLine = true,
-            placeholder = { Text("Email or Username") },
-            isError = false,
-            errorMessage = "",
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-
-                ),
-        )
-
-        OutlineTextFieldWithError(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-                .testTag(TestTags.Login_Password_Textfield),
-            value = "",
-            onValueChange = {},
-            label = { Text("Password") },
-            singleLine = true,
-            placeholder = { Text("Password") },
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-
-                ),
-            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            isError = false,
-            errorMessage = "",
-            trailingIcon = {
-                val image = if (passwordVisible)
-                    Icons.Filled.Visibility
-                else Icons.Filled.VisibilityOff
-
-                // Please provide localized description for accessibility services
-                val description = if (passwordVisible) "Hide password" else "Show password"
-
-                IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(imageVector = image, description)
-                }
-            }
-        )
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(0.dp, 0.dp, 0.dp, 16.dp)
-
-        ) {
-            ClickableText(
-                modifier = Modifier
-                    .testTag(TestTags.Sign_Up_Text_Click),
-                text = AnnotatedString("Sign Up"),
-                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
-                onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
-            )
-
-            Spacer(Modifier.weight(1f))
-
-            ClickableText(
-                modifier = Modifier
-                    .testTag(TestTags.Forgot_Password_Text_Click),
-                text = AnnotatedString("Forgot Password"),
-                style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
-                onClick = { offset ->
-                    Log.d("ClickableText", "$offset -th character is clicked.")
-                }
-            )
-        }
-
-        Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(45.dp)
-                .testTag(TestTags.Login_Button),
-            onClick = {},
-            enabled = true,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = DarkGreen)
-        ) {
-            Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
-        }
-    }
 }
 
 

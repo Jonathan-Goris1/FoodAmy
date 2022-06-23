@@ -17,7 +17,6 @@ class RegisterInfoViewModel@Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    private val tag = "RegisterViewModel"
     var state by mutableStateOf(RegisterInfoState())
 
     fun updateUsername(username: String){
