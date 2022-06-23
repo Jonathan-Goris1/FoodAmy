@@ -33,4 +33,23 @@ class RecipeRepositoryImpl @Inject constructor(
 
         }
     }
+
+    override suspend fun getEditorsChoiceInfo(): Resource<RecipeResponse> {
+        return try {
+            val result = api.getEditorsChoice()
+            Resource.Success(result)
+        } catch (e: IOException){
+            e.printStackTrace()
+            Resource.Error(
+                message = "Data failed"
+            )
+
+        } catch (e: HttpException){
+            e.printStackTrace()
+            Resource.Error(
+                message = "Data Failed"
+            )
+
+        }
+    }
 }

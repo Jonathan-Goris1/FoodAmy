@@ -8,4 +8,7 @@ interface RecipeRepository {
     suspend fun getRecipeInfo(
         recipeID: Int
     ): Resource<RecipeResponse>
+
+    suspend fun getEditorsChoiceInfo(): Resource<RecipeResponse>
+
 }
