@@ -34,7 +34,7 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getEditorsChoiceInfo(): Resource<RecipeResponse> {
+    override suspend fun getEditorsChoiceInfo(): Resource<List<RecipeResponse>> {
         return try {
             val result = api.getEditorsChoice()
             Resource.Success(result)
