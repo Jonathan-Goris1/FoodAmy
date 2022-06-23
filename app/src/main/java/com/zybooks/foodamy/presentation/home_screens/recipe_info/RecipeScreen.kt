@@ -3,6 +3,7 @@ package com.zybooks.foodamy.presentation.home_screens.recipe_info
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material3.Icon
@@ -15,10 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -26,11 +27,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zybooks.foodamy.R
+import com.zybooks.foodamy.ui.components.RecipeCard
 import com.zybooks.foodamy.ui.theme.DarkRed
+import java.util.*
 
 
 @Composable
-fun RecipeHomeScreen(){
+fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()){
     val navController = rememberNavController()
 
     Scaffold(
@@ -66,14 +69,21 @@ fun RecipeHomeScreen(){
                 }
             )
         },
-        bottomBar = {BottomNavigation(navController = navController)}
+        bottomBar = { BottomNavigation(navController = navController)}
     ) {
 
 
         Column {
             //NavigationGraph(navController = navController)
             DoubleButtonScreen()
-            RecipeInfo()
+            LazyColumn{
+                items(viewModel.state.recipes){
+                    //TODO Fix error
+                    RecipeCard(Recipe = viewModel.state.recipes)
+                }
+
+            }
+
         }
 
 
@@ -95,7 +105,7 @@ fun DoubleButtonScreen(){
             Text(text = "Editors Choice", color = Color.DarkGray)
             
         }
-        Column() {
+        Column {
             Divider(
                 modifier = Modifier
                     .fillMaxHeight()
@@ -120,65 +130,8 @@ fun DoubleButtonScreen(){
     }
 }
 
-@Composable
-fun RecipeInfo(){
-    Row(modifier = Modifier.padding(8.dp)) {
-        Image(
-            modifier = Modifier
-                .padding(8.dp),
-            painter = painterResource(id = R.drawable.ic_baseline_face_24),
-            contentDescription = null)
-
-        Column() {
-            Text(text = "Username")
-            Row() {
-                Text(text = "Specification")
-                Text(text = "Followers")
-            }
 
 
-        }
-    }
-
-    Column{
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth(),
-            color = Color.LightGray,
-            thickness = 1.dp
-        )
-        
-        Text(
-            modifier = Modifier.padding(8.dp),
-            text = "Recipe name",
-            fontWeight = FontWeight.Bold
-        )
-
-        Text(
-            modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp ),
-            text = "Category name",
-            fontSize = 12.sp
-        )
-
-        Image(
-            modifier = Modifier
-                .width(400.dp)
-                .height(400.dp)
-                .padding(8.dp),
-            painter = painterResource(id = R.drawable.ic_baseline_face_24),
-            contentDescription = null)
-        
-        Row() {
-            Text(
-                modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp ),
-                text = "Comments and Taste")
-            
-        }
-
-
-
-    }
-}
 
 @Composable
 fun BottomNavigation(navController: NavController) {
@@ -190,18 +143,19 @@ fun BottomNavigation(navController: NavController) {
 
     )
     BottomNavigation(
-        backgroundColor = colorResource(id = R.color.teal_200),
-        contentColor = Color.Black
+        backgroundColor = colorResource(id = R.color.lightGrey),
+        contentColor = Color.White
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                label = { Text(text = item.title,
-                    fontSize = 9.sp) },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
+                label = { Text(text = item.title.uppercase(Locale.getDefault()),
+                    fontSize = 9.sp,
+                color = Color.DarkGray) },
+                selectedContentColor = DarkRed,
+                unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
                 selected = currentRoute == item.screen_route,
                 onClick = {
