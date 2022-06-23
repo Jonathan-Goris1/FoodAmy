@@ -26,6 +26,12 @@ interface AuthApi {
         @Field("birthday") birthday: String?
     ): AuthResponse
 
+    @FormUrlEncoded
+    @POST("auth/forgot")
+    suspend fun postForgot(
+        @Field("email") email: String
+    ): AuthResponse
+
 
 
 
