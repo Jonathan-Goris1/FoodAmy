@@ -27,7 +27,7 @@ interface AuthApi {
     ): AuthResponse
 
     @FormUrlEncoded
-    @POST("auth/forgot")
+    @POST("api/auth/forgot")
     suspend fun postForgot(
         @Field("email") email: String
     ): AuthResponse
