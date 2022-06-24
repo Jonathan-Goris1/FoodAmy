@@ -19,14 +19,12 @@ import com.zybooks.foodamy.util.TestTags
 @Composable
 fun ForgotPasswordScreen(
     viewModel: ForgotPasswordViewModel = hiltViewModel(),
-
-    ) {
+) {
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 16.dp),
-
         topBar = {
             TopAppBar(
                 title = {
@@ -54,19 +52,18 @@ fun ForgotPasswordScreen(
                 textStyle = TextStyle(textAlign = TextAlign.Left),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 0.dp, 16.dp)
                     .testTag(TestTags.Login_Email_Textfield),
                 value = viewModel.state.email,
                 onValueChange = { viewModel.updateEmail(it) },
-                label = { Text(text = "Email or Username") },
+                label = { Text(text = "Email") },
                 singleLine = true,
-                placeholder = { Text("Email or Username") },
-
-
+                placeholder = { Text("Email") },
                 colors = TextFieldDefaults.textFieldColors(
                     backgroundColor = Color.Transparent,
                 ),
 
-            )
+                )
 
 
 
@@ -76,7 +73,7 @@ fun ForgotPasswordScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-                    viewModel.validateEmail()
+                    viewModel.forgotPassword()
 
                 },
                 enabled = true,
@@ -109,15 +106,15 @@ fun ForgotPasswordScreenPreview() {
                 .testTag(TestTags.Login_Email_Textfield),
             value = " ",
             onValueChange = {},
-            label = { Text(text = "Email or Username") },
+            label = { Text(text = "Email") },
             singleLine = true,
-            placeholder = { Text("Email or Username") },
+            placeholder = { Text("Email") },
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
             ),
 
 
-        )
+            )
 
 
         Button(
@@ -130,7 +127,7 @@ fun ForgotPasswordScreenPreview() {
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(backgroundColor = DarkRed)
         ) {
-            Text(text = "Login", color = Color.White, textAlign = TextAlign.Center)
+            Text(text = "Send", color = Color.White, textAlign = TextAlign.Center)
         }
     }
 }
