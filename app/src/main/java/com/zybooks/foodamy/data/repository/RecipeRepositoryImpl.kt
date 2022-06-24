@@ -1,6 +1,7 @@
 package com.zybooks.foodamy.data.repository
 
 import com.zybooks.foodamy.data.remote.RecipeApi
+import com.zybooks.foodamy.data.remote.response.recipe.Data
 import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
 import com.zybooks.foodamy.domain.repository.RecipeRepository
 import com.zybooks.foodamy.util.Resource
@@ -34,9 +35,9 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getEditorsChoiceInfo(): Resource<List<RecipeResponse>> {
+    override suspend fun getEditorsChoiceInfo(): Resource<List<Data>> {
         return try {
-            val result = api.getEditorsChoice()
+            val result = api.getEditorsChoice().data
             Resource.Success(result)
         } catch (e: IOException){
             e.printStackTrace()

@@ -13,5 +13,5 @@ interface RecipeApi {
     ): RecipeResponse
 
     @GET("/api/editor-choices")
-    suspend fun getEditorsChoice(): List<RecipeResponse>
+    suspend fun getEditorsChoice(): RecipeResponse
 }
