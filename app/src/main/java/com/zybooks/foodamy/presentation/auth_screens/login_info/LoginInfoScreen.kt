@@ -146,7 +146,7 @@ fun LoginInfoScreen(
                         Icons.Filled.Visibility
                     else Icons.Filled.VisibilityOff
 
-                    // Please provide localized description for accessibility services
+
                     val description = if (passwordVisible) "Hide password" else "Show password"
 
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -195,6 +195,7 @@ fun LoginInfoScreen(
                     .testTag(TestTags.Login_Button),
                 onClick = {
                     viewModel.login()
+                    navController?.navigate("home screen")
 
                 },
                 enabled = true,

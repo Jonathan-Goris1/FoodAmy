@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.util.Resource
-import com.zybooks.foodamy.util.Validations
+import com.zybooks.foodamy.util.Validations.validateEmail
+import com.zybooks.foodamy.util.Validations.validatePassword
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,27 +20,22 @@ class LoginInfoViewModel @Inject constructor(
 
     var state by mutableStateOf(LoginInfoState())
 
-    fun updateEmail(email: String){
+    fun updateEmail(email: String) {
         state = state.copy(email = email)
 
     }
-    fun updatePassword(password: String){
+
+    fun updatePassword(password: String) {
         state = state.copy(password = password)
 
     }
 
 
-    private fun validateEmail(): Boolean = Validations.validateEmail(state.email)
-
-
-    private fun validatePassword(): Boolean = Validations.validatePassword(state.password)
-
-
     fun login() {
-        if(!validateEmail() && !validatePassword()){
+        if (validateEmail(state.email) && validatePassword(state.password)) {
             viewModelScope.launch {
                 state = state.copy(isLoading = true)
-                when(val loginInfoResult =  repository.postLoginInfo(state.email, state.password)){
+                when (val loginInfoResult = repository.postLoginInfo(state.email, state.password)) {
                     is Resource.Success -> {
                         state = state.copy(
                             isLoading = false,
@@ -57,8 +53,6 @@ class LoginInfoViewModel @Inject constructor(
                 }
                 state = state.copy(isLoading = false)
             }
-        } else{
-
         }
     }
 }
