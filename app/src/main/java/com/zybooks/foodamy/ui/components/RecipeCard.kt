@@ -1,6 +1,7 @@
 package com.zybooks.foodamy.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Divider
@@ -18,14 +19,15 @@ import com.zybooks.foodamy.data.remote.response.recipe.Data
 @Composable
 fun RecipeCard(
     modifier: Modifier = Modifier,
-    Recipe: Data
+    Recipe: Data?,
+    onClick: () -> Unit
 
 ) {
     Card(
-        modifier = modifier.padding(0.dp, 8.dp),
-
-
-        ) {
+        modifier = modifier
+            .padding(0.dp, 8.dp)
+            .clickable(onClick = onClick)
+    ) {
         Row(modifier = modifier.padding(8.dp)) {
             Image(
                 modifier = modifier
@@ -35,9 +37,13 @@ fun RecipeCard(
             )
 
             Column {
-                Text(text = Recipe.user.name)
+                if (Recipe != null) {
+                    Text(text = Recipe.user.name)
+                }
                 Row {
-                    Text(text = "${Recipe.user.recipe_count} Recipes ${Recipe.user.following_count} Followers")
+                    if (Recipe != null) {
+                        Text(text = "${Recipe.user.recipe_count} Recipes ${Recipe.user.following_count} Followers")
+                    }
                 }
 
 
@@ -52,17 +58,21 @@ fun RecipeCard(
                 thickness = 1.dp
             )
 
-            Text(
-                modifier = modifier.padding(8.dp),
-                text = Recipe.title,
-                fontWeight = FontWeight.Bold
-            )
+            if (Recipe != null) {
+                Text(
+                    modifier = modifier.padding(8.dp),
+                    text = Recipe.title,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
-            Text(
-                modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                text = Recipe.category.name,
-                fontSize = 12.sp
-            )
+            if (Recipe != null) {
+                Text(
+                    modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                    text = Recipe.category.name,
+                    fontSize = 12.sp
+                )
+            }
 
             Image(
                 modifier = modifier
@@ -74,10 +84,12 @@ fun RecipeCard(
             )
 
             Row {
-                Text(
-                    modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                    text = "${Recipe.comment_count} Comments ${Recipe.like_count} Taste"
-                )
+                if (Recipe != null) {
+                    Text(
+                        modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                        text = "${Recipe.comment_count} Comments ${Recipe.like_count} Taste"
+                    )
+                }
 
             }
 
