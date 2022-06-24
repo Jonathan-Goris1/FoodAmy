@@ -15,6 +15,7 @@ import javax.inject.Inject
 class RecipeScreenViewModel@Inject constructor(
     private val repository: RecipeRepository
 ): ViewModel() {
+
 init {
     getEditorsChoice()
 }
