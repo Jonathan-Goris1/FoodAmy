@@ -19,4 +19,8 @@ interface AuthRepository {
         gender: String?,
         birthday: String?
     ): Resource<AuthResponse>
+
+    suspend fun postForgotInfo(
+        email: String
+    ): Resource<AuthResponse>
 }

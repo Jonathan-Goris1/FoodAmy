@@ -28,7 +28,7 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: HttpException){
             e.printStackTrace()
             Resource.Error(
-                message = "Login Failed"
+                message = "Login failed"
             )
 
         }
@@ -55,7 +55,26 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: HttpException){
             e.printStackTrace()
             Resource.Error(
-                message = "Register Failed"
+                message = "Register failed"
+            )
+
+        }
+    }
+
+    override suspend fun postForgotInfo(email: String): Resource<AuthResponse> {
+        return try {
+            val result = api.postForgot(email)
+            Resource.Success(result)
+        } catch (e: IOException){
+            e.printStackTrace()
+            Resource.Error(
+                message = "Forgot password failed"
+            )
+
+        } catch (e: HttpException){
+            e.printStackTrace()
+            Resource.Error(
+                message = "Forgot password failed"
             )
 
         }
