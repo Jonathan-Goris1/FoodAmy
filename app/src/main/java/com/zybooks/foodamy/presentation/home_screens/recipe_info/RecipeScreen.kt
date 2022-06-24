@@ -77,9 +77,12 @@ fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()){
             //NavigationGraph(navController = navController)
             DoubleButtonScreen()
             LazyColumn{
-                items(viewModel.state.recipes){
-                    //TODO Fix error
-                    RecipeCard(Recipe = viewModel.state.recipes)
+                viewModel.state.recipes?.let { it1 ->
+                    items(it1.size){
+                        it1.forEach { data -> RecipeCard(Recipe = data) {
+                            
+                        } }
+                    }
                 }
 
             }
