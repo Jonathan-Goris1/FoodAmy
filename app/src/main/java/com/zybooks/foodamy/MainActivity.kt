@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.zybooks.foodamy.presentation.auth_screens.forgot_password_info.ForgotPasswordScreen
 import com.zybooks.foodamy.presentation.auth_screens.login_info.LoginInfoScreen
 import com.zybooks.foodamy.presentation.auth_screens.register_info.RegisterInfoScreen
+import com.zybooks.foodamy.presentation.home_screens.recipe_info.RecipeHomeScreen
 import com.zybooks.foodamy.ui.theme.FoodAmyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +38,10 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("forgot password"){
                             ForgotPasswordScreen()
+                        }
+
+                        composable("home screen"){
+                            RecipeHomeScreen()
                         }
                     }
                 }
