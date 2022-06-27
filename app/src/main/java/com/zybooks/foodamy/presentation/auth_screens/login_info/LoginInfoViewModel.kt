@@ -22,14 +22,11 @@ class LoginInfoViewModel @Inject constructor(
 
     fun updateEmail(email: String) {
         state = state.copy(email = email)
-
     }
 
     fun updatePassword(password: String) {
         state = state.copy(password = password)
-
     }
-
 
     fun login() {
         if (validateEmail(state.email) && validatePassword(state.password)) {
@@ -38,12 +35,14 @@ class LoginInfoViewModel @Inject constructor(
                 when (val loginInfoResult = repository.postLoginInfo(state.email, state.password)) {
                     is Resource.Success -> {
                         state = state.copy(
+                            snackBarMessage = "Login Successful",
                             isLoading = false,
                             error = null
                         )
                     }
                     is Resource.Error -> {
                         state = state.copy(
+                            snackBarMessage = "Invalid email or password",
                             isLoading = false,
                             error = loginInfoResult.message,
                         )
@@ -53,6 +52,8 @@ class LoginInfoViewModel @Inject constructor(
                 }
                 state = state.copy(isLoading = false)
             }
+        } else{
+            state = state.copy(snackBarMessage = "Please enter a correct email or password")
         }
     }
 }

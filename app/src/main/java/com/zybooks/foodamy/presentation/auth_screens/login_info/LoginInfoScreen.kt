@@ -8,11 +8,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,26 +21,29 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.zybooks.foodamy.presentation.navigation.Screen
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkGreen
 import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginInfoScreen(
-    navController: NavController?,
+    navController: NavController,
     viewModel: LoginInfoViewModel = hiltViewModel(),
-
-    ) {
+) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
     val scaffoldState = rememberScaffoldState()
-//TODO Change scaffold composable function to a lambda composable for better code reading
-//TODO also implement this function in a separate package called components
+    val coroutineScope: CoroutineScope = rememberCoroutineScope()
+    val TAG = "LoginInfoScreen"
+
     Scaffold(
         modifier = Modifier
             .padding(0.dp, 0.dp, 0.dp, 16.dp),
@@ -169,7 +169,7 @@ fun LoginInfoScreen(
                     text = AnnotatedString("Sign Up"),
                     style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
                     onClick = { onClick ->
-                        navController?.navigate("Register")
+                        navController.navigate(Screen.Register.route)
                         Log.d("ClickableText", "$onClick -th character is clicked.")
                     }
                 )
@@ -182,7 +182,7 @@ fun LoginInfoScreen(
                     text = AnnotatedString("Forgot Password"),
                     style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
                     onClick = { offset ->
-                        navController?.navigate("forgot password")
+                        navController.navigate(Screen.ForgotPassword.route)
                         Log.d("ClickableText", "$offset -th character is clicked.")
                     }
                 )
@@ -194,8 +194,17 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
+                    Log.d(TAG, viewModel.state.email + " " + viewModel.state.password)
                     viewModel.login()
-                    navController?.navigate("home screen")
+                    coroutineScope.launch {
+                        delay(3000)
+                        scaffoldState.snackbarHostState.showSnackbar(
+                            message = viewModel.state.snackBarMessage
+
+                        )
+
+                    }
+
 
                 },
                 enabled = true,
@@ -243,13 +252,6 @@ fun DividerText(prompt: String = "This is a Test") {
     }
 }
 
-@Preview
-@Composable
-fun LoginInfoScreenPreview() {
-    LoginInfoScreen(null)
-
-
-}
 
 
 
