@@ -24,7 +24,6 @@ class ForgotPasswordViewModel @Inject constructor(
         state = state.copy(email = email)
     }
 
-
     fun forgotPassword() {
         if(validateEmail(state.email)){
             viewModelScope.launch {
@@ -32,13 +31,14 @@ class ForgotPasswordViewModel @Inject constructor(
                 when(val forgotPasswordInfoResult =  repository.postForgotInfo(state.email)){
                     is Resource.Success -> {
                         state = state.copy(
-
+                            snackBarMessage = "A password reset link has been sent to your email",
                             isLoading = false,
                             error = null
                         )
                     }
                     is Resource.Error -> {
                         state = state.copy(
+                            snackBarMessage = "Invalid Email",
                             isLoading = false,
                             error = forgotPasswordInfoResult.message,
                         )
@@ -48,6 +48,8 @@ class ForgotPasswordViewModel @Inject constructor(
                 }
                 state = state.copy(isLoading = false)
             }
+        } else {
+            state = state.copy(snackBarMessage = "Please enter a correct email")
         }
     }
 }
