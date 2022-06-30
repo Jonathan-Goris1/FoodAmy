@@ -31,8 +31,6 @@ import com.zybooks.foodamy.ui.theme.DarkGreen
 import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Composable
 fun LoginInfoScreen(
@@ -196,14 +194,16 @@ fun LoginInfoScreen(
                 onClick = {
                     Log.d(TAG, viewModel.state.email + " " + viewModel.state.password)
                     viewModel.login()
-                    coroutineScope.launch {
-                        delay(3000)
-                        scaffoldState.snackbarHostState.showSnackbar(
-                            message = viewModel.state.snackBarMessage
+                    navController.navigate(Screen.Home.route)
+//                    coroutineScope.launch {
+//                        delay(3000)
+//                        scaffoldState.snackbarHostState.showSnackbar(
+//                            message = viewModel.state.snackBarMessage
+//
+//                        )
+//
+//                    }
 
-                        )
-
-                    }
 
 
                 },

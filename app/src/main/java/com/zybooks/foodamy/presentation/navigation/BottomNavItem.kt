@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.home_screens.recipe_info
+package com.zybooks.foodamy.presentation.navigation
 
 import com.zybooks.foodamy.R
 

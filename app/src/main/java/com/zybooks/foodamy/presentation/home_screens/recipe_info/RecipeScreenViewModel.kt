@@ -15,11 +15,12 @@ import javax.inject.Inject
 class RecipeScreenViewModel@Inject constructor(
     private val repository: RecipeRepository
 ): ViewModel() {
+    var state by mutableStateOf(RecipeScreenState())
 
 init {
     getEditorsChoice()
 }
-    var state by mutableStateOf(RecipeScreenState())
+
 
     private fun getEditorsChoice() {
         viewModelScope.launch {
@@ -27,7 +28,7 @@ init {
             when (val getEditorsChoiceInfoResult = repository.getEditorsChoiceInfo()) {
                 is Resource.Success -> {
                     state = state.copy(
-                        recipes = getEditorsChoiceInfoResult.data,
+                        recipes = getEditorsChoiceInfoResult.data!!,
                         isLoading = false,
                         error = null
                     )

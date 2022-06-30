@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material3.Icon
@@ -27,28 +28,31 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zybooks.foodamy.R
+import com.zybooks.foodamy.presentation.navigation.BottomNavItem
 import com.zybooks.foodamy.ui.components.RecipeCard
 import com.zybooks.foodamy.ui.theme.DarkRed
 import java.util.*
 
 
 @Composable
-fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()){
+fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()) {
     val navController = rememberNavController()
+    val recipes = viewModel.state.recipes
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_foodamy___flat),
-                        contentDescription = null
-                    )
+                title = {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_foodamy___flat),
+                            contentDescription = null
+                        )
 
-                }
+                    }
 
                 },
                 backgroundColor = DarkRed,
@@ -62,39 +66,37 @@ fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()){
                         Icon(
                             painter = painterResource(id = R.drawable.ic_baseline_search_24),
                             tint = DarkRed,
-                            contentDescription = "Search Recipe")
+                            contentDescription = "Search Recipe"
+                        )
                     }
 
 
                 }
             )
         },
-        bottomBar = { BottomNavigation(navController = navController)}
+        bottomBar = { BottomNavigation(navController = navController) }
     ) {
 
 
         Column {
-            //NavigationGraph(navController = navController)
+            NavigationGraph(navController = navController)
             DoubleButtonScreen()
-            LazyColumn{
-                viewModel.state.recipes?.let { it1 ->
-                    items(it1.size){
-                        it1.forEach { data -> RecipeCard(Recipe = data) {
-                            
-                        } }
-                    }
+            LazyColumn {
+                items(recipes) { recipe ->
+                    RecipeCard(Recipe = recipe, onClick = {})
+
                 }
 
             }
-
         }
 
-
     }
+
 }
 
+
 @Composable
-fun DoubleButtonScreen(){
+fun DoubleButtonScreen() {
     Row(
         modifier = Modifier
             .height(IntrinsicSize.Min)
@@ -106,7 +108,7 @@ fun DoubleButtonScreen(){
             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
             onClick = { /*TODO*/ }) {
             Text(text = "Editors Choice", color = Color.DarkGray)
-            
+
         }
         Column {
             Divider(
@@ -134,8 +136,6 @@ fun DoubleButtonScreen(){
 }
 
 
-
-
 @Composable
 fun BottomNavigation(navController: NavController) {
     val items = listOf(
@@ -144,7 +144,7 @@ fun BottomNavigation(navController: NavController) {
         BottomNavItem.Users,
         BottomNavItem.Menu,
 
-    )
+        )
     BottomNavigation(
         backgroundColor = colorResource(id = R.color.lightGrey),
         contentColor = Color.White
@@ -154,9 +154,13 @@ fun BottomNavigation(navController: NavController) {
         items.forEach { item ->
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                label = { Text(text = item.title.uppercase(Locale.getDefault()),
-                    fontSize = 9.sp,
-                color = Color.DarkGray) },
+                label = {
+                    Text(
+                        text = item.title.uppercase(Locale.getDefault()),
+                        fontSize = 9.sp,
+                        color = Color.DarkGray
+                    )
+                },
                 selectedContentColor = DarkRed,
                 unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
@@ -199,7 +203,7 @@ fun NavigationGraph(navController: NavHostController) {
 
 @Preview
 @Composable
-fun RecipeHomeScreenPreview(){
+fun RecipeHomeScreenPreview() {
     RecipeHomeScreen()
 }
 

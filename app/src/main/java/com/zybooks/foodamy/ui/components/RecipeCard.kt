@@ -19,7 +19,7 @@ import com.zybooks.foodamy.data.remote.response.recipe.Data
 @Composable
 fun RecipeCard(
     modifier: Modifier = Modifier,
-    Recipe: Data?,
+    Recipe: Data,
     onClick: () -> Unit
 
 ) {
@@ -37,13 +37,9 @@ fun RecipeCard(
             )
 
             Column {
-                if (Recipe != null) {
-                    Text(text = Recipe.user.name)
-                }
+                Text(text = Recipe.user.name)
                 Row {
-                    if (Recipe != null) {
-                        Text(text = "${Recipe.user.recipe_count} Recipes ${Recipe.user.following_count} Followers")
-                    }
+                    Text(text = "${Recipe.user.recipe_count} Recipes ${Recipe.user.following_count} Followers")
                 }
 
 
@@ -58,21 +54,17 @@ fun RecipeCard(
                 thickness = 1.dp
             )
 
-            if (Recipe != null) {
-                Text(
-                    modifier = modifier.padding(8.dp),
-                    text = Recipe.title,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            Text(
+                modifier = modifier.padding(8.dp),
+                text = Recipe.title,
+                fontWeight = FontWeight.Bold
+            )
 
-            if (Recipe != null) {
-                Text(
-                    modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                    text = Recipe.category.name,
-                    fontSize = 12.sp
-                )
-            }
+            Text(
+                modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                text = Recipe.category.name,
+                fontSize = 12.sp
+            )
 
             Image(
                 modifier = modifier
@@ -84,12 +76,10 @@ fun RecipeCard(
             )
 
             Row {
-                if (Recipe != null) {
-                    Text(
-                        modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                        text = "${Recipe.comment_count} Comments ${Recipe.like_count} Taste"
-                    )
-                }
+                Text(
+                    modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+                    text = "${Recipe.comment_count} Comments ${Recipe.like_count} Taste"
+                )
 
             }
 
