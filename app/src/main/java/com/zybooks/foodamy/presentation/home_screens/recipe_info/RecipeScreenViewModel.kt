@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.presentation.home_screens.recipe_info
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -16,6 +17,7 @@ class RecipeScreenViewModel@Inject constructor(
     private val repository: RecipeRepository
 ): ViewModel() {
     var state by mutableStateOf(RecipeScreenState())
+    private val tag: String = "RecipeScreenViewModel"
 
 init {
     getEditorsChoice()
@@ -37,7 +39,9 @@ init {
                     state = state.copy(
                         isLoading = false,
                         error = getEditorsChoiceInfoResult.message,
+
                     )
+                    Log.d(tag, state.error.toString())
 
                 }
                 else -> {}
