@@ -30,7 +30,7 @@ init {
             when (val getEditorsChoiceInfoResult = repository.getEditorsChoiceInfo()) {
                 is Resource.Success -> {
                     state = state.copy(
-                        recipes = getEditorsChoiceInfoResult.data!!,
+                        recipes = getEditorsChoiceInfoResult.data?: emptyList(),
                         isLoading = false,
                         error = null
                     )
