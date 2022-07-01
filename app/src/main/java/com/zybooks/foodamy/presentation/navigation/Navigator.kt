@@ -1,6 +1,7 @@
 package com.zybooks.foodamy.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -28,3 +29,21 @@ fun Navigator(){
     }
 }
 
+@Composable
+fun NavigationGraph(navController: NavHostController) {
+    NavHost(navController, startDestination = BottomNavItem.Recipe.screen_route) {
+        composable(BottomNavItem.Recipe.screen_route) {
+            RecipeHomeScreen()
+        }
+        composable(BottomNavItem.Liked.screen_route) {
+
+        }
+        composable(BottomNavItem.Users.screen_route) {
+
+        }
+        composable(BottomNavItem.Menu.screen_route) {
+
+        }
+
+    }
+}

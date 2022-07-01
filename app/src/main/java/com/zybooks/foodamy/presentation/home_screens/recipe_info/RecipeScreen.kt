@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.presentation.home_screens.recipe_info
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -9,35 +10,28 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.zybooks.foodamy.R
-import com.zybooks.foodamy.presentation.navigation.BottomNavItem
+import com.zybooks.foodamy.ui.components.RecipeBottomNavigation
 import com.zybooks.foodamy.ui.components.RecipeCard
 import com.zybooks.foodamy.ui.theme.DarkRed
-import java.util.*
 
 
 @Composable
 fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()) {
     val navController = rememberNavController()
     val recipes = viewModel.state.recipes
+    val TAG = "RecipeScreen"
+
 
     Scaffold(
         topBar = {
@@ -74,16 +68,17 @@ fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()) {
                 }
             )
         },
-        bottomBar = { BottomNavigation(navController = navController) }
+        bottomBar = { RecipeBottomNavigation(navController = navController) }
     ) {
 
 
         Column {
-            NavigationGraph(navController = navController)
             DoubleButtonScreen()
+            Log.d(TAG, "RecipeHomeScreen: $recipes")
             LazyColumn {
                 items(recipes) { recipe ->
                     RecipeCard(Recipe = recipe, onClick = {})
+                    Log.d(TAG, "RecipeHomeScreen: $recipe")
 
                 }
 
@@ -94,7 +89,7 @@ fun RecipeHomeScreen(viewModel: RecipeScreenViewModel = hiltViewModel()) {
 
 }
 
-
+//
 @Composable
 fun DoubleButtonScreen() {
     Row(
@@ -136,70 +131,7 @@ fun DoubleButtonScreen() {
 }
 
 
-@Composable
-fun BottomNavigation(navController: NavController) {
-    val items = listOf(
-        BottomNavItem.Recipe,
-        BottomNavItem.Liked,
-        BottomNavItem.Users,
-        BottomNavItem.Menu,
 
-        )
-    BottomNavigation(
-        backgroundColor = colorResource(id = R.color.lightGrey),
-        contentColor = Color.White
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { item ->
-            BottomNavigationItem(
-                icon = { Icon(painterResource(id = item.icon), contentDescription = item.title) },
-                label = {
-                    Text(
-                        text = item.title.uppercase(Locale.getDefault()),
-                        fontSize = 9.sp,
-                        color = Color.DarkGray
-                    )
-                },
-                selectedContentColor = DarkRed,
-                unselectedContentColor = Color.White.copy(0.4f),
-                alwaysShowLabel = true,
-                selected = currentRoute == item.screen_route,
-                onClick = {
-                    navController.navigate(item.screen_route) {
-
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                saveState = true
-                            }
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                }
-            )
-        }
-    }
-}
-
-@Composable
-fun NavigationGraph(navController: NavHostController) {
-    NavHost(navController, startDestination = BottomNavItem.Recipe.screen_route) {
-        composable(BottomNavItem.Recipe.screen_route) {
-            RecipeHomeScreen()
-        }
-        composable(BottomNavItem.Liked.screen_route) {
-
-        }
-        composable(BottomNavItem.Users.screen_route) {
-
-        }
-        composable(BottomNavItem.Menu.screen_route) {
-
-        }
-
-    }
-}
 
 @Preview
 @Composable
