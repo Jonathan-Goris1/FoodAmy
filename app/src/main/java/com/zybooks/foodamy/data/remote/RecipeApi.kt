@@ -7,11 +7,11 @@ import retrofit2.http.Path
 interface RecipeApi {
 
 
-    @GET("api/recipe/{id}")
+    @GET("recipe/{id}")
     suspend fun getRecipe(
         @Path("recipeID") recipeID: Int,
     ): RecipeResponse
 
-    @GET("/api/editor-choices")
+    @GET("editor-choices")
     suspend fun getEditorsChoice(): RecipeResponse
 }
