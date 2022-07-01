@@ -23,13 +23,13 @@ class RecipeRepositoryImpl @Inject constructor(
         } catch (e: IOException){
             e.printStackTrace()
             Resource.Error(
-                message = "Data failed"
+                message = e.message.toString()
             )
 
         } catch (e: HttpException){
             e.printStackTrace()
             Resource.Error(
-                message = "Data Failed"
+                message = e.message()
             )
 
         }
@@ -42,13 +42,13 @@ class RecipeRepositoryImpl @Inject constructor(
         } catch (e: IOException){
             e.printStackTrace()
             Resource.Error(
-                message = "Data failed"
+                message = e.message.toString()
             )
 
         } catch (e: HttpException){
             e.printStackTrace()
             Resource.Error(
-                message = "Data Failed"
+                message = e.message()
             )
 
         }
