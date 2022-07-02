@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun UsersScreen() {
     Column() {
-        Text(text = "This is the menu screen")
+        Text(text = "This is the Users screen")
 
     }
 }
