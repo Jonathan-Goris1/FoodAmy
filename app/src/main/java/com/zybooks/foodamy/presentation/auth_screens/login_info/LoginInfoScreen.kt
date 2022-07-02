@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.zybooks.foodamy.presentation.navigation.HOME_ROUTE
 import com.zybooks.foodamy.presentation.navigation.Screen
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
@@ -194,7 +195,7 @@ fun LoginInfoScreen(
                 onClick = {
                     Log.d(TAG, viewModel.state.email + " " + viewModel.state.password)
                     viewModel.login()
-                    navController.navigate(Screen.Home.route)
+                    navController.navigate(HOME_ROUTE)
 //                    coroutineScope.launch {
 //                        delay(3000)
 //                        scaffoldState.snackbarHostState.showSnackbar(
