@@ -10,7 +10,7 @@ sealed class Screen(val route: String){
     object Login : Screen("login")
     object ForgotPassword : Screen("forgot_password")
     object Register: Screen("register")
-    object Home: Screen("home")
+    object AppScaffold : Screen("app_scaffold")
 
 }
 
