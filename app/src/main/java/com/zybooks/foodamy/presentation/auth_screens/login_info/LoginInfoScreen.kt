@@ -23,8 +23,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.zybooks.foodamy.presentation.navigation.HOME_ROUTE
+import androidx.navigation.NavHostController
 import com.zybooks.foodamy.presentation.navigation.Screen
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
@@ -35,7 +34,7 @@ import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun LoginInfoScreen(
-    navController: NavController,
+    navController: NavHostController,
     viewModel: LoginInfoViewModel = hiltViewModel(),
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
@@ -195,7 +194,10 @@ fun LoginInfoScreen(
                 onClick = {
                     Log.d(TAG, viewModel.state.email + " " + viewModel.state.password)
                     viewModel.login()
-                    navController.navigate(HOME_ROUTE)
+                    navController.navigate(Screen.AppScaffold.route){
+                        popUpTo(navController.graph.startDestinationId)
+                        launchSingleTop = true
+                    }
 //                    coroutineScope.launch {
 //                        delay(3000)
 //                        scaffoldState.snackbarHostState.showSnackbar(
