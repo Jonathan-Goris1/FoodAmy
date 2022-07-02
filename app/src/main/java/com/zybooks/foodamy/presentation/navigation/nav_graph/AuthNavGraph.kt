@@ -7,7 +7,7 @@ import androidx.navigation.navigation
 import com.zybooks.foodamy.presentation.auth_screens.forgot_password_info.ForgotPasswordScreen
 import com.zybooks.foodamy.presentation.auth_screens.login_info.LoginInfoScreen
 import com.zybooks.foodamy.presentation.auth_screens.register_info.RegisterInfoScreen
-import com.zybooks.foodamy.presentation.home_screens.recipe_info.RecipeHomeScreen
+import com.zybooks.foodamy.presentation.home_screens.recipe_info.AppScaffold
 import com.zybooks.foodamy.presentation.navigation.AUTHENTICATION_ROUTE
 import com.zybooks.foodamy.presentation.navigation.Screen
 
@@ -27,8 +27,8 @@ fun NavGraphBuilder.authNavGraph(
         composable(Screen.ForgotPassword.route){
             ForgotPasswordScreen(navController)
         }
-        composable(Screen.Home.route){
-            RecipeHomeScreen(navController = navController)
+        composable(Screen.AppScaffold.route){
+            AppScaffold(navController = navController)
         }
 
     }
