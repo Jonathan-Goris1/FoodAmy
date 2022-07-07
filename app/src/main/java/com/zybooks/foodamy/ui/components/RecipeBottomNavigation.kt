@@ -25,7 +25,6 @@ fun RecipeBottomNavigation(navController: NavController) {
         BottomNavItem.Liked,
         BottomNavItem.Users,
         BottomNavItem.Menu,
-
         )
     BottomNavigation(
         backgroundColor = colorResource(id = R.color.lightGrey),
