@@ -1,6 +1,5 @@
 package com.zybooks.foodamy.presentation.home_screens.recipe_info
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -20,10 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.zybooks.foodamy.R
+import com.zybooks.foodamy.presentation.navigation.Screen
 import com.zybooks.foodamy.ui.components.RecipeCard
 import com.zybooks.foodamy.ui.components.TextTabs
 import com.zybooks.foodamy.ui.theme.DarkRed
@@ -31,12 +31,11 @@ import com.zybooks.foodamy.ui.theme.DarkRed
 
 @Composable
 fun RecipeHomeScreen(
+    navController: NavController,
     viewModel: RecipeScreenViewModel = hiltViewModel()
 
 ) {
     val recipes = viewModel.state.recipes
-    val TAG = "RecipeScreen"
-
 
     Scaffold(
         //TODO Work on creating the topBar tabs
@@ -80,13 +79,12 @@ fun RecipeHomeScreen(
 
         Column {
             TextTabs()
-
-            Log.d(TAG, "RecipeHomeScreen: $recipes")
-
             LazyColumn {
                 items(recipes) { recipe ->
-                    RecipeCard(Recipe = recipe, onClick = {})
-                    Log.d(TAG, "RecipeHomeScreen: $recipe")
+                    RecipeCard(Recipe = recipe, onClick = {
+                        navController.navigate(Screen.RecipeDetail.route + "?recipeId=${recipe.id}")
+                    })
+
 
                 }
 
@@ -96,11 +94,5 @@ fun RecipeHomeScreen(
 
     }
 
-}
-
-@Preview
-@Composable
-fun RecipeHomeScreenPreview() {
-    RecipeHomeScreen()
 }
 
