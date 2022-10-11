@@ -1,10 +1,11 @@
 package com.zybooks.foodamy
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performTextInput
 import com.zybooks.foodamy.di.AppModule
-import com.zybooks.foodamy.presentation.auth_screens.login_info.LoginInfoScreen
 import com.zybooks.foodamy.ui.theme.FoodAmyTheme
 import com.zybooks.foodamy.util.TestTags
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -14,7 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@ExperimentalFoundationApi
 @HiltAndroidTest
 @UninstallModules(AppModule::class)
 class FoodAmyAppTest {
@@ -30,7 +30,7 @@ class FoodAmyAppTest {
     fun setup() {
         hiltRule.inject()
         composeRule.setContent {
-            FoodAmyTheme { LoginInfoScreen(null) }
+            FoodAmyTheme { }
         }
     }
 //TODO create test for individual composable views

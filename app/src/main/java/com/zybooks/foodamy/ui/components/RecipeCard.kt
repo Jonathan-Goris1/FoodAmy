@@ -50,16 +50,12 @@ fun RecipeCard(
                         .clip(shape = CircleShape),
                     painter = rememberAsyncImagePainter(Recipe.user.image?.url),
                     contentDescription = null,
-
                     )
-
 
                 Column {
                     Text(text = Recipe.user.name ?: "")
 
-
                     Spacer(modifier = modifier.size(4.dp))
-
 
                     Text(text = "${Recipe.user.recipe_count} Recipes ${Recipe.user.following_count} Followers")
 
@@ -84,15 +80,11 @@ fun RecipeCard(
                     fontWeight = FontWeight.Bold
                 )
 
-
-
                 Text(
                     modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
                     text = Recipe.category.name,
                     fontSize = 12.sp
                 )
-
-
 
                 Image(
                     modifier = modifier
@@ -103,7 +95,6 @@ fun RecipeCard(
                     painter = rememberAsyncImagePainter(Recipe.category.image?.url),
                     contentDescription = null
                 )
-
 
                 Text(
                     modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),

@@ -22,7 +22,7 @@ fun HomeHostNavGraph(navController: NavController){
     ) {
 
         composable(BottomNavItem.Recipe.screen_route) {
-            RecipeHomeScreen()
+            RecipeHomeScreen(navController)
         }
         composable(BottomNavItem.Liked.screen_route) {
             LikedScreen()
