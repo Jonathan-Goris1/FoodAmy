@@ -1,6 +1,6 @@
 package com.zybooks.foodamy
 
-import com.zybooks.foodamy.data.remote.AuthApi
+import com.zybooks.foodamy.data.remote.network_api.AuthApi
 import com.zybooks.foodamy.util.Constants
 import dagger.Module
 import dagger.Provides
