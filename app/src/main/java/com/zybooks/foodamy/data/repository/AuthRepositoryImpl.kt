@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.repository
 
-import com.zybooks.foodamy.data.remote.AuthApi
+import com.zybooks.foodamy.data.remote.network_api.AuthApi
 import com.zybooks.foodamy.data.remote.response.auth.AuthResponse
 import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.util.Resource

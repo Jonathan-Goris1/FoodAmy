@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.repository
 
-import com.zybooks.foodamy.data.remote.RecipeApi
+import com.zybooks.foodamy.data.remote.network_api.RecipeApi
 import com.zybooks.foodamy.data.remote.response.recipe.Data
 import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
 import com.zybooks.foodamy.domain.repository.RecipeRepository
