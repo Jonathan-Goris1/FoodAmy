@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.data.remote
+package com.zybooks.foodamy.data.remote.network_api
 
 import com.zybooks.foodamy.data.remote.response.auth.AuthResponse
 import retrofit2.http.Field
