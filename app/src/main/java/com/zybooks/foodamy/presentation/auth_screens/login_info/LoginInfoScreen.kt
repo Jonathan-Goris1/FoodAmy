@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.presentation.auth_screens.login_info
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.zybooks.foodamy.presentation.navigation.Screen
+import com.zybooks.foodamy.ui.components.DividerText
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkGreen
@@ -32,6 +34,7 @@ import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
 import kotlinx.coroutines.CoroutineScope
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LoginInfoScreen(
     navController: NavHostController,
@@ -40,7 +43,7 @@ fun LoginInfoScreen(
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
     val scaffoldState = rememberScaffoldState()
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
-    val TAG = "LoginInfoScreen"
+    val tag = "LoginInfoScreen"
 
     Scaffold(
         modifier = Modifier
@@ -55,12 +58,12 @@ fun LoginInfoScreen(
                         Text("Login", textAlign = TextAlign.Center, color = Color.White)
                     }
                 },
-                backgroundColor = DarkRed
+                backgroundColor = DarkRed,
             )
         },
-        scaffoldState = scaffoldState
-    ) {
+        scaffoldState = scaffoldState,
 
+    ) {
         Column(
             modifier = Modifier
                 .padding(16.dp),
@@ -192,7 +195,7 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-                    Log.d(TAG, viewModel.state.email + " " + viewModel.state.password)
+                    Log.d(tag, viewModel.state.email + " " + viewModel.state.password)
                     viewModel.login()
                     navController.navigate(Screen.AppScaffold.route){
                         popUpTo(navController.graph.startDestinationId)
@@ -221,39 +224,6 @@ fun LoginInfoScreen(
 
 }
 
-
-@Composable
-fun DividerText(prompt: String = "This is a Test") {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp, 0.dp, 0.dp, 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Divider(
-            modifier = Modifier
-                .weight(1.0f)
-                .padding(0.dp, 0.dp, 16.dp, 0.dp),
-            color = Color.DarkGray,
-            thickness = 1.dp
-        )
-
-        Text(
-            maxLines = 1,
-            text = prompt,
-            color = Color.Gray
-        )
-
-        Divider(
-            modifier = Modifier
-                .weight(1.0f)
-                .padding(16.dp, 0.dp, 0.dp, 0.dp),
-            color = Color.DarkGray,
-            thickness = 1.dp
-        )
-    }
-}
 
 
 

@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.presentation.home_screens.recipe_info
 
+import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -8,6 +9,7 @@ import com.zybooks.foodamy.presentation.navigation.nav_graph.HomeHostNavGraph
 import com.zybooks.foodamy.ui.components.RecipeBottomNavigation
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(
     navController: NavController,
@@ -21,6 +23,7 @@ fun AppScaffold(
             RecipeBottomNavigation(navController = navController)
         },
         scaffoldState = scaffoldState,
+
 
         ) {
 

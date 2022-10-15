@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.presentation.auth_screens.register_info
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -22,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.zybooks.foodamy.ui.components.DividerText
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
 import com.zybooks.foodamy.ui.theme.DarkRed
@@ -30,6 +32,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RegisterInfoScreen(
     navController: NavController?,
@@ -195,39 +198,6 @@ fun RegisterInfoScreen(
                 Text(text = "Sign Up", color = Color.White, textAlign = TextAlign.Center)
             }
         }
-    }
-}
-
-@Composable
-fun DividerText(prompt: String = "This is a Test") {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(0.dp, 0.dp, 0.dp, 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Divider(
-            modifier = Modifier
-                .weight(1.0f)
-                .padding(0.dp, 0.dp, 16.dp, 0.dp),
-            color = Color.DarkGray,
-            thickness = 1.dp
-        )
-
-        Text(
-            maxLines = 1,
-            text = prompt,
-            color = Color.Gray
-        )
-
-        Divider(
-            modifier = Modifier
-                .weight(1.0f)
-                .padding(16.dp, 0.dp, 0.dp, 0.dp),
-            color = Color.DarkGray,
-            thickness = 1.dp
-        )
     }
 }
 
