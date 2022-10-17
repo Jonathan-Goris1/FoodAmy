@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.presentation.home_screens.recipe_info
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -29,6 +30,7 @@ import com.zybooks.foodamy.ui.components.TextTabs
 import com.zybooks.foodamy.ui.theme.DarkRed
 
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RecipeHomeScreen(
     navController: NavController,
