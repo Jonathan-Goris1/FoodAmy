@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.remote.response.recipe
 
-data class User(
+data class UserResponse(
     val cover: Any,
     val definition: String,
     val facebook_url: Any,
@@ -8,7 +8,7 @@ data class User(
     val followed_count: Int,
     val following_count: Int,
     val id: Int,
-    val image: ImageXX?,
+    val image: ImageResponse?,
     val instagram_url: Any,
     val is_following: Boolean,
     val is_top_user_choice: Boolean,

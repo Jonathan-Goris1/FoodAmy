@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.remote.response.recipe
 
-data class TimeOfRecipe(
+data class TimeOfRecipeResponse(
     val id: Int,
     val text: String
 )

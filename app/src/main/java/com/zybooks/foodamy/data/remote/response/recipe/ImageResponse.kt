@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.remote.response.recipe
 
-data class Image(
+data class ImageResponse(
     val height: Int,
     val key: String,
     val order: Int,

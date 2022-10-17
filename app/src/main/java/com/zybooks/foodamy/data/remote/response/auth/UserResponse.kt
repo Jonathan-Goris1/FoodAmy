@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.remote.response.auth
 
-data class User(
+data class UserResponse(
     val birthday: Any?,
     val cover: Any,
     val cover_image: Any,
