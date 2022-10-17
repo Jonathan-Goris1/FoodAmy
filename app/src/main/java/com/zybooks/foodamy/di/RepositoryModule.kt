@@ -1,28 +1,36 @@
 package com.zybooks.foodamy.di
 
+import com.zybooks.foodamy.data.local.database.AppDatabase
+import com.zybooks.foodamy.data.remote.network_api.AuthApi
+import com.zybooks.foodamy.data.remote.network_api.RecipeApi
 import com.zybooks.foodamy.data.repository.AuthRepositoryImpl
 import com.zybooks.foodamy.data.repository.RecipeRepositoryImpl
 import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.domain.repository.RecipeRepository
-import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
-    @Binds
+object RepositoryModule {
+    @Provides
     @Singleton
-    abstract fun bindAuthRepository(
-        authRepositoryImpl: AuthRepositoryImpl
-    ): AuthRepository
+     fun bindAuthRepository(
+       api: AuthApi
+    ): AuthRepository{
+         return AuthRepositoryImpl(api)
+     }
 
 
-    @Binds
+    @Provides
     @Singleton
-    abstract fun bindRecipeRepository(
-        recipeRepositoryImpl: RecipeRepositoryImpl
-    ): RecipeRepository
+    fun bindRecipeRepository(
+        api: RecipeApi,
+        database: AppDatabase
+    ): RecipeRepository{
+        return RecipeRepositoryImpl(api, database.dao)
+    }
 }
