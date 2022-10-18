@@ -3,7 +3,6 @@ package com.zybooks.foodamy.data.local.local_dto
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.zybooks.foodamy.data.remote.response.recipe.ImageResponse
 
 @Entity(tableName = "user")
 data class UserDb(
@@ -16,7 +15,7 @@ data class UserDb(
     @PrimaryKey(autoGenerate = false)
     val id: Int,
     @Embedded
-    val image: ImageResponse?,
+    val image: ImageDb?,
     // instagram_url: Any,
     val is_following: Boolean,
     val is_top_user_choice: Boolean,
