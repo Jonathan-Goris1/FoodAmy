@@ -1,6 +1,5 @@
 package com.zybooks.foodamy.data.mapper
 
-import com.zybooks.foodamy.data.local.local_dto.*
 import com.zybooks.foodamy.data.remote.response.recipe.*
 import com.zybooks.foodamy.domain.repository.model.*
 
@@ -10,7 +9,7 @@ fun RecipeResponse.toDomainModel(): Recipe = Recipe(
     definition = definition,
     directions = directions,
     id = id,
-    images = images,
+    images = images.map { it.toDomainModel() },
     ingredients = ingredients,
     is_editor_choice = is_editor_choice,
     language = language,
@@ -25,14 +24,14 @@ fun RecipeResponse.toDomainModel(): Recipe = Recipe(
 )
 
 
-fun CategoryResponse.toDomainModel() = Category(
+fun CategoryResponse.toDomainModel(): Category = Category(
     id = id,
     image = image?.toDomainModel(),
     name = name
 
 )
 
-fun ImageResponse.toDomainModel() = Image(
+fun ImageResponse.toDomainModel(): Image = Image(
     height = height,
     key= key,
     order = order,
@@ -40,17 +39,17 @@ fun ImageResponse.toDomainModel() = Image(
     width = width
 )
 
-fun NumberOfPersonResponse.toDomainModel() = NumberOfPerson(
+fun NumberOfPersonResponse.toDomainModel(): NumberOfPerson = NumberOfPerson(
     id = id,
     text = text
 )
 
-fun TimeOfRecipeResponse.toDomainModel() = TimeOfRecipe(
+fun TimeOfRecipeResponse.toDomainModel(): TimeOfRecipe = TimeOfRecipe(
     id = id,
     text = text
 )
 
-fun UserResponse.toDomainModel() = User(
+fun UserResponse.toDomainModel(): User = User(
     favorites_count = favorites_count,
     followed_count = followed_count,
     image = image?.toDomainModel(),

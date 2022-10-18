@@ -9,7 +9,7 @@ fun RecipeDb.toDomainModel(): Recipe = Recipe(
     definition = definition,
     directions = directions,
     id = id,
-    images = images,
+    images = images.map { it.toDomainModel() },
     ingredients = ingredients,
     is_editor_choice = is_editor_choice,
     language = language,
@@ -24,14 +24,14 @@ fun RecipeDb.toDomainModel(): Recipe = Recipe(
 )
 
 
-fun CategoryDb.toDomainModel() = Category(
+fun CategoryDb.toDomainModel(): Category = Category(
     id = id,
     image = image?.toDomainModel(),
     name = name
 
 )
 
-fun ImageDb.toDomainModel() = Image(
+fun ImageDb.toDomainModel(): Image = Image(
     height = height,
     key= key,
     order = order,
@@ -39,17 +39,17 @@ fun ImageDb.toDomainModel() = Image(
     width = width
 )
 
-fun NumberOfPersonDb.toDomainModel() = NumberOfPerson(
+fun NumberOfPersonDb.toDomainModel(): NumberOfPerson = NumberOfPerson(
     id = id,
     text = text
 )
 
-fun TimeOfRecipeDb.toDomainModel() = TimeOfRecipe(
+fun TimeOfRecipeDb.toDomainModel(): TimeOfRecipe = TimeOfRecipe(
     id = id,
     text = text
 )
 
-fun UserDb.toDomainModel() = User(
+fun UserDb.toDomainModel(): User = User(
     favorites_count = favorites_count,
     followed_count = followed_count,
     image = image?.toDomainModel(),
