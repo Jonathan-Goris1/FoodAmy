@@ -3,8 +3,8 @@ package com.zybooks.foodamy.data.mapper
 import com.zybooks.foodamy.data.local.local_dto.*
 import com.zybooks.foodamy.domain.repository.model.*
 
-fun RecipeDb.toDomainModel(): Recipe = Recipe(
-    category = category.toDomainModel(),
+fun Recipe.toLocalModel(): RecipeDb = RecipeDb(
+    category = category.toLocalModel(),
     comment_count = comment_count,
     definition = definition,
     directions = directions,
@@ -15,23 +15,19 @@ fun RecipeDb.toDomainModel(): Recipe = Recipe(
     language = language,
     like_count = like_count,
     number_of_favorite_count = number_of_favorite_count,
-    number_of_person = number_of_person.toDomainModel(),
-    time_of_recipe = time_of_recipe.toDomainModel(),
+    number_of_person = number_of_person.toLocalModel(),
+    time_of_recipe = time_of_recipe.toLocalModel(),
     title = title,
-    user = user.toDomainModel()
-
-
+    user = user.toLocalModel()
 )
 
-
-fun CategoryDb.toDomainModel() = Category(
+fun Category.toLocalModel(): CategoryDb = CategoryDb(
     id = id,
-    image = image?.toDomainModel(),
-    name = name
-
+    image = image?.toLocalModel(),
+    name = name,
 )
 
-fun ImageDb.toDomainModel() = Image(
+fun Image.toLocalModel(): ImageDb  = ImageDb(
     height = height,
     key= key,
     order = order,
@@ -39,20 +35,20 @@ fun ImageDb.toDomainModel() = Image(
     width = width
 )
 
-fun NumberOfPersonDb.toDomainModel() = NumberOfPerson(
+fun NumberOfPerson.toLocalModel(): NumberOfPersonDb = NumberOfPersonDb(
     id = id,
     text = text
 )
 
-fun TimeOfRecipeDb.toDomainModel() = TimeOfRecipe(
+fun TimeOfRecipe.toLocalModel(): TimeOfRecipeDb = TimeOfRecipeDb(
     id = id,
     text = text
 )
 
-fun UserDb.toDomainModel() = User(
+fun User.toLocalModel(): UserDb = UserDb(
     favorites_count = favorites_count,
     followed_count = followed_count,
-    image = image?.toDomainModel(),
+    image = image?.toLocalModel(),
     id =id,
     following_count = following_count,
     is_following = is_following,
@@ -65,4 +61,3 @@ fun UserDb.toDomainModel() = User(
     surname = surname,
     username = username
 )
-
