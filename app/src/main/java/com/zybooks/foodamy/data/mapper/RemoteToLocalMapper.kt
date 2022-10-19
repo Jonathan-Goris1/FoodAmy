@@ -27,7 +27,8 @@ fun RecipeResponse.toLocalDb(): RecipeDb = RecipeDb(
 fun CategoryResponse.toLocalDb(): CategoryDb = CategoryDb(
     id = id,
     image = image?.toLocalDb(),
-    name = name
+    name = name,
+    language = ""
 
 )
 
@@ -63,5 +64,7 @@ fun UserResponse.toLocalDb(): UserDb = UserDb(
     name = name,
     recipe_count = recipe_count,
     surname = surname,
-    username = username
+    username = username,
+    cover = "",
+    definition = ""
 )

@@ -25,6 +25,7 @@ fun Category.toLocalModel(): CategoryDb = CategoryDb(
     id = id,
     image = image?.toLocalModel(),
     name = name,
+    language = ""
 )
 
 fun Image.toLocalModel(): ImageDb  = ImageDb(
@@ -59,5 +60,7 @@ fun User.toLocalModel(): UserDb = UserDb(
     name = name,
     recipe_count = recipe_count,
     surname = surname,
-    username = username
+    username = username,
+    cover = "",
+    definition = ""
 )
