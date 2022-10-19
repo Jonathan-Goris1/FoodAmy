@@ -1,7 +1,7 @@
 package com.zybooks.foodamy.domain.repository
 
-import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
 import com.zybooks.foodamy.data.remote.response.recipe.DataResponse
+import com.zybooks.foodamy.domain.repository.model.Recipe
 import com.zybooks.foodamy.util.Resource
 
 interface RecipeRepository {
@@ -10,6 +10,6 @@ interface RecipeRepository {
         recipeID: Int
     ): Resource<DataResponse>
 
-    suspend fun getEditorsChoiceInfo(): Resource<List<RecipeResponse>>
+    suspend fun getEditorsChoiceInfo(): Resource<List<Recipe>>
 
 }
