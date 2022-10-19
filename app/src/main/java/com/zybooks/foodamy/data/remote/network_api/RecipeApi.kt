@@ -1,6 +1,7 @@
 package com.zybooks.foodamy.data.remote.network_api
 
 import com.zybooks.foodamy.data.remote.response.recipe.DataResponse
+import com.zybooks.foodamy.domain.repository.model.Data
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -13,5 +14,5 @@ interface RecipeApi {
     ): DataResponse
 
     @GET("editor-choices")
-    suspend fun getEditorsChoice(): DataResponse
+    suspend fun getEditorsChoice(): Data
 }
