@@ -3,9 +3,9 @@ package com.zybooks.foodamy.data.repository
 import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.local_dto.RecipeDb
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
-import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
 import com.zybooks.foodamy.data.remote.response.recipe.DataResponse
 import com.zybooks.foodamy.domain.repository.RecipeRepository
+import com.zybooks.foodamy.domain.repository.model.Recipe
 import com.zybooks.foodamy.util.Resource
 import retrofit2.HttpException
 import java.io.IOException
@@ -44,7 +44,7 @@ class RecipeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getEditorsChoiceInfo(): Resource<List<RecipeResponse>> {
+    override suspend fun getEditorsChoiceInfo(): Resource<List<Recipe>> {
         return try {
             val result = api.getEditorsChoice().recipe
             Resource.Success(result)
