@@ -6,26 +6,16 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "user")
 data class UserDb(
-    val cover: Any,
-    val definition: String,
-    //val facebook_url: Any,
-    val favorites_count: Int,
-    val followed_count: Int,
-    val following_count: Int,
     @PrimaryKey(autoGenerate = false)
     val id: Int,
-    @Embedded
-    val image: ImageDb?,
-    // instagram_url: Any,
-    val is_following: Boolean,
-    val is_top_user_choice: Boolean,
-    val is_trusted: Int,
-    val language: String,
-    val likes_count: Int,
-    val name: String?,
-    val recipe_count: Int?,
-    val surname: String,
-   // val twitter_url: Any,
+    val name: String,
     val username: String,
-    //val youtube_url: Any
+    val favoritesCount: Int,
+    val followedCount: Int,
+    val followingCount: Int,
+    val isFollowing: Boolean,
+    val likesCount: Int,
+    val recipeCount: Int,
+    @Embedded
+    val image: ImageDb
 )
