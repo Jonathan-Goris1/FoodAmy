@@ -1,8 +1,5 @@
 package com.zybooks.foodamy.di
 
-import android.app.Application
-import androidx.room.Room
-import com.zybooks.foodamy.data.local.database.AppDatabase
 import com.zybooks.foodamy.data.remote.network_api.AuthApi
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
 import com.zybooks.foodamy.util.Constants.Companion.BASE_URL
@@ -46,15 +43,7 @@ object AppModule {
         return retrofit.create(RecipeApi::class.java)
     }
 
-    @Provides
-    @Singleton
-    fun provideRecipeDatabase(app: Application): AppDatabase {
-        return Room.databaseBuilder(
-            app,
-            AppDatabase::class.java,
-            "recipeDB.db"
-        ).build()
-    }
+
 
 
 
