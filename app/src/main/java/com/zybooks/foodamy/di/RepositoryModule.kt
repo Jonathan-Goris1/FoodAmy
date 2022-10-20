@@ -1,5 +1,6 @@
 package com.zybooks.foodamy.di
 
+import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
 import com.zybooks.foodamy.data.local.database.AppDatabase
 import com.zybooks.foodamy.data.remote.network_api.AuthApi
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
@@ -29,8 +30,9 @@ object RepositoryModule {
     @Singleton
     fun bindRecipeRepository(
         api: RecipeApi,
-        database: AppDatabase
+        database: AppDatabase,
+        remoteKeysDao: RemoteKeysDao
     ): RecipeRepository{
-        return RecipeRepositoryImpl(api, database.dao)
+        return RecipeRepositoryImpl(api, database.recipeDao, remoteKeysDao)
     }
 }
