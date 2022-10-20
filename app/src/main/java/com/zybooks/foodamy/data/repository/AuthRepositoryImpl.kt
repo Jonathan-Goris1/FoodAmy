@@ -2,6 +2,7 @@ package com.zybooks.foodamy.data.repository
 
 import com.zybooks.foodamy.data.remote.network_api.AuthApi
 import com.zybooks.foodamy.data.remote.response.auth.AuthResponse
+import com.zybooks.foodamy.data.repository.base.BaseRepository
 import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.util.Resource
 import retrofit2.HttpException
@@ -12,7 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
     private val api: AuthApi
-): AuthRepository {
+): AuthRepository, BaseRepository() {
 
 
     override suspend fun postLoginInfo(email: String, password: String): Resource<AuthResponse> {
