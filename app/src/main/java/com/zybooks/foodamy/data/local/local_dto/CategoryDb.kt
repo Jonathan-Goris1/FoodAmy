@@ -11,7 +11,6 @@ data class CategoryDb(
     val id: Int,
     @Embedded
     val image: ImageDb?,
-    val language: String,
     //val main_category_id: Any,
     val name: String
 )
