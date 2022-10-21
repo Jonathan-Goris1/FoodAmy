@@ -20,13 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.zybooks.foodamy.R
-import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
+import com.zybooks.foodamy.domain.repository.model.Recipe
 
 @Composable
 fun LikedScreenCard(
     modifier: Modifier = Modifier,
-    Recipe: RecipeResponse,
-    likesData: List<RecipeResponse>,
+    Recipe: Recipe,
+    likesData: List<Recipe>,
     onClick: () -> Unit
 ) {
     Card(

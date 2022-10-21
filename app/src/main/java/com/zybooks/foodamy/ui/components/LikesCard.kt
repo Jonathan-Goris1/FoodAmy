@@ -13,12 +13,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
+import com.zybooks.foodamy.domain.repository.model.Recipe
 
 @Composable
 fun LikesCard(
     modifier: Modifier,
-    Recipe: RecipeResponse
+    Recipe: Recipe
 ){
 
     Card() {
@@ -37,7 +37,7 @@ fun LikesCard(
             Text(modifier = modifier.padding(8.dp),
                 text = Recipe.title)
 
-            Text(text = "${Recipe.comment_count} Comments ${Recipe.like_count} Taste")
+            Text(text = "${Recipe.commentCount} Comments ${Recipe.likeCount} Taste")
 
         }
 

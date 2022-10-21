@@ -57,7 +57,7 @@ fun RecipeCard(
 
                     Spacer(modifier = modifier.size(4.dp))
 
-                    Text(text = "${Recipe.user.recipe_count} Recipes ${Recipe.user.following_count} Followers")
+                    Text(text = "${Recipe.user.recipeCount} Recipes ${Recipe.user.followingCount} Followers")
 
 
                 }
@@ -98,7 +98,7 @@ fun RecipeCard(
 
                 Text(
                     modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                    text = "${Recipe.comment_count} Comments ${Recipe.like_count} Taste"
+                    text = "${Recipe.commentCount} Comments ${Recipe.likeCount} Taste"
                 )
 
             }
