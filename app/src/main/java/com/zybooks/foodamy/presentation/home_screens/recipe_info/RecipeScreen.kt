@@ -3,12 +3,8 @@ package com.zybooks.foodamy.presentation.home_screens.recipe_info
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -23,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.zybooks.foodamy.R
 import com.zybooks.foodamy.presentation.navigation.Screen
 import com.zybooks.foodamy.ui.components.RecipeCard
@@ -37,10 +34,9 @@ fun RecipeHomeScreen(
     viewModel: RecipeScreenViewModel = hiltViewModel()
 
 ) {
-    val recipes = viewModel.state.recipes
+    val recipesItems = viewModel.state.recipes.collectAsLazyPagingItems()
 
     Scaffold(
-        //TODO Work on creating the topBar tabs
         topBar = {
             TopAppBar(
                 title = {
@@ -82,9 +78,9 @@ fun RecipeHomeScreen(
         Column {
             TextTabs()
             LazyColumn {
-                items(recipes) { recipe ->
-                    RecipeCard(Recipe = recipe, onClick = {
-                        navController.navigate(Screen.RecipeDetail.route + "?recipeId=${recipe.id}")
+                items(recipesItems) { item ->
+                    RecipeCard(Recipe = item, onClick = {
+                        navController.navigate(Screen.RecipeDetail.route + "?recipeId=${item.id}")
                     })
 
 
@@ -97,4 +93,6 @@ fun RecipeHomeScreen(
     }
 
 }
+
+
 

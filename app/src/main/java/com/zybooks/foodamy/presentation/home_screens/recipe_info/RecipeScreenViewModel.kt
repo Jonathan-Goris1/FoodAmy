@@ -22,19 +22,23 @@ class RecipeScreenViewModel @Inject constructor(
     }
 
 
+
     private fun getEditorsChoice() {
         sendRequest(
             request = {
                 repository.getEditorChoicePaging()
             },
             success = {
-                it.cachedIn(viewModelScope).collect { pagingData ->
+
                     state = state.copy(
                         isLoading = false,
-                        recipes = pagingData,
+                        recipes = it,
                         error = null
                     )
+                it.cachedIn(viewModelScope).collect() {
+
                 }
+
             }
         )
 
