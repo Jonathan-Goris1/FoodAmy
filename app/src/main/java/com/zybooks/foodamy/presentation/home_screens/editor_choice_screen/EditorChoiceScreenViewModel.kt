@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.home_screens.recipe_info
+package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -11,10 +11,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipeScreenViewModel @Inject constructor(
+class EditorChoiceScreenViewModel @Inject constructor(
     private val repository: RecipeRepository
 ) : BaseViewModel() {
-    var state by mutableStateOf(RecipeScreenState())
+    var state by mutableStateOf(EditorChoiceScreenState())
     private val tag: String = "RecipeScreenViewModel"
 
     init {
@@ -35,9 +35,7 @@ class RecipeScreenViewModel @Inject constructor(
                         error = null
                     )
 
-                it.cachedIn(viewModelScope).collect() {
-
-                }
+                it.cachedIn(viewModelScope)
 
             }
         )

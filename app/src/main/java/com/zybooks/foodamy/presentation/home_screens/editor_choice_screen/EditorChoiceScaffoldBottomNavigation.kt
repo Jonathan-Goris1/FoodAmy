@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.home_screens.recipe_info
+package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen
 
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold

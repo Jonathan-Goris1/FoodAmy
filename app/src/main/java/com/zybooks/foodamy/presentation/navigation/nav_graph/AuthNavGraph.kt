@@ -7,7 +7,7 @@ import androidx.navigation.navigation
 import com.zybooks.foodamy.presentation.auth_screens.forgot_password_info.ForgotPasswordScreen
 import com.zybooks.foodamy.presentation.auth_screens.login_info.LoginInfoScreen
 import com.zybooks.foodamy.presentation.auth_screens.register_info.RegisterInfoScreen
-import com.zybooks.foodamy.presentation.home_screens.recipe_info.AppScaffold
+import com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.AppScaffold
 import com.zybooks.foodamy.presentation.navigation.AUTHENTICATION_ROUTE
 import com.zybooks.foodamy.presentation.navigation.Screen
 

@@ -1,9 +1,12 @@
-package com.zybooks.foodamy.presentation.home_screens.recipe_info
+package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.IconButton
@@ -31,10 +34,11 @@ import com.zybooks.foodamy.ui.theme.DarkRed
 @Composable
 fun RecipeHomeScreen(
     navController: NavController,
-    viewModel: RecipeScreenViewModel = hiltViewModel()
+    viewModel: EditorChoiceScreenViewModel = hiltViewModel()
 
 ) {
     val recipesItems = viewModel.state.recipes.collectAsLazyPagingItems()
+
 
     Scaffold(
         topBar = {
