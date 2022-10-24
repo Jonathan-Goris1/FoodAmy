@@ -39,7 +39,7 @@ class RecipeEditorRemoteMediator(
                 }
 
             val response = recipeApi.getEditorsChoice(currentPage)
-            val endOfPagination = response.recipe.isEmpty()
+            val endOfPagination = response.data.isEmpty()
 
             val prevPage = if (currentPage == STARTING_INDEX) null else currentPage - 1
             val nextPage = if (endOfPagination) null else currentPage + 1
@@ -48,7 +48,7 @@ class RecipeEditorRemoteMediator(
                 remoteKeysDao.deleteEditorKeys()
                 recipeDao.deleteEditorChoices()
             }
-            val keys = response.recipe.map {
+            val keys = response.data.map {
                 RemoteKeysEditor(
                     id = it.id,
                     prev = prevPage,
@@ -56,7 +56,7 @@ class RecipeEditorRemoteMediator(
                 )
             }
             remoteKeysDao.insertEditorRemoteKeys(keys)
-            recipeDao.insertRecipes(response.recipe.map { it.toLocalDto() })
+            recipeDao.insertRecipes(response.data.map { it.toLocalDto() })
             MediatorResult.Success(endOfPaginationReached = endOfPagination)
         } catch (ex: Exception) {
             MediatorResult.Error(ex)

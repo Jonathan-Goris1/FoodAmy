@@ -29,12 +29,12 @@ class RecipeScreenViewModel @Inject constructor(
                 repository.getEditorChoicePaging()
             },
             success = {
-
                     state = state.copy(
                         isLoading = false,
                         recipes = it,
                         error = null
                     )
+
                 it.cachedIn(viewModelScope).collect() {
 
                 }
