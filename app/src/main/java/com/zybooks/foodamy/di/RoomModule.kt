@@ -3,6 +3,7 @@ package com.zybooks.foodamy.di
 import android.app.Application
 import androidx.room.Room
 import com.zybooks.foodamy.data.local.dao.RecipeDao
+import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
 import com.zybooks.foodamy.data.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -13,6 +14,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RoomModule {
+
+    @Provides
+    @Singleton
+    fun provideRemoteKeysDao(appDatabase: AppDatabase): RemoteKeysDao {
+        return appDatabase.remoteKeysDao
+    }
 
     @Provides
     @Singleton

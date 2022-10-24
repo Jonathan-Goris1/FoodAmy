@@ -78,18 +78,13 @@ fun RecipeHomeScreen(
         Column {
             TextTabs()
             LazyColumn {
-                items(recipesItems) { item ->
-                    RecipeCard(Recipe = item, onClick = {
-                        navController.navigate(Screen.RecipeDetail.route + "?recipeId=${item.id}")
+                items(recipesItems.itemCount) { index ->
+                    RecipeCard(Recipe = recipesItems[index]!!, onClick = {
+                        navController.navigate(Screen.RecipeDetail.route + "?recipeId=${recipesItems[index]!!.id}")
                     })
-
-
                 }
-
             }
         }
-
-
     }
 
 }
