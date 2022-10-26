@@ -1,8 +1,8 @@
 package com.zybooks.foodamy.data.mapper
 
 import com.zybooks.foodamy.data.local.local_dto.RecipeDb
-import com.zybooks.foodamy.data.remote.response.recipe.RecipeResponse
-import com.zybooks.foodamy.domain.repository.model.Recipe
+import com.zybooks.foodamy.data.remote.response.RecipeResponse
+import com.zybooks.foodamy.domain.model.Recipe
 
 fun RecipeDb.toDomainModel(): Recipe = Recipe(
     category = category.toDomainModel(),

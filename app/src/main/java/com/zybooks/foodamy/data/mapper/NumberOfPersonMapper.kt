@@ -1,8 +1,8 @@
 package com.zybooks.foodamy.data.mapper
 
 import com.zybooks.foodamy.data.local.local_dto.NumberOfPersonDb
-import com.zybooks.foodamy.data.remote.response.recipe.NumberOfPersonResponse
-import com.zybooks.foodamy.domain.repository.model.NumberOfPerson
+import com.zybooks.foodamy.data.remote.response.NumberOfPersonResponse
+import com.zybooks.foodamy.domain.model.NumberOfPerson
 
 fun NumberOfPerson.toLocalModel(): NumberOfPersonDb = NumberOfPersonDb(
     id = id,

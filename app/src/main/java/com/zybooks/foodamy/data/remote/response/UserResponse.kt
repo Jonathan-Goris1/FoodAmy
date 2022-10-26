@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.data.remote.response.recipe
+package com.zybooks.foodamy.data.remote.response
 
 data class UserResponse(
     val cover: Any,

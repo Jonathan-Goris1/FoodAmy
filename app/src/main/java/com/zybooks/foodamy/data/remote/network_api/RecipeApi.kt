@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.remote.network_api
 
-import com.zybooks.foodamy.data.remote.response.recipe.DataResponse
+import com.zybooks.foodamy.data.remote.response.DataResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

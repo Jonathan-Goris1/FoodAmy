@@ -5,11 +5,11 @@ import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
 import com.zybooks.foodamy.data.mapper.toDomainModel
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
-import com.zybooks.foodamy.data.remote.response.recipe.DataResponse
+import com.zybooks.foodamy.data.remote.response.DataResponse
 import com.zybooks.foodamy.data.repository.base.BaseRepository
 import com.zybooks.foodamy.data.utils.RecipeEditorRemoteMediator
+import com.zybooks.foodamy.domain.model.Recipe
 import com.zybooks.foodamy.domain.repository.RecipeRepository
-import com.zybooks.foodamy.domain.repository.model.Recipe
 import com.zybooks.foodamy.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

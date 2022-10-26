@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.zybooks.foodamy.R
-import com.zybooks.foodamy.domain.repository.model.Recipe
+import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
 fun LikedScreenCard(

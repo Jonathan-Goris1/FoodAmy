@@ -2,13 +2,12 @@ package com.zybooks.foodamy.data.mapper
 
 import com.zybooks.foodamy.data.local.local_dto.ImageDb
 import com.zybooks.foodamy.data.local.local_dto.UserDb
-import com.zybooks.foodamy.data.remote.response.recipe.UserResponse
-import com.zybooks.foodamy.domain.repository.model.User
+import com.zybooks.foodamy.data.remote.response.UserResponse
+import com.zybooks.foodamy.domain.model.User
 
 
 
 fun UserDb.toDomainModel(): User = User(
-
     image = image.toDomainModel(),
     id =id,
     favoritesCount = followingCount,

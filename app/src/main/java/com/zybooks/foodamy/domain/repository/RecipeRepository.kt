@@ -1,8 +1,8 @@
 package com.zybooks.foodamy.domain.repository
 
 import androidx.paging.PagingData
-import com.zybooks.foodamy.data.remote.response.recipe.DataResponse
-import com.zybooks.foodamy.domain.repository.model.Recipe
+import com.zybooks.foodamy.data.remote.response.DataResponse
+import com.zybooks.foodamy.domain.model.Recipe
 import com.zybooks.foodamy.util.Resource
 import kotlinx.coroutines.flow.Flow
 

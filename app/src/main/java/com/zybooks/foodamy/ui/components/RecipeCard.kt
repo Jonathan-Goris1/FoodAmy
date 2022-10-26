@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.zybooks.foodamy.R
-import com.zybooks.foodamy.domain.repository.model.Recipe
+import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
 fun RecipeCard(
