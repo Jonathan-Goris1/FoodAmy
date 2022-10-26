@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.data.remote.network_api
 
-import com.zybooks.foodamy.data.remote.response.auth.AuthResponse
+import com.zybooks.foodamy.data.remote.response.AuthResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -9,26 +9,22 @@ interface AuthApi {
 
     @FormUrlEncoded
     @POST("auth/login")
-    suspend fun postLogin(
+    suspend fun login(
         @Field("email") email: String,
         @Field("password") password: String
     ): AuthResponse
 
     @FormUrlEncoded
     @POST("auth/register")
-    suspend fun postRegister(
+    suspend fun register(
         @Field("email") email: String,
         @Field("password") password: String,
-        @Field("username") username: String,
-        @Field("name") name: String?,
-        @Field("surname") surname: String?,
-        @Field("gender") gender: String?,
-        @Field("birthday") birthday: String?
+        @Field("username") username: String
     ): AuthResponse
 
     @FormUrlEncoded
     @POST("auth/forgot")
-    suspend fun postForgot(
+    suspend fun forgot(
         @Field("email") email: String
     ): AuthResponse
 
