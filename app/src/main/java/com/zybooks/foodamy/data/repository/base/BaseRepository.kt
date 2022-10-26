@@ -5,7 +5,7 @@ import com.zybooks.foodamy.data.remote.exceptions.Authentication
 import com.zybooks.foodamy.data.remote.exceptions.GettingEmptyListItem
 import com.zybooks.foodamy.data.remote.exceptions.SimpleHttpException
 import com.zybooks.foodamy.data.remote.exceptions.Unauthorized
-import com.zybooks.foodamy.domain.repository.model.ErrorControl
+import com.zybooks.foodamy.domain.model.ErrorControl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
