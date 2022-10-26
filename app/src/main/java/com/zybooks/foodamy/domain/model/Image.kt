@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.domain.repository.model
+package com.zybooks.foodamy.domain.model
 
 data class Image(
     val height: Int,
