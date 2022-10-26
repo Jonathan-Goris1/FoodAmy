@@ -1,8 +1,8 @@
 package com.zybooks.foodamy.data.mapper
 
 import com.zybooks.foodamy.data.local.local_dto.ImageDb
-import com.zybooks.foodamy.data.remote.response.recipe.ImageResponse
-import com.zybooks.foodamy.domain.repository.model.Image
+import com.zybooks.foodamy.data.remote.response.ImageResponse
+import com.zybooks.foodamy.domain.model.Image
 
 fun Image.toLocalDto(): ImageDb = ImageDb(
     height = height,
