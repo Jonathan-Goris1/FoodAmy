@@ -203,6 +203,6 @@ fun RegisterInfoScreen(
 
 @Preview
 @Composable
-fun LoginInfoScreenPreview() {
+fun RegisterScreenPreview() {
     RegisterInfoScreen(navController = null)
 }
