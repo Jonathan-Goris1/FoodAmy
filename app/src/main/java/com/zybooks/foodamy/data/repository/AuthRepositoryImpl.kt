@@ -1,83 +1,44 @@
 package com.zybooks.foodamy.data.repository
 
+import com.zybooks.foodamy.data.mapper.toDomainModel
 import com.zybooks.foodamy.data.remote.network_api.AuthApi
-import com.zybooks.foodamy.data.remote.response.auth.AuthResponse
 import com.zybooks.foodamy.data.repository.base.BaseRepository
+import com.zybooks.foodamy.domain.model.Auth
 import com.zybooks.foodamy.domain.repository.AuthRepository
-import com.zybooks.foodamy.util.Resource
-import retrofit2.HttpException
-import java.io.IOException
+import com.zybooks.foodamy.domain.utils.DataStoreManager
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class AuthRepositoryImpl @Inject constructor(
-    private val api: AuthApi
+    private val api: AuthApi,
+    private val dataStoreManager: DataStoreManager
 ): AuthRepository, BaseRepository() {
 
 
-    override suspend fun postLoginInfo(email: String, password: String): Resource<AuthResponse> {
-        return try {
-            val result = api.postLogin(email, password)
-            Resource.Success(result)
-        } catch (e: IOException){
-            e.printStackTrace()
-            Resource.Error(
-                message = "Login failed"
-            )
-
-        } catch (e: HttpException){
-            e.printStackTrace()
-            Resource.Error(
-                message = "Login failed"
-            )
-
+    override suspend fun register(email: String, password: String, username: String): Auth =
+        execute {
+            api.register(email, password, username).toDomainModel()
         }
-    }
 
-    override suspend fun postRegisterInfo(
-        email: String,
-        password: String,
-        username: String,
-        name: String?,
-        surname: String?,
-        gender: String?,
-        birthday: String?
-    ): Resource<AuthResponse> {
-        return try {
-            val result = api.postRegister(email,password,username, name, surname, gender, birthday)
-            Resource.Success(result)
-        } catch (e: IOException){
-            e.printStackTrace()
-            Resource.Error(
-                message = "Register failed"
-            )
-
-        } catch (e: HttpException){
-            e.printStackTrace()
-            Resource.Error(
-                message = "Register failed"
-            )
-
+    override suspend fun forgot(email: String): Auth =
+        execute {
+            api.forgot(email).toDomainModel()
         }
-    }
 
-    override suspend fun postForgotInfo(email: String): Resource<AuthResponse> {
-        return try {
-            val result = api.postForgot(email)
-            Resource.Success(result)
-        } catch (e: IOException){
-            e.printStackTrace()
-            Resource.Error(
-                message = "Forgot password failed"
-            )
+//    override suspend fun logout(): Common =
+//        execute {
+//            val response = api.logout().toDomainModel()
+//            dataStoreManager.removeUserId()
+//            dataStoreManager.removeToken()
+//            response
+//        }
 
-        } catch (e: HttpException){
-            e.printStackTrace()
-            Resource.Error(
-                message = "Forgot password failed"
-            )
-
+    override suspend fun login(email: String, password: String): Unit =
+        execute {
+            val response = api.login(email, password).toDomainModel()
+            dataStoreManager.saveToken(response.token)
+            dataStoreManager.saveUserId(response.user.id)
         }
-    }
+
 }
