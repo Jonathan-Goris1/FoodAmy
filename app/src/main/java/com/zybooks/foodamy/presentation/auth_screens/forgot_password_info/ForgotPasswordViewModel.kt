@@ -3,19 +3,16 @@ package com.zybooks.foodamy.presentation.auth_screens.forgot_password_info
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.zybooks.foodamy.domain.repository.AuthRepository
-import com.zybooks.foodamy.util.Resource
+import com.zybooks.foodamy.presentation.base.BaseViewModel
 import com.zybooks.foodamy.util.Validations.validateEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ForgotPasswordViewModel @Inject constructor(
-    private val repository: AuthRepository
-) : ViewModel() {
+    private val authRepository: AuthRepository
+) : BaseViewModel() {
 
     private val tag = "ForgotPasswordViewModel"
     var state by mutableStateOf(ForgotPasswordState())
@@ -25,31 +22,15 @@ class ForgotPasswordViewModel @Inject constructor(
     }
 
     fun forgotPassword() {
-        if(validateEmail(state.email)){
-            viewModelScope.launch {
-                state = state.copy(isLoading = true)
-                when(val forgotPasswordInfoResult =  repository.postForgotInfo(state.email)){
-                    is Resource.Success -> {
-                        state = state.copy(
-                            snackBarMessage = "A password reset link has been sent to your email",
-                            isLoading = false,
-                            error = null
-                        )
-                    }
-                    is Resource.Error -> {
-                        state = state.copy(
-                            snackBarMessage = "Invalid Email",
-                            isLoading = false,
-                            error = forgotPasswordInfoResult.message,
-                        )
+        if (validateEmail(state.email)) {
+            sendRequest(
+                loading = true,
+                request = { authRepository.forgot(state.email) },
+                success = {
 
-                    }
-                    else -> {}
-                }
-                state = state.copy(isLoading = false)
-            }
-        } else {
-            state = state.copy(snackBarMessage = "Please enter a correct email")
+                })
+
+
         }
     }
 }
