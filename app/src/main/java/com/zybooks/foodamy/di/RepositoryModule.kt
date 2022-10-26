@@ -8,6 +8,7 @@ import com.zybooks.foodamy.data.repository.AuthRepositoryImpl
 import com.zybooks.foodamy.data.repository.RecipeRepositoryImpl
 import com.zybooks.foodamy.domain.repository.AuthRepository
 import com.zybooks.foodamy.domain.repository.RecipeRepository
+import com.zybooks.foodamy.domain.utils.DataStoreManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,9 +21,10 @@ object RepositoryModule {
     @Provides
     @Singleton
      fun bindAuthRepository(
-       api: AuthApi
+       api: AuthApi,
+       dataStoreManager: DataStoreManager
     ): AuthRepository{
-         return AuthRepositoryImpl(api)
+         return AuthRepositoryImpl(api, dataStoreManager)
      }
 
 
