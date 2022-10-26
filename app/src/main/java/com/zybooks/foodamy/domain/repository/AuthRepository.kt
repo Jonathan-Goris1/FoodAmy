@@ -1,26 +1,21 @@
 package com.zybooks.foodamy.domain.repository
 
-import com.zybooks.foodamy.data.remote.response.auth.AuthResponse
-import com.zybooks.foodamy.util.Resource
+import com.zybooks.foodamy.domain.model.Auth
 
 interface AuthRepository {
 
-    suspend fun postLoginInfo(
+    suspend fun login(
         email: String,
         password: String
-    ): Resource<AuthResponse>
+    )
 
-    suspend fun postRegisterInfo(
+    suspend fun register(
         email: String,
         password: String,
-        username: String,
-        name: String?,
-        surname: String?,
-        gender: String?,
-        birthday: String?
-    ): Resource<AuthResponse>
+        username: String
+    ): Auth
 
-    suspend fun postForgotInfo(
+    suspend fun forgot(
         email: String
-    ): Resource<AuthResponse>
+    ): Auth
 }
