@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.data.remote.response.auth
+package com.zybooks.foodamy.data.remote.response
 
 data class AuthResponse(
     var token: String,
