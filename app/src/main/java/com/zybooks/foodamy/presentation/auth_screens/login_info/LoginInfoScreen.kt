@@ -108,7 +108,6 @@ fun LoginInfoScreen(
 
 
             OutlineTextFieldUserInput(
-                textStyle = TextStyle(textAlign = TextAlign.Left),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(0.dp, 0.dp, 0.dp, 16.dp)
@@ -195,12 +194,15 @@ fun LoginInfoScreen(
                     .height(45.dp)
                     .testTag(TestTags.Login_Button),
                 onClick = {
-                    Log.d(tag, viewModel.state.email + " " + viewModel.state.password)
+                    Log.d(tag, viewModel.state.email + " " + viewModel.state.password + viewModel.state.isValid.toString())
                     viewModel.login()
-                    navController.navigate(Screen.AppScaffold.route){
-                        popUpTo(navController.graph.startDestinationId)
-                        launchSingleTop = true
+                    if(viewModel.state.isValid){
+                        navController.navigate(Screen.AppScaffold.route){
+                            popUpTo(navController.graph.startDestinationId)
+                            launchSingleTop = true
+                        }
                     }
+
 //                    coroutineScope.launch {
 //                        delay(3000)
 //                        scaffoldState.snackbarHostState.showSnackbar(
