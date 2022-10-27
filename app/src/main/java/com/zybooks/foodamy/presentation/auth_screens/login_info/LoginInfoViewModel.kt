@@ -31,6 +31,9 @@ class LoginInfoViewModel @Inject constructor(
                 loading = true,
                 request = { authRepository.login(state.email, state.password) },
                 success = {
+                    state.copy(
+                        isValid = true
+                    )
 
                 })
             }

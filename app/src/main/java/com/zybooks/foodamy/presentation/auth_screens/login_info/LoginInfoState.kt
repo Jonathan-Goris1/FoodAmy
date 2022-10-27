@@ -6,6 +6,7 @@ data class LoginInfoState(
     val snackBarMessage: String = "",
     val isLoading: Boolean = false,
     val error: String? = null,
+    val isValid: Boolean = false
 
 
 )
