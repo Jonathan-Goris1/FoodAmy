@@ -5,16 +5,12 @@ import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
 import com.zybooks.foodamy.data.mapper.toDomainModel
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
-import com.zybooks.foodamy.data.remote.response.DataResponse
 import com.zybooks.foodamy.data.repository.base.BaseRepository
 import com.zybooks.foodamy.data.utils.RecipeEditorRemoteMediator
 import com.zybooks.foodamy.domain.model.Recipe
 import com.zybooks.foodamy.domain.repository.RecipeRepository
-import com.zybooks.foodamy.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 
@@ -31,28 +27,6 @@ class RecipeRepositoryImpl @Inject constructor(
         maxSize = MAX_SIZE,
         enablePlaceholders = false
     )
-
-    override suspend fun getRecipeInfo(recipeID: Int): Resource<DataResponse> {
-
-        return try {
-            val result = recipeApi.getRecipe(recipeID)
-            Resource.Success(result)
-        } catch (e: IOException){
-            e.printStackTrace()
-            Resource.Error(
-                message = e.message.toString()
-            )
-
-        } catch (e: HttpException){
-            e.printStackTrace()
-            Resource.Error(
-                message = e.message()
-            )
-
-        }
-
-}
-
 
 
     override suspend fun getEditorChoicePaging(): Flow<PagingData<Recipe>> =
@@ -72,6 +46,16 @@ class RecipeRepositoryImpl @Inject constructor(
                 }
             }
         }
+
+    override suspend fun getRecipeById(recipeId: Int, onlyRemote: Boolean): Recipe =
+        execute {
+            if (onlyRemote) {
+                recipeApi.getRecipe(recipeId).toDomainModel()
+            } else {
+                fetchFromLocal { recipeDao.getRecipeDetails(recipeId).toDomainModel() }!!
+            }
+        }
+
 
     companion object {
         private const val PAGE_SIZE = 24
