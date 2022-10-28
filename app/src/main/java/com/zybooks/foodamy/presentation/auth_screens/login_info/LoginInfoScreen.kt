@@ -196,11 +196,10 @@ fun LoginInfoScreen(
                 onClick = {
                     Log.d(tag, viewModel.state.email + " " + viewModel.state.password + viewModel.state.isValid.toString())
                     viewModel.login()
-                    if(viewModel.state.isValid){
                         navController.navigate(Screen.AppScaffold.route){
                             popUpTo(navController.graph.startDestinationId)
                             launchSingleTop = true
-                        }
+
                     }
 
 //                    coroutineScope.launch {
