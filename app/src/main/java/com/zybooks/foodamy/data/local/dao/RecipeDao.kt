@@ -9,10 +9,9 @@ import com.zybooks.foodamy.data.local.local_dto.RecipeDb
 
 @Dao
 interface RecipeDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRecipes(recipes: List<RecipeDb>)
-
-
 
     @Query("select * from recipes where is_editor_choice = 1 order by id desc")
     fun getEditorChoicesPaging(): PagingSource<Int, RecipeDb>
@@ -22,5 +21,9 @@ interface RecipeDao {
 
     @Query("delete from recipes where is_editor_choice = 1")
     suspend fun deleteEditorChoices()
+
+    @Query("select * from recipes where id =:recipeId ")
+    suspend fun getRecipeDetails(recipeId: Int): RecipeDb
+
 
 }
