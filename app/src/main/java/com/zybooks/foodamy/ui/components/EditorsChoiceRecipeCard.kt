@@ -23,7 +23,7 @@ import com.zybooks.foodamy.R
 import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
-fun RecipeCard(
+fun EditorsChoiceRecipeCard(
     modifier: Modifier = Modifier,
     Recipe: Recipe,
     onClick: () -> Unit

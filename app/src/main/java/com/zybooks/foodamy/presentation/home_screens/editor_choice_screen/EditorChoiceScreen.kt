@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.zybooks.foodamy.R
 import com.zybooks.foodamy.presentation.navigation.Screen
-import com.zybooks.foodamy.ui.components.RecipeCard
+import com.zybooks.foodamy.ui.components.EditorsChoiceRecipeCard
 import com.zybooks.foodamy.ui.components.TextTabs
 import com.zybooks.foodamy.ui.theme.DarkRed
 
@@ -83,7 +83,7 @@ fun RecipeHomeScreen(
             TextTabs()
             LazyColumn {
                 items(recipesItems.itemCount) { index ->
-                    RecipeCard(Recipe = recipesItems[index]!!, onClick = {
+                    EditorsChoiceRecipeCard(Recipe = recipesItems[index]!!, onClick = {
                         navController.navigate(Screen.RecipeDetail.route + "?recipeId=${recipesItems[index]!!.id}")
                     })
                 }
