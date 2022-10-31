@@ -1,20 +1,20 @@
 package com.zybooks.foodamy.domain.model
 
 data class Recipe(
-    val id: Int,
-    val title: String,
-    val definition: String,
-    val ingredients: String,
-    val directions: String,
-    val difference: String,
-    val isEditorChoice: Boolean,
-    val isLiked: Boolean,
-    val likeCount: Int,
-    val commentCount: Int,
-    val user: User,
-    val timeOfRecipe: TimeOfRecipe,
-    val numberOfPerson: NumberOfPerson,
-    val category: Category,
-    val images: List<Image>
+    val id: Int = 0,
+    val title: String = "",
+    val definition: String = "",
+    val ingredients: String = "",
+    val directions: String = "",
+    val difference: String = "",
+    val isEditorChoice: Boolean = false,
+    val isLiked: Boolean = false,
+    val likeCount: Int = 0,
+    val commentCount: Int = 0,
+    val user: User = User(),
+    val timeOfRecipe: TimeOfRecipe = TimeOfRecipe(),
+    val numberOfPerson: NumberOfPerson = NumberOfPerson(),
+    val category: Category = Category(),
+    val images: List<Image> = emptyList()
 
 )

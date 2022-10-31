@@ -1,6 +1,6 @@
 package com.zybooks.foodamy.domain.model
 
 data class TimeOfRecipe(
-    val id: Int,
-    val text: String
+    val id: Int = 0,
+    val text: String = ""
 )
