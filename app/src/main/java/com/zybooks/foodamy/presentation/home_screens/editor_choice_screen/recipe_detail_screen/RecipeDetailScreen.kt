@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.zybooks.foodamy.R
-import com.zybooks.foodamy.ui.components.RecipeDetailCard
+import com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.recipe_detail_screen.components.RecipeDetailCard
 import com.zybooks.foodamy.ui.theme.DarkRed
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
