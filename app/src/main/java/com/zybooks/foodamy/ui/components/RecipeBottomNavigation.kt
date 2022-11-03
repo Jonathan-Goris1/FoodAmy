@@ -26,42 +26,48 @@ fun RecipeBottomNavigation(navController: NavController) {
         BottomNavItem.Users,
         BottomNavItem.Menu,
         )
-    BottomNavigation(
-        backgroundColor = colorResource(id = R.color.lightGrey),
-        contentColor = Color.White
-    ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.map {
-            BottomNavigationItem(
-                icon = { Icon(painterResource(id = it.icon), contentDescription = "") },
-                label = {
-                    Text(
-                        text = stringResource(id = it.title),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.DarkGray
-                    )
-                },
-                selectedContentColor = DarkRed,
-                unselectedContentColor = Color.White.copy(0.4f),
-                alwaysShowLabel = true,
-                selected = currentRoute == it.screen_route,
-                onClick = {
-                    navController.navigate(it.screen_route) {
+    val bottomBarDestination = items.any{it.screen_route == currentRoute}
 
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                saveState = true
-                                inclusive = true
+    if(bottomBarDestination) {
+        BottomNavigation(
+            backgroundColor = colorResource(id = R.color.lightGrey),
+            contentColor = Color.White
+        ) {
+
+
+            items.map {
+                BottomNavigationItem(
+                    icon = { Icon(painterResource(id = it.icon), contentDescription = "") },
+                    label = {
+                        Text(
+                            text = stringResource(id = it.title),
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.DarkGray
+                        )
+                    },
+                    selectedContentColor = DarkRed,
+                    unselectedContentColor = Color.White.copy(0.4f),
+                    alwaysShowLabel = true,
+                    selected = currentRoute == it.screen_route,
+                    onClick = {
+                        navController.navigate(it.screen_route) {
+
+                            navController.graph.startDestinationRoute?.let { screen_route ->
+                                popUpTo(screen_route) {
+                                    saveState = true
+                                    inclusive = true
+                                }
                             }
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
                     }
-                }
-            )
+                )
+            }
         }
     }
 }
