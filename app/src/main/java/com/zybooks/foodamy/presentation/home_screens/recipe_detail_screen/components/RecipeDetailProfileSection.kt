@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.recipe_detail_screen.components
+package com.zybooks.foodamy.presentation.home_screens.recipe_detail_screen.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -30,16 +31,16 @@ fun RecipeDetailProfileSection(
     Column {
         Image(
             modifier = modifier
-                .width(400.dp)
+                .fillMaxWidth()
                 .height(400.dp)
-                .padding(8.dp)
-                .clip(shape = RoundedCornerShape(4.dp)),
+                .padding(8.dp),
             painter = rememberAsyncImagePainter(recipe.category.image?.url),
+            contentScale = ContentScale.Crop,
             contentDescription = null
         )
 
         Text(
-            modifier = modifier.padding(8.dp),
+            modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
             text = recipe.title,
             fontWeight = FontWeight.Bold
         )
@@ -96,7 +97,8 @@ fun RecipeDetailProfileSection(
 
             Divider(
                 modifier = modifier
-                    .fillMaxHeight()
+                    .padding(8.dp)
+                    .fillMaxHeight(fraction = 0.6F)
                     .width(1.dp),
                 color = Color.LightGray,
                 thickness = 1.dp
@@ -118,14 +120,14 @@ fun RecipeDetailProfileSection(
                         modifier = modifier.size(20.dp, 20.dp),
                         painter = painterResource(id = R.drawable.ic_baseline_add_24),
                         tint = Color.White,
-                        contentDescription = "Comments"
+                        contentDescription = "Add Recipe"
                     )
                 }
 
                 Spacer(modifier = modifier.padding(0.dp, 8.dp))
 
                 Text(
-                    text = "${recipe.numberOfPerson}",
+                    text = "${recipe.user.recipeCount}",
                     textAlign = TextAlign.Center,
                     fontSize = 12.sp
 
@@ -135,7 +137,8 @@ fun RecipeDetailProfileSection(
 
             Divider(
                 modifier = modifier
-                    .fillMaxHeight()
+                    .padding(8.dp)
+                    .fillMaxHeight(fraction = 0.6F)
                     .width(1.dp),
                 color = Color.LightGray,
                 thickness = 1.dp
@@ -157,7 +160,7 @@ fun RecipeDetailProfileSection(
                         modifier = modifier.size(20.dp, 20.dp),
                         painter = painterResource(id = R.drawable.ic_baseline_favorite_border_24),
                         tint = Color.White,
-                        contentDescription = "Comments"
+                        contentDescription = "Likes"
                     )
                 }
 
@@ -174,55 +177,57 @@ fun RecipeDetailProfileSection(
 
 
         }
-    }
 
-    Divider(
-        modifier = modifier.fillMaxWidth(),
-        thickness = 1.dp,
-        color = Color.LightGray
-    )
-
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-
-        Image(
-            modifier = modifier
-                .width(60.dp)
-                .height(60.dp)
-                .padding(8.dp)
-                .clip(shape = CircleShape),
-            painter = rememberAsyncImagePainter(recipe.user.image?.url),
-            contentDescription = null,
+        Divider(
+            modifier = modifier.fillMaxWidth(),
+            thickness = 1.dp,
+            color = Color.LightGray
         )
 
-        Column {
-            Text(text = recipe.user.name)
-
-            Spacer(modifier = Modifier.size(4.dp))
-
-            Text(text = "${recipe.user.recipeCount} Recipes ${recipe.user.followingCount} Followers")
-
-        }
-
-        Spacer(modifier = Modifier.size(64.dp))
-
-        OutlinedButton(
-
-            onClick = { /*TODO*/ },
-            shape = CircleShape,
-            border = BorderStroke(1.dp, color = Color.Red)
-
+        Row(
+            modifier = modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                modifier = Modifier.padding(8.dp, 0.dp),
-                text = "Follow",
-                color = Color.Red
+
+            Image(
+                modifier = modifier
+                    .width(60.dp)
+                    .height(60.dp)
+                    .padding(8.dp)
+                    .clip(shape = CircleShape),
+                painter = rememberAsyncImagePainter(recipe.user.image?.url),
+                contentDescription = null,
             )
 
+            Column {
+                Text(text = recipe.user.name)
+
+                Spacer(modifier = Modifier.size(4.dp))
+
+                Text(text = "${recipe.user.recipeCount} Recipes ${recipe.user.followingCount} Followers")
+
+            }
+
+            Spacer(modifier = Modifier.size(64.dp))
+
+            OutlinedButton(
+
+                onClick = { /*TODO*/ },
+                shape = CircleShape,
+                border = BorderStroke(1.dp, color = Color.Red)
+
+            ) {
+                Text(
+                    modifier = Modifier.padding(8.dp, 0.dp),
+                    text = "Follow",
+                    color = Color.Red
+                )
+
+            }
         }
     }
+
+
 }
 
 @Preview

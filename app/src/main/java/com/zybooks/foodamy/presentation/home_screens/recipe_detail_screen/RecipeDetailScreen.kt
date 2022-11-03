@@ -1,11 +1,14 @@
-package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.recipe_detail_screen
+package com.zybooks.foodamy.presentation.home_screens.recipe_detail_screen
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -21,18 +24,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.zybooks.foodamy.R
-import com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.recipe_detail_screen.components.RecipeDetailCard
+import com.zybooks.foodamy.presentation.home_screens.recipe_detail_screen.components.RecipeDetailCard
 import com.zybooks.foodamy.ui.theme.DarkRed
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RecipeDetailScreen(
+    onNavigateBackToEditorChoice: () -> Boolean?,
     recipeID: Int?,
     viewModel: RecipeDetailViewModel = hiltViewModel(),
-    navController: NavController
 ) {
+    val navController = rememberNavController()
     val recipe = viewModel.state.recipe
     Scaffold(
         topBar = {
@@ -48,7 +52,7 @@ fun RecipeDetailScreen(
 
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { onNavigateBackToEditorChoice() }) {
                         androidx.compose.material.Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Go Back"
@@ -78,7 +82,12 @@ fun RecipeDetailScreen(
         },
 
         ) {
-        RecipeDetailCard(modifier = Modifier, recipe = recipe)
+
+        Column(modifier = Modifier
+            .verticalScroll(rememberScrollState())) {
+            RecipeDetailCard(modifier = Modifier, recipe = recipe)
+        }
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.recipe_detail_screen
+package com.zybooks.foodamy.presentation.home_screens.recipe_detail_screen
 
 import com.zybooks.foodamy.domain.model.Recipe
 

@@ -1,4 +1,4 @@
-package com.zybooks.foodamy.presentation.home_screens.editor_choice_screen.recipe_detail_screen
+package com.zybooks.foodamy.presentation.home_screens.recipe_detail_screen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,7 +17,7 @@ class RecipeDetailViewModel @Inject constructor(
     private val deviceConnection: DeviceConnection
 ) : BaseViewModel() {
     var state by mutableStateOf(RecipeDetailState())
-    private val recipeID: Int = savedStateHandle.get<Int>("recipeId")!!
+   private val recipeID: Int = savedStateHandle.get<Int>("recipeId")!!
 
     init {
         recipeDetail()
@@ -27,7 +27,7 @@ class RecipeDetailViewModel @Inject constructor(
     private fun recipeDetail(){
         sendRequest(
             request = {
-                repository.getRecipeById(recipeID, deviceConnection.isHasConnection() )
+                repository.getRecipeById(recipeID , deviceConnection.isHasConnection() )
             },
             success = {
                 state = state.copy(
