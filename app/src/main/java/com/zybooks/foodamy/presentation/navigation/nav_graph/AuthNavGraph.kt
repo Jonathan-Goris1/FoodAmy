@@ -19,16 +19,20 @@ fun NavGraphBuilder.authNavGraph(
         route = AUTHENTICATION_ROUTE
     ){
         composable(Screen.Login.route) {
-            LoginInfoScreen(navController)
+            LoginInfoScreen(
+                onNavigateToEditorChoice = { navController.navigate(Screen.AppScaffold.route) },
+                onNavigateToForgotPassword = {navController.navigate(Screen.ForgotPassword.route)},
+                onNavigateToRegister = {navController.navigate(Screen.Register.route)}
+            )
         }
         composable(Screen.Register.route) {
-            RegisterInfoScreen(navController)
+            RegisterInfoScreen(onNavigateBackToLogin = {navController.popBackStack()})
         }
         composable(Screen.ForgotPassword.route){
-            ForgotPasswordScreen(navController)
+            ForgotPasswordScreen(onNavigateBackToLogin = { navController.popBackStack() })
         }
         composable(Screen.AppScaffold.route){
-            AppScaffold(navController = navController)
+            AppScaffold()
         }
 
     }
