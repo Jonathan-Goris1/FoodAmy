@@ -224,7 +224,13 @@ fun RecipeDetailProfileSection(
                 )
 
             }
+
         }
+        Divider(
+            modifier = modifier.fillMaxWidth(),
+            thickness = 5.dp,
+            color = Color.LightGray
+        )
     }
 
 
