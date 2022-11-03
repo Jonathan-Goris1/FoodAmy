@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.zybooks.foodamy.presentation.navigation.nav_graph.HomeHostNavGraph
 import com.zybooks.foodamy.ui.components.RecipeBottomNavigation
 
@@ -12,11 +12,9 @@ import com.zybooks.foodamy.ui.components.RecipeBottomNavigation
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun AppScaffold(
-    navController: NavController,
-
 ) {
     val scaffoldState = rememberScaffoldState()
-
+    val navController = rememberNavController()
 
     Scaffold(
         bottomBar = {
@@ -25,11 +23,8 @@ fun AppScaffold(
         scaffoldState = scaffoldState,
 
 
-        ) {
-
+        ) { 
         HomeHostNavGraph(navController = navController)
 
-
     }
-
 }
