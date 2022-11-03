@@ -23,7 +23,7 @@ fun Navigator(){
         //homeNavGraph(navController = navController)
         composable(
             route = Screen.AppScaffold.route,
-            content = { AppScaffold(navController = navBarController) }
+            content = { AppScaffold() }
         )
 
 
