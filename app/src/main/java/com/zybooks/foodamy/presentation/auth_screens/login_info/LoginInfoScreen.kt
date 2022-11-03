@@ -24,8 +24,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
-import com.zybooks.foodamy.presentation.navigation.Screen
 import com.zybooks.foodamy.ui.components.DividerText
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
@@ -37,7 +35,9 @@ import kotlinx.coroutines.CoroutineScope
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun LoginInfoScreen(
-    navController: NavHostController,
+    onNavigateToEditorChoice: () -> Unit,
+    onNavigateToRegister: () -> Unit,
+    onNavigateToForgotPassword: () -> Unit,
     viewModel: LoginInfoViewModel = hiltViewModel(),
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
@@ -169,7 +169,7 @@ fun LoginInfoScreen(
                     text = AnnotatedString("Sign Up"),
                     style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Left),
                     onClick = { onClick ->
-                        navController.navigate(Screen.Register.route)
+                        onNavigateToRegister()
                         Log.d("ClickableText", "$onClick -th character is clicked.")
                     }
                 )
@@ -182,7 +182,7 @@ fun LoginInfoScreen(
                     text = AnnotatedString("Forgot Password"),
                     style = TextStyle(Color.Black, fontWeight = Bold, textAlign = TextAlign.Right),
                     onClick = { offset ->
-                        navController.navigate(Screen.ForgotPassword.route)
+                        onNavigateToForgotPassword()
                         Log.d("ClickableText", "$offset -th character is clicked.")
                     }
                 )
@@ -196,11 +196,12 @@ fun LoginInfoScreen(
                 onClick = {
                     Log.d(tag, viewModel.state.email + " " + viewModel.state.password + viewModel.state.isValid.toString())
                     viewModel.login()
-                        navController.navigate(Screen.AppScaffold.route){
-                            popUpTo(navController.graph.startDestinationId)
-                            launchSingleTop = true
-
-                    }
+                    onNavigateToEditorChoice()
+//                        navController.navigate(Screen.AppScaffold.route){
+//                            popUpTo(navController.graph.startDestinationId)
+//                            launchSingleTop = true
+//
+//                    }
 
 //                    coroutineScope.launch {
 //                        delay(3000)

@@ -19,10 +19,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.zybooks.foodamy.ui.components.DividerText
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkBlue
@@ -35,7 +33,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun RegisterInfoScreen(
-    navController: NavController?,
+    onNavigateBackToLogin: () -> Boolean,
     viewModel: RegisterInfoViewModel = hiltViewModel()
 ) {
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
@@ -57,7 +55,7 @@ fun RegisterInfoScreen(
                     }
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController?.popBackStack() }) {
+                    IconButton(onClick = { onNavigateBackToLogin() }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Go Back"
@@ -199,10 +197,4 @@ fun RegisterInfoScreen(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun RegisterScreenPreview() {
-    RegisterInfoScreen(navController = null)
 }

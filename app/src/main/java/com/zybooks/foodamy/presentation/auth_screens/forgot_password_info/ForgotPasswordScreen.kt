@@ -13,10 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.zybooks.foodamy.ui.components.OutlineTextFieldUserInput
 import com.zybooks.foodamy.ui.theme.DarkRed
 import com.zybooks.foodamy.util.TestTags
@@ -27,7 +25,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ForgotPasswordScreen(
-    navController: NavController?,
+    onNavigateBackToLogin: () -> Boolean?,
     viewModel: ForgotPasswordViewModel = hiltViewModel()
 
 ) {
@@ -48,7 +46,7 @@ fun ForgotPasswordScreen(
                     }
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController?.popBackStack() }) {
+                    IconButton(onClick = { onNavigateBackToLogin()}) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,
                             contentDescription = "Go Back"
@@ -110,10 +108,4 @@ fun ForgotPasswordScreen(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun ForgotPasswordScreenPreview() {
-    ForgotPasswordScreen(null)
 }
