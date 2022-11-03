@@ -10,9 +10,9 @@ import retrofit2.http.Query
 interface RecipeApi {
 
 
-    @GET("recipe/{id}")
+    @GET("recipe/{recipe_id}")
     suspend fun getRecipe(
-        @Path("recipeID") recipeID: Int,
+        @Path("recipe_id") recipeID: Int,
     ): RecipeResponse
 
     @GET("editor-choices")
