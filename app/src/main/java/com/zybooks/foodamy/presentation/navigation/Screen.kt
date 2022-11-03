@@ -2,8 +2,7 @@ package com.zybooks.foodamy.presentation.navigation
 
 
 const val AUTHENTICATION_ROUTE = "authentication"
-const val HOME_ROUTE = "home"
-const val ROOT_ROUTE = "root"
+
 
 sealed class Screen(val route: String) {
 
@@ -11,7 +10,8 @@ sealed class Screen(val route: String) {
     object ForgotPassword : Screen("forgot_password")
     object Register : Screen("register")
     object AppScaffold : Screen("app_scaffold")
-    object RecipeDetail : Screen("recipe_detail")
+
+
 
 }
 
