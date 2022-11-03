@@ -9,7 +9,9 @@ fun RecipeDetailCard(
     modifier: Modifier,
     recipe: Recipe
 ) {
+    
     RecipeDetailProfileSection(modifier = modifier, recipe = recipe )
+    RecipeDetailStepsSection(recipe = recipe)
 
 }
 
