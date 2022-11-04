@@ -9,6 +9,9 @@ interface RecipeRepository {
 
     suspend fun getEditorChoicePaging(): Flow<PagingData<Recipe>>
 
+    suspend fun getEditorChoiceRecipes(page: Int = 1): List<Recipe>
+
+
     suspend fun getRecipeById(recipeId: Int, onlyRemote: Boolean): Recipe
 
 }

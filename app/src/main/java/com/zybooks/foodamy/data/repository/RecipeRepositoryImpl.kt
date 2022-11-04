@@ -4,6 +4,7 @@ import androidx.paging.*
 import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
 import com.zybooks.foodamy.data.mapper.toDomainModel
+import com.zybooks.foodamy.data.mapper.toLocalDto
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
 import com.zybooks.foodamy.data.repository.base.BaseRepository
 import com.zybooks.foodamy.data.utils.RecipeEditorRemoteMediator
@@ -46,6 +47,19 @@ class RecipeRepositoryImpl @Inject constructor(
                 }
             }
         }
+
+    override suspend fun getEditorChoiceRecipes(page: Int): List<Recipe> =
+        execute {
+            val local = fetchFromLocal { recipeDao.getEditorChoices().map { it.toDomainModel() } }
+            if (local?.isNotEmpty() == true) {
+                local
+            } else {
+                val remote = recipeApi.getEditorsChoice(page).data
+                saveToLocal { recipeDao.insertRecipes(remote.map { it.toLocalDto()}) }
+                remote.map { it.toDomainModel() }
+            }
+        }
+
 
     override suspend fun getRecipeById(recipeId: Int, onlyRemote: Boolean): Recipe =
         execute {
