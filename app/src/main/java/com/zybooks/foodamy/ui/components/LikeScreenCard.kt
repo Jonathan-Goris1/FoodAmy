@@ -69,7 +69,7 @@ fun LikedScreenCard(
 
             LazyRow {
                 items(likesData) { favorite ->
-                    LikesCard(modifier = Modifier, Recipe = favorite)
+                    LikesCard(Recipe = favorite)
 
                 }
 
