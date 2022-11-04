@@ -25,12 +25,11 @@ import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
 fun RecipeDetailProfileSection(
-    modifier: Modifier,
     recipe: Recipe
 ){
     Column {
         Image(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .height(400.dp)
                 .padding(8.dp),
@@ -40,51 +39,51 @@ fun RecipeDetailProfileSection(
         )
 
         Text(
-            modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+            modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
             text = recipe.title,
             fontWeight = FontWeight.Bold
         )
 
         Text(
-            modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+            modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
             text = recipe.category.name,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
 
         Text(
-            modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
+            modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
             text = recipe.timeOfRecipe.text,
             fontSize = 12.sp
         )
 
         Row(
-            modifier
+            Modifier
                 .height(IntrinsicSize.Min)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
             Column(
-                modifier = modifier.padding(32.dp),
+                modifier = Modifier.padding(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
 
                 IconButton(
-                    modifier = modifier
+                    modifier = Modifier
                         .clip(CircleShape)
                         .background(Color.Gray)
                         .size(30.dp, 30.dp),
                     onClick = { /* doSomething() */ }) {
                     Icon(
-                        modifier = modifier.size(20.dp, 20.dp),
+                        modifier = Modifier.size(20.dp, 20.dp),
                         painter = painterResource(id = R.drawable.ic_baseline_chat_bubble_24),
                         tint = Color.White,
                         contentDescription = "Comments"
                     )
                 }
 
-                Spacer(modifier = modifier.padding(0.dp, 8.dp))
+                Spacer(modifier = Modifier.padding(0.dp, 8.dp))
 
                 Text(
                     text = "${recipe.commentCount}",
@@ -96,7 +95,7 @@ fun RecipeDetailProfileSection(
             }
 
             Divider(
-                modifier = modifier
+                modifier = Modifier
                     .padding(8.dp)
                     .fillMaxHeight(fraction = 0.6F)
                     .width(1.dp),
@@ -105,26 +104,26 @@ fun RecipeDetailProfileSection(
             )
 
             Column(
-                modifier = modifier.padding(32.dp),
+                modifier = Modifier.padding(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
 
                 IconButton(
-                    modifier = modifier
+                    modifier = Modifier
                         .clip(CircleShape)
                         .background(Color.Gray)
                         .size(30.dp, 30.dp),
                     onClick = { /* doSomething() */ }) {
                     Icon(
-                        modifier = modifier.size(20.dp, 20.dp),
+                        modifier = Modifier.size(20.dp, 20.dp),
                         painter = painterResource(id = R.drawable.ic_baseline_add_24),
                         tint = Color.White,
                         contentDescription = "Add Recipe"
                     )
                 }
 
-                Spacer(modifier = modifier.padding(0.dp, 8.dp))
+                Spacer(modifier = Modifier.padding(0.dp, 8.dp))
 
                 Text(
                     text = "${recipe.user.recipeCount}",
@@ -136,7 +135,7 @@ fun RecipeDetailProfileSection(
             }
 
             Divider(
-                modifier = modifier
+                modifier = Modifier
                     .padding(8.dp)
                     .fillMaxHeight(fraction = 0.6F)
                     .width(1.dp),
@@ -145,26 +144,26 @@ fun RecipeDetailProfileSection(
             )
 
             Column(
-                modifier = modifier.padding(32.dp),
+                modifier = Modifier.padding(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
 
                 IconButton(
-                    modifier = modifier
+                    modifier = Modifier
                         .clip(CircleShape)
                         .background(Color.LightGray)
                         .size(30.dp, 30.dp),
                     onClick = { /* doSomething() */ }) {
                     Icon(
-                        modifier = modifier.size(20.dp, 20.dp),
+                        modifier = Modifier.size(20.dp, 20.dp),
                         painter = painterResource(id = R.drawable.ic_baseline_favorite_border_24),
                         tint = Color.White,
                         contentDescription = "Likes"
                     )
                 }
 
-                Spacer(modifier = modifier.padding(0.dp, 8.dp))
+                Spacer(modifier = Modifier.padding(0.dp, 8.dp))
 
                 Text(
                     text = "${recipe.likeCount}",
@@ -179,18 +178,18 @@ fun RecipeDetailProfileSection(
         }
 
         Divider(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             thickness = 1.dp,
             color = Color.LightGray
         )
 
         Row(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
 
             Image(
-                modifier = modifier
+                modifier = Modifier
                     .width(60.dp)
                     .height(60.dp)
                     .padding(8.dp)
@@ -227,7 +226,7 @@ fun RecipeDetailProfileSection(
 
         }
         Divider(
-            modifier = modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             thickness = 5.dp,
             color = Color.LightGray
         )
