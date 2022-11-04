@@ -29,12 +29,11 @@ fun RecipeDetailStepsSection(
                     modifier = Modifier
                         .padding(8.dp)
                         .align(Alignment.CenterStart),
-                    text = "Ingredients"
+                    text = "INGREDIENTS"
                 )
 
                 Column(
-                    modifier = Modifier.align(Alignment.CenterEnd)
-                        .padding(8.dp),
+                    modifier = Modifier.align(Alignment.CenterEnd),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     IconButton(
@@ -69,6 +68,12 @@ fun RecipeDetailStepsSection(
         )
         
         Text(text = recipe.directions)
+
+        Divider(
+            modifier = Modifier.fillMaxWidth(),
+            thickness = 5.dp,
+            color = Color.LightGray
+        )
     }
 }
 
