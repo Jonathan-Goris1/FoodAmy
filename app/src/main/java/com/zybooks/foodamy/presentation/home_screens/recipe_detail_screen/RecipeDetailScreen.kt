@@ -85,7 +85,7 @@ fun RecipeDetailScreen(
 
         Column(modifier = Modifier
             .verticalScroll(rememberScrollState())) {
-            RecipeDetailCard(modifier = Modifier, recipe = recipe)
+            RecipeDetailCard(recipe = recipe)
         }
 
     }
