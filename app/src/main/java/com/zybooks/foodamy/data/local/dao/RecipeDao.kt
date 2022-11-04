@@ -16,6 +16,9 @@ interface RecipeDao {
     @Query("select * from recipes where is_editor_choice = 1 order by id desc")
     fun getEditorChoicesPaging(): PagingSource<Int, RecipeDb>
 
+    @Query("select * from recipes where is_editor_choice =1")
+    suspend fun getEditorChoices(): List<RecipeDb>
+
     @Query("DELETE FROM recipes")
     suspend fun clearRecipeListing()
 
@@ -24,6 +27,7 @@ interface RecipeDao {
 
     @Query("select * from recipes where id =:recipeId ")
     suspend fun getRecipeDetails(recipeId: Int): RecipeDb
+
 
 
 }
