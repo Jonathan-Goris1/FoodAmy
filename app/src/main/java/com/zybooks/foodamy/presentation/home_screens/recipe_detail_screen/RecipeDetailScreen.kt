@@ -38,6 +38,7 @@ fun RecipeDetailScreen(
 ) {
     val navController = rememberNavController()
     val recipe = viewModel.state.recipe
+    val comment = viewModel.state.comment
     Scaffold(
         topBar = {
             TopAppBar(
@@ -85,7 +86,7 @@ fun RecipeDetailScreen(
 
         Column(modifier = Modifier
             .verticalScroll(rememberScrollState())) {
-            RecipeDetailCard(recipe = recipe)
+            RecipeDetailCard(recipe = recipe, comment =  comment)
         }
 
     }
