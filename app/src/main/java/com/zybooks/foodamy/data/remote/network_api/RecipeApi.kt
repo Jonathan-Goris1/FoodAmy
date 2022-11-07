@@ -1,6 +1,7 @@
 package com.zybooks.foodamy.data.remote.network_api
 
 import com.zybooks.foodamy.data.remote.response.CategoryPagingResponse
+import com.zybooks.foodamy.data.remote.response.CommentPagingResponse
 import com.zybooks.foodamy.data.remote.response.DataResponse
 import com.zybooks.foodamy.data.remote.response.RecipeResponse
 import retrofit2.http.GET
@@ -24,4 +25,10 @@ interface RecipeApi {
     suspend fun getCategoriesWithRecipes(
         @Query("page") page: Int
     ): CategoryPagingResponse
+
+    @GET("recipe/{recipe_id}/comment")
+    suspend fun getRecipeComments(
+        @Path("recipe_id") recipeId: Int,
+        @Query("page") page: Int
+    ): CommentPagingResponse
 }
