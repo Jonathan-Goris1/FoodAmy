@@ -19,7 +19,7 @@ import com.zybooks.foodamy.R
 import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
-fun RecipeDetailStepsSection(
+fun RecipeDetailIngredientsSection(
     recipe: Recipe
 ) {
     Column {
@@ -67,7 +67,7 @@ fun RecipeDetailStepsSection(
             color = Color.LightGray
         )
         
-        Text(text = recipe.directions)
+        Text(text = recipe.ingredients)
 
         Divider(
             modifier = Modifier.fillMaxWidth(),
