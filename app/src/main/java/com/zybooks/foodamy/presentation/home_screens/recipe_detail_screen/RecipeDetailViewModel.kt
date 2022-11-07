@@ -20,11 +20,12 @@ class RecipeDetailViewModel @Inject constructor(
    private val recipeID: Int = savedStateHandle.get<Int>("recipeId")!!
 
     init {
-        recipeDetail()
+        getRecipeDetail()
+        getFirstRecipeComments()
     }
 
 
-    private fun recipeDetail(){
+    private fun getRecipeDetail(){
         sendRequest(
             request = {
                 repository.getRecipeById(recipeID , deviceConnection.isHasConnection() )
@@ -33,6 +34,23 @@ class RecipeDetailViewModel @Inject constructor(
                 state = state.copy(
                     isLoading = false,
                     recipe = it,
+                    error = null
+                )
+
+            }
+        )
+
+    }
+
+    private fun getFirstRecipeComments(){
+        sendRequest(
+            request = {
+                repository.getFirstComment(recipeID)
+            },
+            success = {
+                state = state.copy(
+                    isLoading = false,
+                    comment = it,
                     error = null
                 )
 
