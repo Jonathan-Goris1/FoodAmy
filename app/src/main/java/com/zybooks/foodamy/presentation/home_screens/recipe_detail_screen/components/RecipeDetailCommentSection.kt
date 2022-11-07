@@ -14,13 +14,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
+import com.zybooks.foodamy.domain.model.Comment
 import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
 fun RecipeDetailCommentSection(
-    recipe: Recipe
+    comment: Comment
 ) {
 
     Column {
@@ -54,25 +57,34 @@ fun RecipeDetailCommentSection(
                     .height(80.dp)
                     .padding(8.dp)
                     .clip(shape = CircleShape),
-                painter = rememberAsyncImagePainter(recipe.user.image?.url),
+                painter = rememberAsyncImagePainter(comment.user.image?.url),
 
                 contentDescription = null,
             )
 
             Column {
-                androidx.compose.material.Text(text = recipe.user.name)
+                Text(text = comment.user.name)
 
                 Spacer(modifier = Modifier.size(4.dp))
 
-                androidx.compose.material.Text(text = "${recipe.user.recipeCount} Recipes ${recipe.user.followingCount} Followers")
+                Text(text = "${comment.user.recipeCount} Recipes ${comment.user.followingCount} Followers")
 
 
             }
         }
         Text(
             modifier = Modifier.padding(16.dp, 0.dp),
-            text = "${recipe.commentCount} seconds ago"
+            text = comment.difference
         )
+
+        Text(
+            modifier = Modifier.padding(8.dp, 8.dp),
+            text = comment.text,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold
+
+        )
+
 
         Box(modifier = Modifier.fillMaxWidth().background(color = Color.LightGray).padding(8.dp)){
 
