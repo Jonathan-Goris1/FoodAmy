@@ -3,11 +3,14 @@ package com.zybooks.foodamy.data.repository
 import androidx.paging.*
 import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
+import com.zybooks.foodamy.data.local.local_dto.CommentDb
 import com.zybooks.foodamy.data.mapper.toDomainModel
 import com.zybooks.foodamy.data.mapper.toLocalDto
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
 import com.zybooks.foodamy.data.repository.base.BaseRepository
+import com.zybooks.foodamy.data.utils.CommentsRemoteMediator
 import com.zybooks.foodamy.data.utils.RecipeEditorRemoteMediator
+import com.zybooks.foodamy.domain.model.Comment
 import com.zybooks.foodamy.domain.model.Recipe
 import com.zybooks.foodamy.domain.repository.RecipeRepository
 import kotlinx.coroutines.flow.Flow
@@ -48,6 +51,23 @@ class RecipeRepositoryImpl @Inject constructor(
             }
         }
 
+    override suspend fun getRecipeCommentsPaging(recipeId: Int): Flow<PagingData<Comment>> =
+        execute {
+            val pagingSourceFactory = { recipeDao.getRecipeCommentsPaging(recipeId) }
+            Pager(
+                config = pageConfig,
+                remoteMediator = CommentsRemoteMediator(
+                    recipeApi = recipeApi,
+                    recipeDao = recipeDao,
+                    remoteKeysDao = remoteKeysDao,
+                    recipeId = recipeId
+                ),
+                pagingSourceFactory = pagingSourceFactory
+            ).flow.map { pagingData ->
+                pagingData.map { it.toDomainModel() }
+            }
+        }
+
     override suspend fun getEditorChoiceRecipes(page: Int): List<Recipe> =
         execute {
             val local = fetchFromLocal { recipeDao.getEditorChoices().map { it.toDomainModel() } }
@@ -58,6 +78,13 @@ class RecipeRepositoryImpl @Inject constructor(
                 saveToLocal { recipeDao.insertRecipes(remote.map { it.toLocalDto()}) }
                 remote.map { it.toDomainModel() }
             }
+        }
+
+    override suspend fun getFirstComment(recipeId: Int): Comment =
+        execute {
+                val remote = recipeApi.getRecipeComments(recipeId, 1).data[0]
+                saveToLocal { recipeDao.insertComment(remote.toLocalDto(recipeId)) }
+                remote.toDomainModel()
         }
 
 
