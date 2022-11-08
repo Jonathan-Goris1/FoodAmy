@@ -5,5 +5,6 @@ data class CategoryResponse(
     val image: ImageResponse?,
     val language: String,
     val main_category_id: Any,
-    val name: String
+    val name: String,
+    val recipes: List<RecipeResponse>?
 )

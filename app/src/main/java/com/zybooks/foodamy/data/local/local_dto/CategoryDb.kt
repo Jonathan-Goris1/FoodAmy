@@ -12,5 +12,6 @@ data class CategoryDb(
     @Embedded
     val image: ImageDb?,
     //val main_category_id: Any,
-    val name: String
+    val name: String,
+    val recipes: List<RecipeDb>?
 )
