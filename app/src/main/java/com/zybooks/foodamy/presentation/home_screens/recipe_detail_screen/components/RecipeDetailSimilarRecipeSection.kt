@@ -29,5 +29,5 @@ fun RecipeDetailSimilarRecipeSection(
         )
 
     }
-    LikesCard(Recipe = recipe)
+    LikesCard(recipe = recipe)
 }
