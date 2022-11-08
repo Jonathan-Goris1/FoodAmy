@@ -25,7 +25,7 @@ class LikeScreenViewModel @Inject constructor(
     private fun getFavorites() {
         sendRequest(
             request = {
-                repository.getEditorChoicePaging()
+                repository.getCategoriesPaging()
             },
             success = {
                 state = state.copy(
