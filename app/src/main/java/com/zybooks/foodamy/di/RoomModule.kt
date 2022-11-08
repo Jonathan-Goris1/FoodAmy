@@ -34,6 +34,6 @@ object RoomModule {
             app,
             AppDatabase::class.java,
             "recipeDB.db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }
