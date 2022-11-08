@@ -16,10 +16,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.zybooks.foodamy.R
 import com.zybooks.foodamy.presentation.navigation.BottomNavItem
-import com.zybooks.foodamy.ui.theme.DarkRed
 
 @Composable
-fun RecipeBottomNavigation(navController: NavController) {
+fun RecipeBottomNavigation(
+    navController: NavController,
+) {
     val items = listOf(
         BottomNavItem.Recipe,
         BottomNavItem.Liked,
@@ -31,6 +32,7 @@ fun RecipeBottomNavigation(navController: NavController) {
 
     val bottomBarDestination = items.any{it.screen_route == currentRoute}
 
+
     if(bottomBarDestination) {
         BottomNavigation(
             backgroundColor = colorResource(id = R.color.lightGrey),
@@ -39,20 +41,46 @@ fun RecipeBottomNavigation(navController: NavController) {
 
 
             items.map {
+                val selected = currentRoute == it.screen_route
                 BottomNavigationItem(
-                    icon = { Icon(painterResource(id = it.icon), contentDescription = "") },
+                    icon = {
+                        if(selected){
+                            Icon(
+                                painterResource(id = it.icon),
+                                contentDescription = "",
+                                tint = Color.Red
+                            )
+                        }
+                        else{
+                            Icon(
+                                painterResource(id = it.icon),
+                                contentDescription = "",
+                                tint = Color.White
+                            )
+                        }
+
+                     },
                     label = {
-                        Text(
+                        if(selected){
+                            Text(
+                                text = stringResource(id = it.title),
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Red
+                            )
+                        }else{
+                            Text(
                             text = stringResource(id = it.title),
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.DarkGray
-                        )
+                        )}
+
                     },
-                    selectedContentColor = DarkRed,
+                    selectedContentColor = Color.Red,
                     unselectedContentColor = Color.White.copy(0.4f),
                     alwaysShowLabel = true,
-                    selected = currentRoute == it.screen_route,
+                    selected = selected,
                     onClick = {
                         navController.navigate(it.screen_route) {
 
