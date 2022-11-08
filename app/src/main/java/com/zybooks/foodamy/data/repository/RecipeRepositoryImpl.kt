@@ -3,13 +3,14 @@ package com.zybooks.foodamy.data.repository
 import androidx.paging.*
 import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
-import com.zybooks.foodamy.data.local.local_dto.CommentDb
 import com.zybooks.foodamy.data.mapper.toDomainModel
 import com.zybooks.foodamy.data.mapper.toLocalDto
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
 import com.zybooks.foodamy.data.repository.base.BaseRepository
 import com.zybooks.foodamy.data.utils.CommentsRemoteMediator
 import com.zybooks.foodamy.data.utils.RecipeEditorRemoteMediator
+import com.zybooks.foodamy.data.utils.RemoteMediatorCategories
+import com.zybooks.foodamy.domain.model.Category
 import com.zybooks.foodamy.domain.model.Comment
 import com.zybooks.foodamy.domain.model.Recipe
 import com.zybooks.foodamy.domain.repository.RecipeRepository
@@ -94,6 +95,27 @@ class RecipeRepositoryImpl @Inject constructor(
                 recipeApi.getRecipe(recipeId).toDomainModel()
             } else {
                 fetchFromLocal { recipeDao.getRecipeDetails(recipeId).toDomainModel() }!!
+            }
+        }
+
+    override suspend fun getCategoriesPaging(): Flow<PagingData<Category>> =
+        execute {
+            val pagingSourceFactory = { recipeDao.getCategoriesPaging() }
+            Pager(
+                config = pageConfig,
+                remoteMediator = RemoteMediatorCategories(
+                    recipeApi = recipeApi,
+                    recipeDao = recipeDao,
+                    remoteKeysDao = remoteKeysDao
+                ),
+                pagingSourceFactory = pagingSourceFactory
+            ).flow.map { pagingData ->
+                pagingData.filter {
+                    // Some categories has no recipes
+                    it.recipes?.isNotEmpty()!!
+                }.map {
+                    it.toDomainModel()
+                }
             }
         }
 
