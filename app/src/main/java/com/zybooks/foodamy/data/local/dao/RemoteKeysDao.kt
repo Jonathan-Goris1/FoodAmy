@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.zybooks.foodamy.data.local.local_dto.RemoteKeyComment
+import com.zybooks.foodamy.data.local.local_dto.RemoteKeysCategory
 import com.zybooks.foodamy.data.local.local_dto.RemoteKeysEditor
 
 @Dao
@@ -31,6 +32,16 @@ interface RemoteKeysDao {
 
     @Query("delete from remote_key_comments")
     suspend fun deleteCommentsRemoteKeys()
+
+    // Category Recipes Remote Key
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCategoryRecipesRemoteKeys(remoteKeys: List<RemoteKeysCategory>)
+
+    @Query("select * from remote_keys_category where id =:id")
+    suspend fun getCategoryRemoteKeys(id: Int): RemoteKeysCategory
+
+    @Query("delete from remote_keys_category")
+    suspend fun deleteCategoryRecipesKeys()
 
 
 }
