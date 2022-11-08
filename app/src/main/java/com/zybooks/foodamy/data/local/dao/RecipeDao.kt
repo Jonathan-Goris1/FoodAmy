@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.zybooks.foodamy.data.local.local_dto.CategoryDb
 import com.zybooks.foodamy.data.local.local_dto.CommentDb
 import com.zybooks.foodamy.data.local.local_dto.RecipeDb
 
@@ -19,6 +20,9 @@ interface RecipeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertComment(comment: CommentDb)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCategories(category: List<CategoryDb>)
 
     @Query("select * from recipes where is_editor_choice = 1 order by id desc")
     fun getEditorChoicesPaging(): PagingSource<Int, RecipeDb>
@@ -37,6 +41,18 @@ interface RecipeDao {
 
     @Query("select * from comments where recipe_id =:recipeId order by id desc limit 1")
     suspend fun getFirstRecipeComments(recipeId: Int): CommentDb
+
+    @Query("select * from categories")
+    suspend fun getCategories(): List<CategoryDb>
+
+    @Query("select * from categories where id =:categoryId")
+    suspend fun getRecipesByCategory(categoryId: Int): CategoryDb
+
+    @Query("select * from categories")
+    fun getCategoriesPaging(): PagingSource<Int, CategoryDb>
+
+    @Query("delete from categories")
+    suspend fun deleteCategories()
 
     @Query("delete from comments")
     suspend fun deleteComments()
