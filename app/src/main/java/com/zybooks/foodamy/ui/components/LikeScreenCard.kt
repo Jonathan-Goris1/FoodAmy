@@ -20,12 +20,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.zybooks.foodamy.R
+import com.zybooks.foodamy.domain.model.Category
 import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
 fun LikedScreenCard(
     modifier: Modifier = Modifier,
-    Recipe: Recipe,
+    category: Category?,
     likesData: List<Recipe>,
     onClick: () -> Unit
 ) {
@@ -46,11 +47,11 @@ fun LikedScreenCard(
                         .height(50.dp)
                         .padding(8.dp)
                         .clip(shape = RectangleShape),
-                    painter = rememberAsyncImagePainter(Recipe.category.image?.url),
+                    painter = rememberAsyncImagePainter(category?.image?.url),
                     contentDescription = null,
                 )
 
-                Text(text = Recipe.category.name)
+                Text(text = category?.name ?: "")
 
                 Text(
                     modifier = Modifier
@@ -69,7 +70,7 @@ fun LikedScreenCard(
 
             LazyRow {
                 items(likesData) { favorite ->
-                    LikesCard(Recipe = favorite)
+                    LikesCard(recipe = favorite )
 
                 }
 
