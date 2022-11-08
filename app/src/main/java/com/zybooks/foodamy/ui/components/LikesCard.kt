@@ -20,7 +20,7 @@ import com.zybooks.foodamy.domain.model.Recipe
 
 @Composable
 fun LikesCard(
-    Recipe: Recipe
+    recipe: Recipe?
 ){
 
     Card(
@@ -34,13 +34,13 @@ fun LikesCard(
                     .fillMaxWidth(0.5f)
                     .height(300.dp)
                     .clip(shape = RectangleShape),
-                painter = rememberAsyncImagePainter(Recipe.category.image?.url),
+                painter = rememberAsyncImagePainter(recipe?.category?.image?.url),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
             )
             
             Text(modifier = Modifier.padding(8.dp),
-                text = Recipe.title,
+                text = recipe?.title ?: "",
                 fontSize = 12.sp
             )
 
@@ -51,7 +51,7 @@ fun LikesCard(
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
                         .padding(8.dp),
-                    text = "${Recipe.commentCount} Comments ${Recipe.likeCount} Taste"
+                    text = "${recipe?.commentCount} Comments ${recipe?.likeCount} Taste"
                 )
             }
 
