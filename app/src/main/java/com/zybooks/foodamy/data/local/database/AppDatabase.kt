@@ -3,7 +3,7 @@ package com.zybooks.foodamy.data.local.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.zybooks.foodamy.data.local.converters.*
+import com.zybooks.foodamy.data.local.converters.Converters
 import com.zybooks.foodamy.data.local.dao.RecipeDao
 import com.zybooks.foodamy.data.local.dao.RemoteKeysDao
 import com.zybooks.foodamy.data.local.local_dto.*
@@ -15,8 +15,9 @@ import com.zybooks.foodamy.data.local.local_dto.*
         CommentDb::class,
         RemoteKeyComment::class,
         UserDb::class,
-        RemoteKeysEditor::class],
-    version = 1,
+        RemoteKeysEditor::class,
+       RemoteKeysCategory::class],
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
