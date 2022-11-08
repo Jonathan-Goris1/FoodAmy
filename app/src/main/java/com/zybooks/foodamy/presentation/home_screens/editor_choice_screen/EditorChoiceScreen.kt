@@ -75,12 +75,12 @@ fun RecipeHomeScreen(
 
                 }
             )
-        },
+        }
 
         ) {
 
         Column {
-            TextTabs()
+            TextTabs(navController)
             LazyColumn {
                 items(recipesItems.itemCount) { index ->
                     EditorsChoiceRecipeCard(Recipe = recipesItems[index]!!, onClick = {
