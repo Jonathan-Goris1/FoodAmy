@@ -24,9 +24,8 @@ fun LikedScreen(
     ) {
         items(categoryItems.itemCount) { index ->
             categoryItems[index]?.recipes?.let {
-                LikedScreenCard(category = categoryItems[index], likesData = it) {
+                LikedScreenCard(category = categoryItems[index], likesData = it)
 
-                }
             }
         }
     }
