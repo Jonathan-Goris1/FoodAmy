@@ -14,7 +14,7 @@ data class Recipe(
     val user: User = User(),
     val timeOfRecipe: TimeOfRecipe = TimeOfRecipe(),
     val numberOfPerson: NumberOfPerson = NumberOfPerson(),
-    val category: Category = Category(),
-    val images: List<Image> = emptyList()
+    val category: Category? = Category(),
+    val images: List<Image> = listOf(Image())
 
 )
