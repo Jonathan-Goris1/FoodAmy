@@ -33,7 +33,7 @@ fun RecipeDetailProfileSection(
                 .fillMaxWidth()
                 .height(400.dp)
                 .padding(8.dp),
-            painter = rememberAsyncImagePainter(recipe.category.image?.url),
+            painter = rememberAsyncImagePainter(recipe.images[0].url),
             contentScale = ContentScale.Crop,
             contentDescription = null
         )
@@ -46,7 +46,7 @@ fun RecipeDetailProfileSection(
 
         Text(
             modifier = Modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-            text = recipe.category.name,
+            text = recipe.category?.name ?: "",
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold
         )
