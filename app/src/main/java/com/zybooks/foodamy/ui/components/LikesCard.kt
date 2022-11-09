@@ -22,19 +22,17 @@ import com.zybooks.foodamy.domain.model.Recipe
 fun LikesCard(
     recipe: Recipe?
 ){
-
     Card(
         modifier = Modifier.padding(8.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
         Column {
-
             Image(
                 modifier = Modifier
                     .fillMaxWidth(0.5f)
                     .height(300.dp)
                     .clip(shape = RectangleShape),
-                painter = rememberAsyncImagePainter(recipe?.category?.image?.url),
+                painter = rememberAsyncImagePainter(recipe?.images?.get(0)?.url),
                 contentScale = ContentScale.Crop,
                 contentDescription = null,
             )
@@ -54,7 +52,6 @@ fun LikesCard(
                     text = "${recipe?.commentCount} Comments ${recipe?.likeCount} Taste"
                 )
             }
-
 
 
         }
