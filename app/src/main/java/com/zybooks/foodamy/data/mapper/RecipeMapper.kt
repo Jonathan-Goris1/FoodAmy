@@ -5,7 +5,7 @@ import com.zybooks.foodamy.data.remote.response.RecipeResponse
 import com.zybooks.foodamy.domain.model.Recipe
 
 fun RecipeDb.toDomainModel(): Recipe = Recipe(
-    category = category.toDomainModel(),
+    category = category?.toDomainModel(),
     commentCount = commentCount,
     definition = definition,
     directions = directions,
@@ -45,7 +45,7 @@ fun RecipeResponse.toDomainModel(): Recipe = Recipe(
 )
 
 fun Recipe.toLocalModel(): RecipeDb = RecipeDb(
-    category = category.toLocalModel(),
+    category = category?.toLocalModel(),
     commentCount = commentCount,
     definition = definition,
     directions = directions,
