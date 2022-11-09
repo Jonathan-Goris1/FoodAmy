@@ -31,7 +31,7 @@ data class RecipeDb(
     @Embedded(prefix = "number_of_person")
     val numberOfPerson: NumberOfPersonDb,
     @ColumnInfo(name = "category")
-    val category: CategoryDb,
+    val category: CategoryDb?,
     val image: List<ImageDb>
 )
 
