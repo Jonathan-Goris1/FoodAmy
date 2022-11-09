@@ -80,10 +80,10 @@ fun RecipeHomeScreen(
         ) {
 
         Column {
-            TextTabs(navController)
+            TextTabs()
             LazyColumn {
                 items(recipesItems.itemCount) { index ->
-                    EditorsChoiceRecipeCard(Recipe = recipesItems[index]!!, onClick = {
+                    EditorsChoiceRecipeCard(recipe = recipesItems[index]!!, onClick = {
                         navController.navigate(DetailsScreens.RecipeDetail.route + "?recipeId=${recipesItems[index]!!.id}")
                     })
                 }

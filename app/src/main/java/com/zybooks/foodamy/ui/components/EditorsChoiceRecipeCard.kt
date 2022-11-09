@@ -26,7 +26,7 @@ import com.zybooks.foodamy.domain.model.Recipe
 @Composable
 fun EditorsChoiceRecipeCard(
     modifier: Modifier = Modifier,
-    Recipe: Recipe,
+    recipe: Recipe,
     onClick: () -> Unit
 
 ) {
@@ -49,17 +49,17 @@ fun EditorsChoiceRecipeCard(
                         .height(80.dp)
                         .padding(8.dp)
                         .clip(shape = CircleShape),
-                    painter = rememberAsyncImagePainter(Recipe.user.image?.url),
+                    painter = rememberAsyncImagePainter(recipe.user.image?.url),
 
                     contentDescription = null,
                     )
 
                 Column {
-                    Text(text = Recipe.user.name)
+                    Text(text = recipe.user.name)
 
                     Spacer(modifier = modifier.size(4.dp))
 
-                    Text(text = "${Recipe.user.recipeCount} Recipes ${Recipe.user.followingCount} Followers")
+                    Text(text = "${recipe.user.recipeCount} Recipes ${recipe.user.followingCount} Followers")
 
 
                 }
@@ -78,13 +78,13 @@ fun EditorsChoiceRecipeCard(
 
                 Text(
                     modifier = modifier.padding(8.dp),
-                    text = Recipe.title,
+                    text = recipe.title,
                     fontWeight = FontWeight.Bold
                 )
 
                 Text(
                     modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                    text = Recipe.category.name,
+                    text = recipe.category?.name ?: "",
                     fontSize = 12.sp
                 )
 
@@ -94,14 +94,14 @@ fun EditorsChoiceRecipeCard(
                         .height(400.dp)
                         .padding(8.dp)
                         .clip(shape = RoundedCornerShape(4.dp)),
-                    painter = rememberAsyncImagePainter(Recipe.category.image?.url),
+                    painter = rememberAsyncImagePainter(recipe.images[0].url),
                     contentScale = ContentScale.Crop,
                     contentDescription = null
                 )
 
                 Text(
                     modifier = modifier.padding(8.dp, 0.dp, 0.dp, 0.dp),
-                    text = "${Recipe.commentCount} Comments ${Recipe.likeCount} Taste"
+                    text = "${recipe.commentCount} Comments ${recipe.likeCount} Taste"
                 )
 
             }
