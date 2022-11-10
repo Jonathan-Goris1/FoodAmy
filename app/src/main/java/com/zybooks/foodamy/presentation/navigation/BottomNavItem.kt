@@ -11,8 +11,8 @@ sealed class BottomNavItem(
     ){
 
     object Recipe : BottomNavItem(R.string.recipe, R.drawable.ic_home,"recipe")
-    object Liked: BottomNavItem(R.string.liked,R.drawable.ic_baseline_navigation_24,"liked")
-    object Users: BottomNavItem(R.string.users,R.drawable.ic_baseline_stars_24,"users")
+    object Liked: BottomNavItem(R.string.likes,R.drawable.ic_baseline_navigation_24,"likes")
+    object Users: BottomNavItem(R.string.profile,R.drawable.ic_baseline_stars_24,"profile")
     object Menu: BottomNavItem(R.string.menu,R.drawable.ic_round_menu_24,"menu")
 
 }
