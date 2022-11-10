@@ -2,6 +2,7 @@ package com.zybooks.foodamy.di
 
 import com.zybooks.foodamy.data.remote.network_api.AuthApi
 import com.zybooks.foodamy.data.remote.network_api.RecipeApi
+import com.zybooks.foodamy.data.remote.network_api.UserApi
 import com.zybooks.foodamy.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -47,6 +48,14 @@ object AppModule {
         retrofit: Retrofit
     ): RecipeApi {
         return retrofit.create(RecipeApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserApi(
+        retrofit: Retrofit
+    ): UserApi {
+       return retrofit.create(UserApi::class.java)
     }
 
 
