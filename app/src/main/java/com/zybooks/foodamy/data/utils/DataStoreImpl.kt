@@ -56,7 +56,7 @@ class DataStoreManagerImpl @Inject constructor(
     }
 
     override suspend fun getUserId(): Int =
-        context.dataStore.data.map { pref -> pref[USER_ID] ?: 0 }.first()
+        context.dataStore.data.map { pref -> pref[USER_ID] ?: 4 }.first()
 
     override suspend fun removeUserId() {
         context.dataStore.edit { pref ->
